@@ -1,0 +1,147 @@
+{
+  "brand": {
+    "name": "InverCenter USA, Inc.",
+    "tagline": "Soluciones en finanzas, pagos internacionales, blockchain y big data"
+  },
+  "nav": {
+    "home": "Inicio",
+    "services": "Servicios",
+    "solutions": "Soluciones",
+    "about": "Nosotros",
+    "insights": "Insights",
+    "contact": "Contacto",
+    "quote": "Cotización"
+  },
+  "hero": {
+    "title": "Soluciones Financieras y Tecnológicas para un Mundo Digital",
+    "subtitle": "En InverCenter USA impulsamos la transformación digital del sector financiero. Ofrecemos consultorías estratégicas en inversiones, blockchain, big data y tecnología fintech para optimizar la eficiencia y el crecimiento de su empresa.",
+    "cta_services": "Descubra nuestras soluciones",
+    "cta_contact": "Contáctenos"
+  },
+  "services": {
+    "title": "Servicios Financieros y Tecnológicos",
+    "description": "Ofrecemos soluciones innovadoras en finanzas, blockchain y tecnología aplicada a los negocios globales. Acompañamos a empresas e inversionistas en la transformación digital de sus operaciones financieras.",
+    "list": [
+      { "icon": "Briefcase", "title": "Consultoría Financiera Estratégica", "desc": "Asesoramos empresas en la gestión de capital, estructura financiera, fusiones, adquisiciones y optimización de liquidez." },
+      { "icon": "Globe", "title": "Pagos Internacionales y Cross-Border", "desc": "Soluciones para transferencias globales seguras, rápidas y con cumplimiento regulatorio (KYC/AML)." },
+      { "icon": "Network", "title": "Tecnología Blockchain Aplicada", "desc": "Implementamos sistemas basados en blockchain para trazabilidad, tokenización y seguridad transaccional." },
+      { "icon": "BarChart3", "title": "Big Data & Analítica Predictiva", "desc": "Desarrollamos modelos de datos que impulsan decisiones inteligentes en inversiones y operaciones financieras." },
+      { "icon": "Cpu", "title": "Infraestructura Fintech", "desc": "Diseñamos e integramos plataformas financieras escalables, APIs bancarias y sistemas de pago digitales." },
+      { "icon": "Cog", "title": "Automatización de Procesos Financieros (RPA)", "desc": "Digitalizamos tareas repetitivas mediante inteligencia artificial y automatización para mayor eficiencia." },
+      { "icon": "ShieldCheck", "title": "Cumplimiento Regulatorio y Seguridad Digital", "desc": "Implementamos soluciones que garantizan la seguridad, privacidad y cumplimiento de estándares internacionales." },
+      { "icon": "TrendingUp", "title": "Inversiones y Gestión de Portafolios Digitales", "desc": "Asesoría en activos digitales, estrategias de inversión y diversificación inteligente mediante tecnología." }
+    ]
+  },
+  "solutions": {
+    "title": "Soluciones Financieras & Tech",
+    "payments": {
+      "title": "Pagos y transferencias internacionales",
+      "desc": "Cumplimiento, KYC/KYB y alianzas bancarias para mover capital con seguridad y eficiencia.",
+      "benefits": ["Cumplimiento global", "Liquidez confiable", "Onboarding ágil"]
+    },
+    "blockchain": {
+      "title": "Blockchain aplicada a trazabilidad y pagos",
+      "desc": "Arquitectura, wallets y seguridad para flujos auditables y reducción de fraude.",
+      "benefits": ["Trazabilidad", "Seguridad", "Automatización"]
+    },
+    "data": {
+      "title": "Big Data & Analytics",
+      "desc": "Forecasting logístico y financiero para decisiones basadas en datos.",
+      "benefits": ["Pronósticos", "Optimización", "Visibilidad 360°"]
+    }
+  },
+  "why": {
+    "title": "¿Por qué InverCenter?",
+    "features": [
+      "Reducción de costos",
+      "% de productividad incrementada",
+      "Cumplimiento y gobierno",
+      "Equipo experto",
+      "Presencia USA/LatAm"
+    ]
+  },
+  "stats": {
+    "title": "Impacto medible",
+    "items": [
+      { "label": "Años de experiencia", "value": "20+" },
+      { "label": "Reducción de costos", "value": "15-30%" },
+      { "label": "Mejora en tiempos de entrega", "value": "25%" },
+      { "label": "NPS", "value": "70+" }
+    ]
+  },
+  "testimonials": {
+    "title": "Testimonios",
+    "items": [
+      { "name": "Carolina M.", "role": "Operaciones, Retail", "quote": "Con InverCenter optimizamos inventarios y reducimos tiempos de entrega." },
+      { "name": "Luis R.", "role": "CFO, Manufactura", "quote": "Su enfoque de pagos internacionales nos dio visibilidad y control." },
+      { "name": "Andrea P.", "role": "Tech Lead, Fintech", "quote": "Blockchain + compliance integrados sin fricciones." }
+    ]
+  },
+  "cta": {
+    "title": "Programe una consultoría",
+    "button": "Agendar"
+  },
+  "about": {
+    "title": "Sobre InverCenter",
+    "history_title": "Historia",
+    "history_text": "InverCenter USA, Inc. surge para integrar procura, logística y consultoría financiero-tecnológica con estándares de banca premium.",
+    "mission_title": "Misión",
+    "mission_text": "Impulsar la productividad de nuestros clientes mediante soluciones confiables en transporte, pagos internacionales, blockchain y análisis de datos.",
+    "vision_title": "Visión",
+    "vision_text": "Ser el aliado estratégico líder entre Estados Unidos y Latinoamérica en logística y servicios financieros-tecnológicos.",
+    "values_title": "Valores",
+    "values_text": "Excelencia, cumplimiento, innovación, confidencialidad y servicio al cliente.",
+    "address": "Espírito Santo Plaza, 1395 Brickell Ave., Suite 1080, Miami, FL 33131 (USA)",
+    "tel": "+1 305 442.8648",
+    "fax": "+1 305 442.8215",
+    "email": "info@InverCenterusa.com",
+    "web": "www.InverCenterusa.com"
+  },
+  "insights": {
+    "title": "Insights",
+    "tags": ["logística", "pagos", "blockchain", "data"],
+    "more": "Ver más"
+  },
+  "contact": {
+    "title": "Contacto",
+    "desc": "Cuéntenos sobre su proyecto y un especialista le contactará.",
+    "name": "Nombre",
+    "company": "Empresa",
+    "email": "Email",
+    "phone": "Teléfono",
+    "country": "País",
+    "service": "Servicio de interés",
+    "message": "Mensaje",
+    "submit": "Enviar",
+    "success": "Gracias, hemos recibido su solicitud.",
+    "error": "Hubo un error al enviar. Intente de nuevo.",
+    "loading": "Enviando...",
+    "schedule": "Horario: Lun-Vie 9:00-18:00 ET"
+  },
+  "footer": {
+    "quick": "Enlaces rápidos",
+    "legal": "Legal",
+    "privacy": "Privacidad",
+    "terms": "Términos",
+    "contact": "Contacto",
+    "rights": "Todos los derechos reservados",
+    "designed_by": "Diseñado por CB"
+  },
+  "header": {
+    "home": "Inicio",
+    "services": "Servicios",
+    "solutions": "Soluciones",
+    "about": "Nosotros",
+    "insights": "Noticias",
+    "contact": "Contacto",
+    "quote_button": "Contáctanos"
+  },
+  "seo": {
+    "home_desc": "InverCenter: servicios financieros, pagos internacionales, blockchain y big data.",
+    "services_desc": "Servicios financieros y tecnológicos: pagos internacionales, blockchain, analítica y más.",
+    "solutions_desc": "Pagos internacionales, blockchain y big data para su negocio.",
+    "about_desc": "Sobre InverCenter USA, Inc. Misión, visión y valores.",
+    "insights_desc": "Noticias y artículos sobre fintech, pagos y tecnología.",
+    "contact_desc": "Contáctenos para una consultoría especializada."
+  }
+}

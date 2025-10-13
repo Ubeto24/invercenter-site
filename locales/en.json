@@ -1,0 +1,147 @@
+{
+  "brand": {
+    "name": "InverCenter USA, Inc.",
+    "tagline": "Procurement, Logistics and FinTech Consulting Solutions"
+  },
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "solutions": "Solutions",
+    "about": "About",
+    "insights": "Insights",
+    "contact": "Contact",
+    "quote": "Get a Quote"
+  },
+  "hero": {
+    "title": "Financial and Technological Solutions for a Digital World",
+    "subtitle": "At InverCenter USA, we drive the digital transformation of the financial sector. We provide strategic consulting in investments, blockchain, big data, and fintech technology to help companies achieve greater efficiency and growth.",
+    "cta_services": "Explore our solutions",
+    "cta_contact": "Contact us"
+  },
+  "services": {
+    "title": "Financial and Technological Services",
+    "description": "We offer innovative solutions in finance, blockchain, and technology applied to global business. We guide companies and investors through the digital transformation of their financial operations.",
+    "list": [
+      {"icon":"Briefcase","title":"Strategic Financial Advisory","desc":"We advise on capital management, financial structure, M&A, and liquidity optimization."},
+      {"icon":"Globe","title":"International & Cross‑Border Payments","desc":"Secure, fast global transfers with regulatory compliance (KYC/AML)."},
+      {"icon":"Network","title":"Applied Blockchain Technology","desc":"Blockchain systems for traceability, tokenization, and transactional security."},
+      {"icon":"BarChart3","title":"Big Data & Predictive Analytics","desc":"Data models to drive smarter decisions in investments and financial operations."},
+      {"icon":"Cpu","title":"Fintech Infrastructure","desc":"Design and integration of scalable financial platforms, banking APIs, and digital payment systems."},
+      {"icon":"Cog","title":"Financial Process Automation (RPA)","desc":"Digitize repetitive tasks with AI and automation for greater efficiency."},
+      {"icon":"ShieldCheck","title":"Regulatory Compliance & Digital Security","desc":"Solutions that ensure security, privacy, and adherence to international standards."},
+      {"icon":"TrendingUp","title":"Investments & Digital Portfolio Management","desc":"Advisory on digital assets, investment strategies, and smart diversification through technology."}
+    ]
+  },
+  "solutions": {
+    "title": "Financial & Tech Solutions",
+    "payments": {
+      "title": "Cross-border payments and transfers",
+      "desc": "Compliance, KYC/KYB and banking partners to move capital securely and efficiently.",
+      "benefits": ["Global compliance", "Reliable liquidity", "Fast onboarding"]
+    },
+    "blockchain": {
+      "title": "Blockchain for traceability and payments",
+      "desc": "Architecture, wallets and security for auditable flows and fraud reduction.",
+      "benefits": ["Traceability", "Security", "Automation"]
+    },
+    "data": {
+      "title": "Big Data & Analytics",
+      "desc": "Logistics and financial forecasting to drive data‑led decisions.",
+      "benefits": ["Forecasts", "Optimization", "360° visibility"]
+    }
+  },
+  "why": {
+    "title": "Why InverCenter?",
+    "features": [
+      "Cost reduction",
+      "Productivity uplift",
+      "Compliance and governance",
+      "Expert team",
+      "USA/LatAm presence"
+    ]
+  },
+  "stats": {
+    "title": "Measurable impact",
+    "items": [
+      { "label": "Years of experience", "value": "20+" },
+      { "label": "Cost reduction", "value": "15-30%" },
+      { "label": "Faster deliveries", "value": "25%" },
+      { "label": "NPS", "value": "70+" }
+    ]
+  },
+  "testimonials": {
+    "title": "Testimonials",
+    "items": [
+      { "name": "Carolina M.", "role": "Operations, Retail", "quote": "With InverCenter we optimized inventory and reduced delivery times." },
+      { "name": "Luis R.", "role": "CFO, Manufacturing", "quote": "Their cross-border payments approach brought visibility and control." },
+      { "name": "Andrea P.", "role": "Tech Lead, Fintech", "quote": "Blockchain + compliance integrated seamlessly." }
+    ]
+  },
+  "cta": {
+    "title": "Schedule a consultation",
+    "button": "Schedule"
+  },
+  "about": {
+    "title": "About InverCenter",
+    "history_title": "History",
+    "history_text": "InverCenter USA, Inc. integrates procurement, logistics and fintech consulting with premium banking standards.",
+    "mission_title": "Mission",
+    "mission_text": "Boost our clients' productivity through reliable solutions in transportation, cross-border payments, blockchain and data analytics.",
+    "vision_title": "Vision",
+    "vision_text": "Be the leading strategic partner between the United States and Latin America in logistics and fintech services.",
+    "values_title": "Values",
+    "values_text": "Excellence, compliance, innovation, confidentiality and customer service.",
+    "address": "Espírito Santo Plaza, 1395 Brickell Ave., Suite 1080, Miami, FL 33131 (USA)",
+    "tel": "+1 305 442.8648",
+    "fax": "+1 305 442.8215",
+    "email": "info@InverCenterusa.com",
+    "web": "www.InverCenterusa.com"
+  },
+  "insights": {
+    "title": "Insights",
+    "tags": ["logistics", "payments", "blockchain", "data"],
+    "more": "View more"
+  },
+  "contact": {
+    "title": "Contact",
+    "desc": "Tell us about your project and a specialist will reach out.",
+    "name": "Name",
+    "company": "Company",
+    "email": "Email",
+    "phone": "Phone",
+    "country": "Country",
+    "service": "Service of interest",
+    "message": "Message",
+    "submit": "Send",
+    "success": "Thanks, your request has been received.",
+    "error": "There was an error sending. Try again.",
+    "loading": "Sending...",
+    "schedule": "Hours: Mon–Fri 9:00–18:00 ET"
+  },
+  "footer": {
+    "quick": "Quick links",
+    "legal": "Legal",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "contact": "Contact",
+    "rights": "All rights reserved",
+    "designed_by": "Designed by CB"
+  },
+  "header": {
+    "home": "Home",
+    "services": "Services",
+    "solutions": "Solutions",
+    "about": "About",
+    "insights": "Insights",
+    "contact": "Contact",
+    "quote_button": "Contact us"
+  },
+  "seo": {
+    "home_desc": "InverCenter: procurement, logistics, cross-border payments, blockchain and big data.",
+    "services_desc": "End-to-end logistics and procurement services.",
+    "solutions_desc": "Cross-border payments, blockchain and big data for your business.",
+    "about_desc": "About InverCenter USA, Inc. Mission, vision and values.",
+    "insights_desc": "News and articles on logistics, payments and technology.",
+    "contact_desc": "Contact us for a tailored consultation."
+  }
+}
