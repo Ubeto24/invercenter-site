@@ -23,7 +23,7 @@ export default function App() {
         Skip to content
       </a>
       <Header />
-      <main id="content" className="flex-1 pt-36 sm:pt-28 md:pt-24">
+      <main id="content" className="flex-1 pt-[11rem] sm:pt-[8.5rem] md:pt-[9.5rem] lg:pt-[11rem] xl:pt-[12rem]">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
