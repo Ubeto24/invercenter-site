@@ -22,10 +22,10 @@ export default function AlliesSlider() {
     <section className="bg-gray-50 py-12">
       <div className="max-w-7xl mx-auto px-6">
         <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-900">
-          {t('allies.title', 'Tecnologías que impulsan nuestros procesos')}
+          {t('allies2.title', 'Tecnologías que impulsan nuestros procesos')}
         </h2>
         <p className="text-center text-gray-600 mt-2 max-w-2xl mx-auto">
-          {t('allies.subtitle', 'Implementamos tecnología de vanguardia en constante evolución y actualización. Nuestros sistemas y procesos se apoyan en infraestructuras globales y soluciones fintech de alto rendimiento.')}
+          {t('allies2.subtitle', 'Implementamos tecnología de vanguardia en constante evolución y actualización. Nuestros sistemas y procesos se apoyan en infraestructuras globales y soluciones fintech de alto rendimiento.')}
         </p>
 
         <div className="relative overflow-hidden" role="region" aria-label={t('allies.aria', 'Currencies and technology icons')}>
@@ -47,7 +47,7 @@ export default function AlliesSlider() {
         </div>
 
         <p className="text-center text-xs text-gray-400 mt-6">
-          {t('allies.disclaimer', 'Los íconos representan tecnologías y ecosistemas financieros utilizados con fines ilustrativos. No implican respaldo, afiliación ni patrocinio por parte de las marcas mostradas.')}
+          {t('allies2.disclaimer', 'Los íconos representan tecnologías y ecosistemas financieros utilizados con fines ilustrativos. No implican respaldo, afiliación ni patrocinio por parte de las marcas mostradas.')}
         </p>
       </div>
     </section>
