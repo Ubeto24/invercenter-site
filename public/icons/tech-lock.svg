@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" role="img" aria-label="Security">
+  <circle cx="40" cy="40" r="36" fill="#E5EDFF"/>
+  <rect x="24" y="38" width="32" height="18" rx="4" fill="#0A3D91"/>
+  <rect x="30" y="28" width="20" height="12" rx="6" fill="#0A3D91"/>
+  <circle cx="40" cy="47" r="3" fill="#fff"/>
+</svg>
