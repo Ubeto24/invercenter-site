@@ -29,7 +29,7 @@ export default function Header() {
                   <img
                     src={logo}
                     alt={t('brand.name')}
-                    className="h-[9.1rem] sm:h-[6.5rem] md:h-[7.8rem] lg:h-[9.1rem] xl:h-[10.4rem] w-auto shrink-0 opacity-0 animate-fadeInScale transition-all duration-300 ease-in-out hover:opacity-90"
+                    className="h-28 sm:h-20 md:h-24 lg:h-28 xl:h-32 w-auto shrink-0 opacity-0 animate-fadeInScale transition-all duration-300 ease-in-out hover:opacity-90"
                     loading="eager"
                     decoding="async"
                   />
