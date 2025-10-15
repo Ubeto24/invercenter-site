@@ -11,6 +11,7 @@ const ITEMS = [
   { src: "/icons/ton.svg", alt: "TON" },
   { src: "/icons/pwa.svg", alt: "PWA" },
   { src: "/icons/paywall.svg", alt: "Paywall" },
+  { src: "/icons/netlify.svg", alt: "Netlify" },
 ];
 
 export default function AlliesSlider() {
