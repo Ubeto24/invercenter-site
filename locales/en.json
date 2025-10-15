@@ -193,6 +193,33 @@
     "title": "Technologies That Power Our Processes",
     "subtitle": "We implement cutting-edge technology that continually evolves and updates. Our systems and processes leverage global infrastructures and high-performance fintech solutions.",
     "disclaimer": "Icons represent financial technologies and ecosystems for illustration purposes. They do not imply endorsement, affiliation, or sponsorship by the brands shown."
+  },
+  "insights2": {
+    "title": "Insights — InverCenter USA, Inc.",
+    "subtitle": "News, trends, and analysis on logistics, fintech, and digital transformation.",
+    "items": [
+      {
+        "icon": "🚚",
+        "category": "Smart Logistics",
+        "title": "Logistics Trends 2025: efficiency, traceability, and sustainability",
+        "text": "Supply chains are evolving toward more agile, digital, and transparent models. Discover how automation and data are reducing costs and lead times in international transport.",
+        "linkText": "Read more"
+      },
+      {
+        "icon": "💳",
+        "category": "Cross-border Payments",
+        "title": "Compliance and optimization in global transactions",
+        "text": "Managing international payments requires strong compliance strategies and risk reduction. We explore how fintech integration and tokenization are reshaping cross-border banking.",
+        "linkText": "Read more"
+      },
+      {
+        "icon": "🔗",
+        "category": "Blockchain & Technology",
+        "title": "Real blockchain cases in supply chain and corporate finance",
+        "text": "Beyond crypto, blockchain is consolidating as a tool for traceability, smart contracts, and document authentication in logistics and financial sectors.",
+        "linkText": "Read more"
+      }
+    ]
   }
 }
 

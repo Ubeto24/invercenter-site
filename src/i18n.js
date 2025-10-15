@@ -3,6 +3,7 @@ import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 
 import es from "../locales/es.json";
+import esExtra from "../locales/es-extra.json";
 import en from "../locales/en.json";
 
 i18n
@@ -10,7 +11,7 @@ i18n
   .use(initReactI18next)
   .init({
     resources: {
-      es: { translation: es },
+      es: { translation: { ...es, ...esExtra } },
       en: { translation: en },
     },
     fallbackLng: "en", // Por defecto inglés si no detecta otro idioma

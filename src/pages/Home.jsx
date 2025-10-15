@@ -7,6 +7,7 @@ import Stats from '../components/Stats'
 import LogoCloud from '../components/LogoCloud'
 import AlliesSlider from '../components/AlliesSlider'
 import CryptoBanner from '../components/CryptoBanner'
+import Insights from '../components/Insights'
 import CTAButton from '../components/CTAButton'
 import Timeline from '../components/Timeline'
 import { testimonials } from '../content/testimonials'
@@ -52,6 +53,7 @@ export default function Home() {
 
       <AlliesSlider />
       <CryptoBanner />
+      <Insights />
 
       <Section id="contact" className="text-center">
         <h3 className="text-xl md:text-2xl font-semibold text-gray-900">{t('cta.title')}</h3>
