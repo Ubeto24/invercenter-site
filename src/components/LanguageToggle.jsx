@@ -23,7 +23,7 @@ export default function LanguageToggle({ className = "" }) {
     <div
       role="tablist"
       aria-label="Language switch"
-      className={`inline-flex items-center rounded-full bg-white border border-gray-200 p-0.5 sm:p-1 shadow-sm ${className}`}
+      className={`inline-flex items-center rounded-full bg-white border border-gray-200 p-1 shadow-sm ${className}`}
     >
       {LANGS.map(({ code, short, label }) => {
         const active = lang === code;
@@ -40,12 +40,12 @@ export default function LanguageToggle({ className = "" }) {
               }
             }}
             className={[
-              "relative px-2 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-[0.95rem] font-medium transition",
+              "relative px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-sm sm:text-[0.95rem] font-medium transition",
               active ? "bg-blue-600 text-white shadow" : "text-gray-700 hover:bg-gray-100 focus:bg-gray-100",
               "focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white",
             ].join(" ")}
           >
-            <span className="mr-1 sm:mr-1.5 select-none">{short}</span>
+            <span className="mr-1.5 select-none">{short}</span>
             <span className="hidden sm:inline">{label}</span>
           </button>
         );
