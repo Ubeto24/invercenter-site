@@ -45,6 +45,19 @@ Deploy (Netlify/Vercel)
 - Netlify: Push repo, set build command "npm run build" and publish directory "dist". Netlify Forms enabled by default.
 - Vercel: Import project, framework auto-detected (Vite), build output "dist".
 
+Manual deploy (Netlify CLI)
+- Configuración inicial (una sola vez):
+  - `npm run deploy:login` para autenticarte en Netlify.
+  - `npm run deploy:link` para vincular este repo con tu sitio en Netlify.
+- Despliegue de vista previa (no producción):
+  - `npm run deploy:preview` (construye y publica `dist/` como deploy de preview).
+- Despliegue a producción bajo demanda:
+  - `npm run deploy:prod` (construye y publica `dist/` en producción).
+
+Notas
+- El archivo `netlify.toml` está configurado para saltar builds automáticos en pushes.
+- Con Netlify CLI los despliegues publican directamente la carpeta `dist` sin usar CI.
+
 Deploy (GitHub Pages)
 - Base path:
   - Si publicas en user/organization site (usuario.github.io): deja `base: '/'` en vite.config.js.

@@ -6,7 +6,11 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy:login": "npx netlify login",
+    "deploy:link": "npx netlify link",
+    "deploy:preview": "npm run build && npx netlify deploy --dir=dist",
+    "deploy:prod": "npm run build && npx netlify deploy --prod --dir=dist"
   },
   "dependencies": {
     "@headlessui/react": "^2.1.9",
