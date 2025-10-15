@@ -5,7 +5,7 @@ import { Menu as MenuIcon, X } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import LanguageToggle from './LanguageToggle'
 import CTAButton from './CTAButton'
-import logo from '../assets/logo-invercenter.svg'
+import logo from '../../imagenes/Logo2.png'
 
 const nav = [
   { to: '/', key: 'nav.home' },
