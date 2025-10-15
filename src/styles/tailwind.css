@@ -23,3 +23,20 @@
 }
 
 .animate-fadeInScale { animation: fadeInScale 0.8s ease-out forwards; }
+
+/* Allies logos strip animation */
+@keyframes logos-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-logos-scroll {
+  animation: logos-scroll 30s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-logos-scroll {
+    animation: none;
+    transform: none;
+  }
+}

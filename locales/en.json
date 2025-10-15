@@ -143,5 +143,45 @@
     "about_desc": "About InverCenter USA, Inc. Mission, vision and values.",
     "insights_desc": "News and articles on logistics, payments and technology.",
     "contact_desc": "Contact us for a tailored consultation."
+  },
+  "about2": {
+    "title": "About — InverCenter USA, Inc.",
+    "subtitle": "Excellence, innovation, and trust in the financial-technology realm.",
+    "history": {
+      "title": "History",
+      "text": "InverCenter USA, Inc. was founded to integrate international logistics, strategic procurement, and financial-technology consulting, delivering solutions that meet global premium banking standards. Headquartered in Miami, Florida, we operate as a bridge between the United States and Latin America, connecting companies with fintech, blockchain, data analytics, and logistics optimization services."
+    },
+    "mission": {
+      "title": "Mission",
+      "text": "Boost our clients' productivity and profitability through reliable technology solutions integrating transport, cross-border payments, blockchain, and big data."
+    },
+    "vision": {
+      "title": "Vision",
+      "text": "Be the leading strategic ally between the U.S. and Latin America for innovation-driven logistics and financial solutions."
+    },
+    "values": {
+      "title": "Values",
+      "items": {
+        "excellence": { "title": "Excellence", "text": "Commitment to operational perfection in every project." },
+        "compliance": { "title": "Compliance", "text": "Accountability and transparency across all processes." },
+        "innovation": { "title": "Innovation", "text": "Emerging technologies to create competitive advantages." },
+        "confidentiality": { "title": "Confidentiality", "text": "Safeguarding our clients' information and interests." },
+        "customer_service": { "title": "Customer service", "text": "We measure success by satisfaction and loyalty." }
+      }
+    },
+    "kpis": {
+      "title": "Measurable impact",
+      "subtitle": "Tangible results that back our value proposition.",
+      "experience": "Years of experience",
+      "cost_reduction": "Cost reduction",
+      "lead_time": "Lead time improvement",
+      "nps": "NPS index"
+    },
+    "contact": {
+      "title": "Contact",
+      "subtitle": "We are available to support your projects.",
+      "phone": "Phone",
+      "fax": "Fax"
+    }
   }
 }

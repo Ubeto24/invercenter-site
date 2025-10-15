@@ -82,20 +82,44 @@
     "button": "Agendar"
   },
   "about": {
-    "title": "Sobre InverCenter",
-    "history_title": "Historia",
-    "history_text": "InverCenter USA, Inc. surge para integrar procura, logística y consultoría financiero-tecnológica con estándares de banca premium.",
-    "mission_title": "Misión",
-    "mission_text": "Impulsar la productividad de nuestros clientes mediante soluciones confiables en transporte, pagos internacionales, blockchain y análisis de datos.",
-    "vision_title": "Visión",
-    "vision_text": "Ser el aliado estratégico líder entre Estados Unidos y Latinoamérica en logística y servicios financieros-tecnológicos.",
-    "values_title": "Valores",
-    "values_text": "Excelencia, cumplimiento, innovación, confidencialidad y servicio al cliente.",
-    "address": "Espírito Santo Plaza, 1395 Brickell Ave., Suite 1080, Miami, FL 33131 (USA)",
-    "tel": "+1 305 442.8648",
-    "fax": "+1 305 442.8215",
-    "email": "info@InverCenterusa.com",
-    "web": "www.InverCenterusa.com"
+    "title": "Nosotros — InverCenter USA, Inc.",
+    "subtitle": "Excelencia, innovación y confianza en el mundo financiero-tecnológico.",
+    "history": {
+      "title": "Historia",
+      "text": "InverCenter USA, Inc. nació con la visión de integrar logística internacional, procura estratégica y consultoría financiero-tecnológica, ofreciendo soluciones a la altura de los estándares de banca premium global. Con sede en Miami, Florida, operamos como un puente entre Estados Unidos y Latinoamérica, conectando empresas con servicios de tecnología financiera, blockchain, análisis de datos y optimización logística."
+    },
+    "mission": {
+      "title": "Misión",
+      "text": "Impulsar la productividad y rentabilidad de nuestros clientes mediante soluciones tecnológicas confiables que integran transporte, pagos internacionales, blockchain y big data."
+    },
+    "vision": {
+      "title": "Visión",
+      "text": "Ser el aliado estratégico líder entre Estados Unidos y Latinoamérica en el desarrollo de soluciones logísticas y financieras basadas en innovación tecnológica."
+    },
+    "values": {
+      "title": "Valores",
+      "items": {
+        "excellence": { "title": "Excelencia", "text": "Compromiso con la perfección operativa en cada proyecto." },
+        "compliance": { "title": "Cumplimiento", "text": "Responsabilidad y transparencia en todos los procesos." },
+        "innovation": { "title": "Innovación", "text": "Tecnologías emergentes para crear ventajas competitivas." },
+        "confidentiality": { "title": "Confidencialidad", "text": "Resguardo de la información y los intereses de nuestros clientes." },
+        "customer_service": { "title": "Servicio al cliente", "text": "Medimos el éxito por la satisfacción y fidelidad de nuestros clientes." }
+      }
+    },
+    "kpis": {
+      "title": "Impacto medible",
+      "subtitle": "Resultados tangibles que respaldan nuestra propuesta de valor.",
+      "experience": "Años de experiencia",
+      "cost_reduction": "Reducción de costos",
+      "lead_time": "Mejora en tiempos de entrega",
+      "nps": "Índice NPS"
+    },
+    "contact": {
+      "title": "Contacto",
+      "subtitle": "Estamos disponibles para acompañar sus proyectos.",
+      "phone": "Tel",
+      "fax": "Fax"
+    }
   },
   "insights": {
     "title": "Insights",
@@ -143,5 +167,45 @@
     "about_desc": "Sobre InverCenter USA, Inc. Misión, visión y valores.",
     "insights_desc": "Noticias y artículos sobre fintech, pagos y tecnología.",
     "contact_desc": "Contáctenos para una consultoría especializada."
+  },
+  "about2": {
+    "title": "Nosotros — InverCenter USA, Inc.",
+    "subtitle": "Excelencia, innovacion y confianza en el mundo financiero-tecnologico.",
+    "history": {
+      "title": "Historia",
+      "text": "InverCenter USA, Inc. nacio con la vision de integrar logistica internacional, procura estrategica y consultoria financiero-tecnologica, ofreciendo soluciones a la altura de los estandares de banca premium global. Con sede en Miami, Florida, operamos como un puente entre Estados Unidos y Latinoamerica, conectando empresas con servicios de tecnologia financiera, blockchain, analitica de datos y optimizacion logistica."
+    },
+    "mission": {
+      "title": "Mision",
+      "text": "Impulsar la productividad y rentabilidad de nuestros clientes mediante soluciones tecnologicas confiables que integran transporte, pagos internacionales, blockchain y big data."
+    },
+    "vision": {
+      "title": "Vision",
+      "text": "Ser el aliado estrategico lider entre Estados Unidos y Latinoamerica en el desarrollo de soluciones logisticas y financieras basadas en innovacion tecnologica."
+    },
+    "values": {
+      "title": "Valores",
+      "items": {
+        "excellence": { "title": "Excelencia", "text": "Compromiso con la perfeccion operativa en cada proyecto." },
+        "compliance": { "title": "Cumplimiento", "text": "Responsabilidad y transparencia en todos los procesos." },
+        "innovation": { "title": "Innovacion", "text": "Tecnologias emergentes para crear ventajas competitivas." },
+        "confidentiality": { "title": "Confidencialidad", "text": "Resguardo de la informacion y los intereses de nuestros clientes." },
+        "customer_service": { "title": "Servicio al cliente", "text": "Medimos el exito por la satisfaccion y fidelidad de nuestros clientes." }
+      }
+    },
+    "kpis": {
+      "title": "Impacto medible",
+      "subtitle": "Resultados tangibles que respaldan nuestra propuesta de valor.",
+      "experience": "Anos de experiencia",
+      "cost_reduction": "Reduccion de costos",
+      "lead_time": "Mejora en tiempos de entrega",
+      "nps": "Indice NPS"
+    },
+    "contact": {
+      "title": "Contacto",
+      "subtitle": "Estamos disponibles para acompan ar sus proyectos.",
+      "phone": "Tel",
+      "fax": "Fax"
+    }
   }
 }
