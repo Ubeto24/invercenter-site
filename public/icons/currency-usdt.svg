@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" role="img" aria-label="Tether USDT">
-  <circle cx="40" cy="40" r="36" fill="#E5EDFF"/>
-  <g fill="none" stroke="#0A3D91" stroke-width="3">
-    <circle cx="40" cy="40" r="20" fill="#0A3D91" />
-    <line x1="28" y1="36" x2="52" y2="36" stroke="#fff" stroke-width="3"/>
-    <line x1="30" y1="44" x2="50" y2="44" stroke="#fff" stroke-width="3"/>
-  </g>
-</svg>

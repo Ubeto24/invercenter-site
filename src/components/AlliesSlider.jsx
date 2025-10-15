@@ -2,15 +2,15 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 
 const ITEMS = [
-  { src: "/icons/currency-btc.svg", alt: "Bitcoin" },
-  { src: "/icons/currency-eth.svg", alt: "Ethereum" },
-  { src: "/icons/currency-usdt.svg", alt: "Tether USDT" },
-  { src: "/icons/currency-usd.svg", alt: "US Dollar" },
-  { src: "/icons/currency-eur.svg", alt: "Euro" },
-  { src: "/icons/currency-cny.svg", alt: "Chinese Yuan" },
-  { src: "/icons/tech-cloud.svg", alt: "Cloud" },
-  { src: "/icons/tech-lock.svg", alt: "Security" },
-  { src: "/icons/tech-data.svg", alt: "Data Analytics" },
+  { src: "/icons/bitcoin.svg", alt: "Bitcoin" },
+  { src: "/icons/ethereum.svg", alt: "Ethereum" },
+  { src: "/icons/tether.svg", alt: "Tether USDT" },
+  { src: "/icons/circle-dollar-sign.svg", alt: "US Dollar" },
+  { src: "/icons/visa.svg", alt: "Visa" },
+  { src: "/icons/bnbchain.svg", alt: "BNB Chain" },
+  { src: "/icons/optimism.svg", alt: "Optimism" },
+  { src: "/icons/ton.svg", alt: "TON" },
+  { src: "/icons/banknote-arrow-down.svg", alt: "Finance" },
 ];
 
 export default function AlliesSlider() {
