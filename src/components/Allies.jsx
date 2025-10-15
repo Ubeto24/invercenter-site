@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const LOGOS = [
   { src: "/logos/ledger.svg", alt: "Ledger" },
@@ -10,18 +11,15 @@ const LOGOS = [
 ];
 
 export default function Allies() {
+  const { t } = useTranslation();
   const STRIP = [...LOGOS, ...LOGOS];
 
   return (
     <section className="py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-            Aliados Estratégicos
-          </h2>
-          <p className="mt-2 text-gray-500">
-            Integramos tecnologías de líderes globales para potenciar nuestras soluciones.
-          </p>
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900">{t('allies.title')}</h2>
+          <p className="mt-2 text-gray-500">{t('allies.subtitle')}</p>
         </div>
 
         <div className="relative overflow-hidden">
@@ -47,11 +45,8 @@ export default function Allies() {
           </div>
         </div>
 
-        <p className="mt-6 text-center text-xs text-gray-500 leading-relaxed">
-          Marcas y logotipos mostrados con fines referenciales. InverCenter USA Inc. no es partner oficial de estas empresas; integramos o utilizamos sus tecnologías cuando es requerido por los proyectos.
-        </p>
+        <p className="mt-6 text-center text-xs text-gray-500 leading-relaxed">{t('allies.disclaimer')}</p>
       </div>
     </section>
   );
 }
-

@@ -207,5 +207,10 @@
       "phone": "Tel",
       "fax": "Fax"
     }
+  },
+  "allies": {
+    "title": "Aliados Estrategicos",
+    "subtitle": "Integramos tecnologias de lideres globales para potenciar nuestras soluciones.",
+    "disclaimer": "Marcas y logotipos mostrados con fines referenciales. InverCenter USA Inc. no es partner oficial de estas empresas; integramos o utilizamos sus tecnologias cuando es requerido por los proyectos."
   }
 }

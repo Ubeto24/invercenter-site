@@ -183,5 +183,10 @@
       "phone": "Phone",
       "fax": "Fax"
     }
+  },
+  "allies": {
+    "title": "Strategic Allies",
+    "subtitle": "We integrate technologies from global leaders to power our solutions.",
+    "disclaimer": "Brands and logos are shown for reference. InverCenter USA Inc. is not an official partner of these companies; we integrate or use their technologies when required by projects."
   }
 }
