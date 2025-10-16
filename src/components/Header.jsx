@@ -19,17 +19,17 @@ const nav = [
 export default function Header() {
   const { t } = useTranslation()
   return (
-    <Disclosure as="nav" className="fixed inset-x-0 top-0 z-50 bg-white/90 backdrop-blur border-b border-gray-100">
+    <Disclosure as="nav" className="fixed inset-x-0 top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-100">
       {({ open }) => (
         <>
           <div className="container">
-            <div className="flex items-center justify-between gap-4 px-6 py-3 sm:py-4">
+            <div className="flex items-center justify-between gap-4 px-6 py-4">
               <div className="flex items-center gap-2">
                 <Link to="/" className="flex items-center shrink-0" aria-label="Ir al inicio">
                   <img
                     src={logo}
                     alt={t('brand.name')}
-                    className="h-12 sm:h-16 md:h-20 lg:h-24 xl:h-28 w-auto shrink-0 opacity-0 animate-fadeInScale transition-all duration-300 ease-in-out hover:opacity-90"
+                    className="h-12 md:h-14 w-auto shrink-0 opacity-0 animate-fadeInScale transition-all duration-300 ease-in-out hover:opacity-90"
                     loading="eager"
                     decoding="async"
                   />

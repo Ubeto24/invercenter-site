@@ -5,8 +5,8 @@ import { motion } from 'framer-motion'
 export default function Hero() {
   const { t } = useTranslation()
   return (
-    <div className="relative overflow-hidden bg-gradient-to-br from-brand-primary to-brand-secondary text-white">
-      <div className="container py-20 md:py-28">
+    <section id="hero" className="relative overflow-hidden bg-gradient-to-br from-brand-primary to-brand-secondary text-white">
+      <div className="container pt-32 md:pt-40 pb-20 md:pb-28">
         <motion.h1 initial={{opacity:0,y:10}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.5}} className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white max-w-4xl">
           {t('hero.title')}
         </motion.h1>
@@ -22,6 +22,6 @@ export default function Hero() {
           </a>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
