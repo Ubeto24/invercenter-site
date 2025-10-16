@@ -1,4 +1,4 @@
-import { Fragment } from 'react'
+﻿import { Fragment } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Menu as MenuIcon, X } from 'lucide-react'
@@ -23,13 +23,13 @@ export default function Header() {
       {({ open }) => (
         <>
           <div className="container">
-            <div className="flex items-center justify-between gap-4 px-6 py-4">
+            <div className="flex items-center justify-between gap-4 px-6 py-4 min-h-[96px] md:min-h-[112px]">
               <div className="flex items-center gap-2">
                 <Link to="/" className="flex items-center shrink-0" aria-label="Ir al inicio">
                   <img
                     src={logo}
                     alt={t('brand.name')}
-                    className="h-12 md:h-14 w-auto shrink-0 opacity-0 animate-fadeInScale transition-all duration-300 ease-in-out hover:opacity-90"
+                    className="h-24 md:h-28 w-auto shrink-0 opacity-0 animate-fadeInScale transition-all duration-300 ease-in-out hover:opacity-90"
                     loading="eager"
                     decoding="async"
                   />
@@ -71,3 +71,4 @@ export default function Header() {
     </Disclosure>
   )
 }
+

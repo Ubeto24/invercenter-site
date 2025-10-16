@@ -1,19 +1,19 @@
-export const INSIGHT_CATEGORIES = [
+﻿export const INSIGHT_CATEGORIES = [
   { id: 'all', label: 'Todos' },
-  { id: 'logistica', label: 'Logística' },
+  { id: 'logistica', label: 'LogÃ­stica' },
   { id: 'pagos', label: 'Pagos internacionales' },
   { id: 'blockchain', label: 'Blockchain' },
-  { id: 'data', label: 'Data & Tecnología' },
+  { id: 'data', label: 'Data & TecnologÃ­a' },
 ];
 
 export const INSIGHTS = [
   {
     id: 'tendencias-logistica-2025',
     category: 'logistica',
-    tag: 'Logística',
-    title: 'Tendencias de Logística 2025: eficiencia, trazabilidad y sostenibilidad',
+    tag: 'LogÃ­stica',
+    title: 'Tendencias de LogÃ­stica 2025: eficiencia, trazabilidad y sostenibilidad',
     excerpt:
-      'Las cadenas de suministro migran a modelos ágiles con visibilidad en tiempo real, automatización y métricas de huella de carbono.',
+      'Las cadenas de suministro migran a modelos Ã¡giles con visibilidad en tiempo real, automatizaciÃ³n y mÃ©tricas de huella de carbono.',
     date: '2025-10-01',
     author: 'Equipo InverCenter',
     readTime: '5 min',
@@ -23,9 +23,9 @@ export const INSIGHTS = [
     id: 'cumplimiento-pagos-globales',
     category: 'pagos',
     tag: 'Pagos',
-    title: 'Cumplimiento y optimización en pagos internacionales',
+    title: 'Cumplimiento y optimizaciÃ³n en pagos internacionales',
     excerpt:
-      'De AML/KYC a screening de sanciones: cómo las empresas integran compliance sin fricción y reducen costos cambiarios.',
+      'De AML/KYC a screening de sanciones: cÃ³mo las empresas integran compliance sin fricciÃ³n y reducen costos cambiarios.',
     date: '2025-09-18',
     author: 'Equipo InverCenter',
     readTime: '4 min',
@@ -37,7 +37,7 @@ export const INSIGHTS = [
     tag: 'Blockchain',
     title: 'Casos de uso de blockchain en supply chain y finanzas corporativas',
     excerpt:
-      'Contratos inteligentes, tokenización de documentos y verificación de origen para cadenas de suministro más confiables.',
+      'Contratos inteligentes, tokenizaciÃ³n de documentos y verificaciÃ³n de origen para cadenas de suministro mÃ¡s confiables.',
     date: '2025-08-30',
     author: 'Equipo InverCenter',
     readTime: '6 min',
@@ -46,14 +46,15 @@ export const INSIGHTS = [
   {
     id: 'analitica-predictiva-y-rpa',
     category: 'data',
-    tag: 'Data & Tecnología',
-    title: 'Analítica predictiva y automatización (RPA) para tomar mejores decisiones',
+    tag: 'Data & TecnologÃ­a',
+    title: 'AnalÃ­tica predictiva y automatizaciÃ³n (RPA) para tomar mejores decisiones',
     excerpt:
-      'Cómo los equipos combinan big data con automatización para reducir tiempos operativos y aumentar la productividad.',
+      'CÃ³mo los equipos combinan big data con automatizaciÃ³n para reducir tiempos operativos y aumentar la productividad.',
     date: '2025-07-22',
     author: 'Equipo InverCenter',
     readTime: '5 min',
     href: '/insights/analitica-predictiva-y-rpa',
   },
 ];
+
 

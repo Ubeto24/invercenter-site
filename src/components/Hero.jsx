@@ -1,4 +1,4 @@
-import CTAButton from './CTAButton'
+﻿import CTAButton from './CTAButton'
 import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
 
@@ -6,7 +6,7 @@ export default function Hero() {
   const { t } = useTranslation()
   return (
     <section id="hero" className="relative overflow-hidden bg-gradient-to-br from-brand-primary to-brand-secondary text-white">
-      <div className="container pt-32 md:pt-40 pb-20 md:pb-28">
+      <div className="container pt-40 md:pt-48 pb-20 md:pb-28">
         <motion.h1 initial={{opacity:0,y:10}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.5}} className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white max-w-4xl">
           {t('hero.title')}
         </motion.h1>
@@ -25,3 +25,4 @@ export default function Hero() {
     </section>
   )
 }
+
