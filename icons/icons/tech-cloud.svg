@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <style>
+      .a{fill:#e9eef9}
+      .b{fill:none;stroke:#1f3b8f;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+      .c{fill:#1f3b8f}
+    </style>
+  </defs>
+  <circle class="a" cx="32" cy="32" r="28"/>
+  <circle class="b" cx="32" cy="32" r="28"/>
+  <g transform="translate(10,18)">
+  <path class="a" d="M40 24a8 8 0 0 0-8-8 10 10 0 0 0-19.1-2.8A8 8 0 1 0 13 32h27a7 7 0 0 0 0-14z"/>
+  <path class="b" d="M13 32h27a7 7 0 0 0 0-14 10 10 0 0 0-19.1-2.8A8 8 0 1 0 13 32z"/>
+</g>
+</svg>
