@@ -23,7 +23,7 @@ export default function Home() {
     <>
       <Hero />
 
-      <Section id="services" title={t('services.title')}>
+      <Section id="services" title={t('services.title')} center>
         <p className="text-center text-gray-600 max-w-2xl mx-auto mb-8">{t('services.description')}</p>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {services.map((s, i) => (

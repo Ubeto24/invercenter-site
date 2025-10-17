@@ -2,7 +2,8 @@
 [build]
   command = "npm run build"
   publish = "dist"
-  # When this command exits 0, Netlify skips the build.
-  # Set the env var DEPLOY_ON_DEMAND=1 to force a build.
-  ignore = "if [ \"$DEPLOY_ON_DEMAND\" = \"1\" ]; then exit 1; else echo 'Skipping auto build'; exit 0; fi"
 
+# Build environment
+[build.environment]
+  NODE_VERSION = "20"
+  NPM_FLAGS = "--no-audit --no-fund"

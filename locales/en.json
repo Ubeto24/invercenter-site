@@ -144,6 +144,84 @@
     "insights_desc": "News and articles on logistics, payments and technology.",
     "contact_desc": "Contact us for a tailored consultation."
   },
+  "solutions2": {
+    "pillars": {
+      "payments": {
+        "title": "Global Payments & Compliance",
+        "subtitle": "Move capital with security and transparency",
+        "bullets": [
+          "KYC/KYB, AML & Screening",
+          "Global banking partners and rails",
+          "FX & Liquidity | Cross-border settlement",
+          "Fast onboarding via APIs"
+        ]
+      },
+      "blockchain": {
+        "title": "Blockchain for traceability and payments",
+        "subtitle": "Auditable flows and fraud reduction",
+        "bullets": [
+          "Wallets & custody",
+          "Smart contracts and programmable settlement",
+          "Distributed ledger | Audit and evidence",
+          "Integration through secure APIs"
+        ]
+      },
+      "data": {
+        "title": "Big Data & Analytics",
+        "subtitle": "Forecasting and optimization with ML",
+        "bullets": [
+          "Ingestion, ETL and Data Lake/Warehouse",
+          "ML models for demand and risk",
+          "BI and executive dashboards",
+          "360° visibility and scenario simulation"
+        ]
+      }
+    },
+    "process": {
+      "title": "How we work",
+      "steps": [
+        { "t": "Discovery", "d": "Objectives, regulations and business constraints." },
+        { "t": "Architecture", "d": "Payments, data and blockchain blueprint; security models." },
+        { "t": "Integration", "d": "Banking APIs, data sources, payment rails and contracts." },
+        { "t": "Pilot & Compliance", "d": "Testing, KYC/KYB, AML, monitoring and evidence." },
+        { "t": "Deployment", "d": "Runbook, SLOs, observability and continuous improvement." }
+      ]
+    },
+    "kpis": {
+      "items": [
+        { "v": "15–30%", "l": "↓ Operating costs" },
+        { "v": "25%", "l": "↓ Cycle times" },
+        { "v": "99.95%", "l": "Target availability" },
+        { "v": "100%", "l": "Event traceability" }
+      ]
+    },
+    "usecases": {
+      "title": "Use cases",
+      "items": [
+        { "title": "Mass cross‑border payments", "desc": "Orchestration of international payments with FX, AML monitoring and auto‑reconciliation.", "tags": ["FX","Compliance","APIs"] },
+        { "title": "Supply chain traceability", "desc": "Immutable record of logistics and financial milestones for audit and claims.", "tags": ["Blockchain","Events","Audit"] },
+        { "title": "Demand and liquidity forecasting", "desc": "ML models to plan inventory, treasury and cash needs.", "tags": ["ML","Data Lake","BI"] }
+      ]
+    },
+    "faqs": {
+      "title": "Frequently asked questions",
+      "items": [
+        { "q": "Do I need partner banks for global payments?", "a": "We can integrate your current banks or propose rails and partners based on geography, risk and costs." },
+        { "q": "How do you handle compliance (KYC/KYB, AML)?", "a": "We define policies, flows and evidence; integrate screening providers and generate auditable reports." },
+        { "q": "Which cloud or stack do you use?", "a": "We work multi‑cloud (AWS, Azure, GCP) and on‑prem as needed." }
+      ]
+    }
+  },
+  "crypto": {
+    "title": "Crypto market (Top 10)",
+    "source": "Source: CoinGecko",
+    "aria": "Top 10 cryptocurrencies",
+    "change24": "24h change",
+    "up": "up",
+    "down": "down",
+    "error": "Unable to load market data.",
+    "disclaimer": "Informational data by CoinGecko. Not financial advice."
+  },
   "about2": {
     "title": "About — InverCenter USA, Inc.",
     "subtitle": "Excellence, innovation, and trust in the financial-technology realm.",

@@ -30,6 +30,83 @@
         "linkText": "Ver más"
       }
     ]
+  },
+  "solutions2": {
+    "pillars": {
+      "payments": {
+        "title": "Pagos globales & Cumplimiento",
+        "subtitle": "Mover capital con seguridad y transparencia",
+        "bullets": [
+          "KYC/KYB, AML & Screening",
+          "Partners y rieles bancarios internacionales",
+          "FX & Liquidez | Settlement cross-border",
+          "Onboarding ágil con APIs"
+        ]
+      },
+      "blockchain": {
+        "title": "Blockchain aplicada a trazabilidad y pagos",
+        "subtitle": "Flujos auditables y reducción de fraude",
+        "bullets": [
+          "Wallets & custodia",
+          "Smart contracts y settlement programable",
+          "Ledger distribuido | Auditoría y evidencia",
+          "Integración vía APIs seguras"
+        ]
+      },
+      "data": {
+        "title": "Big Data & Analytics",
+        "subtitle": "Forecasting y optimización con ML",
+        "bullets": [
+          "Ingesta, ETL y Data Lake/Warehouse",
+          "Modelos ML para demanda y riesgo",
+          "BI y dashboards ejecutivos",
+          "Visibilidad 360° y simulación de escenarios"
+        ]
+      }
+    },
+    "process": {
+      "title": "Cómo trabajamos",
+      "steps": [
+        { "t": "Descubrimiento", "d": "Objetivos, regulaciones y restricciones del negocio." },
+        { "t": "Arquitectura", "d": "Blueprint de pagos, data y blockchain; modelos de seguridad." },
+        { "t": "Integración", "d": "APIs bancarias, orígenes de datos, rieles de pago y contratos." },
+        { "t": "Piloto & Compliance", "d": "Pruebas, KYC/KYB, AML, monitoreo y evidencias." },
+        { "t": "Despliegue", "d": "Runbook, SLOs, observabilidad y mejora continua." }
+      ]
+    },
+    "kpis": {
+      "items": [
+        { "v": "15–30%", "l": "↓ Costos de operación" },
+        { "v": "25%", "l": "↓ Tiempos de ciclo" },
+        { "v": "99.95%", "l": "Disponibilidad objetivo" },
+        { "v": "100%", "l": "Trazabilidad de eventos" }
+      ]
+    },
+    "usecases": {
+      "title": "Casos de uso",
+      "items": [
+        { "title": "Pagos masivos cross-border", "desc": "Orquestación de pagos internacionales con FX, monitoreo AML y conciliación automática.", "tags": ["FX","Compliance","APIs"] },
+        { "title": "Trazabilidad de cadena de suministro", "desc": "Registro inmutable de hitos logísticos y financieros para auditoría y reclamos.", "tags": ["Blockchain","Eventos","Auditoría"] },
+        { "title": "Forecasting de demanda y liquidez", "desc": "Modelos ML para planificar inventario, tesorería y necesidades de cash.", "tags": ["ML","Data Lake","BI"] }
+      ]
+    },
+    "faqs": {
+      "title": "Preguntas frecuentes",
+      "items": [
+        { "q": "¿Necesito bancos partner para pagos globales?", "a": "Podemos integrar tus bancos actuales o proponer rieles y partners según tu geografía, riesgo y costos." },
+        { "q": "¿Cómo manejan cumplimiento (KYC/KYB, AML)?", "a": "Definimos políticas, flujos y evidencias; integramos proveedores de screening y generamos reportes auditables." },
+        { "q": "¿Qué nube o stack utilizan?", "a": "Trabajamos multi‑nube (AWS, Azure, GCP) y on‑prem, según tus restricciones y equipo." }
+      ]
+    }
+  },
+  "crypto": {
+    "title": "Mercado cripto (Top 10)",
+    "source": "Fuente: CoinGecko",
+    "aria": "Top 10 criptomonedas",
+    "change24": "Cambio 24h",
+    "up": "al alza",
+    "down": "a la baja",
+    "error": "No se pudo cargar datos de mercado.",
+    "disclaimer": "Datos informativos por CoinGecko. No constituyen asesoría financiera."
   }
 }
-

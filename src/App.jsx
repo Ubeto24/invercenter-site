@@ -24,7 +24,7 @@ export default function App() {
         Skip to content
       </a>
       <Header />
-      <main id="content" className="flex-1 pt-20">
+      <main id="content" className="flex-1 pt-[134px] md:pt-[157px]">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />

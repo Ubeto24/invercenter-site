@@ -1,8 +1,9 @@
 ﻿import { useMemo, useState } from 'react'
-import { INSIGHTS, INSIGHT_CATEGORIES } from '../content/insights'
+import { useTranslation } from 'react-i18next'
+import { INSIGHTS, INSIGHT_CATEGORIES, INSIGHTS_EN, INSIGHT_CATEGORIES_EN } from '../content/insights'
 import { Search, ArrowRight } from 'lucide-react'
 
-function Card({ item }) {
+function Card({ item, isEN }) {
   return (
     <article className="bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-lg hover:border-blue-600 transition-all duration-200">
       <div className="flex items-center gap-2 text-xs font-semibold mb-3">
@@ -13,36 +14,39 @@ function Card({ item }) {
         <span className="text-gray-500">{item.readTime}</span>
       </div>
       <h3 className="text-blue-900 font-bold text-lg leading-snug mb-2">{item.title}</h3>
-      <p className="text-gray-600 text-sm mb-4">{item.excerpt}</p>
+      <p className="text-gray-600 text-sm mb-4 text-justify">{item.excerpt}</p>
       <a href={item.href} className="inline-flex items-center text-blue-700 font-semibold text-sm hover:text-blue-900">
-        Ver más <ArrowRight className="w-4 h-4 ml-1" />
+        {isEN ? 'Read more' : 'Ver más'} <ArrowRight className="w-4 h-4 ml-1" />
       </a>
     </article>
   )
 }
 
 export default function InsightsPage() {
+  const { i18n, t } = useTranslation()
+  const isEN = (i18n.language || 'en').startsWith('en')
   const [query, setQuery] = useState('')
   const [active, setActive] = useState('all')
 
   const filtered = useMemo(() => {
-    const list = active === 'all' ? INSIGHTS : INSIGHTS.filter((i) => i.category === active)
+    const base = isEN ? INSIGHTS_EN : INSIGHTS
+    const list = active === 'all' ? base : base.filter((i) => i.category === active)
     if (!query.trim()) return list
     const q = query.toLowerCase()
     return list.filter((i) => [i.title, i.excerpt, i.tag].some((t) => t.toLowerCase().includes(q)))
-  }, [active, query])
+  }, [active, query, isEN])
 
   return (
-    <section className="bg-gray-50 min-h-screen pt-36 pb-20">
+    <section className="bg-gray-50 min-h-screen pt-6 pb-20">
       <div className="max-w-7xl mx-auto px-6">
         <header className="mb-8 text-center md:text-left">
-          <h1 className="text-3xl md:text-4xl font-extrabold text-blue-900">Insights - InverCenter USA, Inc.</h1>
-          <p className="text-gray-600 mt-2">Noticias, tendencias y análisis sobre logística, fintech y transformación digital.</p>
+          <h1 className="text-3xl md:text-4xl font-extrabold text-blue-900">{t('insights2.title', 'Insights — InverCenter USA, Inc.')}</h1>
+          <p className="text-gray-600 mt-2">{t('insights2.subtitle', 'News, trends and analysis on logistics, fintech, and digital transformation.')}</p>
         </header>
 
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
           <div className="flex flex-wrap gap-2">
-            {INSIGHT_CATEGORIES.map((c) => (
+            {(isEN ? INSIGHT_CATEGORIES_EN : INSIGHT_CATEGORIES).map((c) => (
               <button
                 key={c.id}
                 onClick={() => setActive(c.id)}
@@ -68,17 +72,20 @@ export default function InsightsPage() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filtered.map((item) => (
-            <Card key={item.id} item={item} />
+            <Card key={item.id} item={item} isEN={isEN} />
           ))}
         </div>
 
         <div className="text-center mt-12">
           <a href="/contact" className="inline-flex items-center px-5 py-3 rounded-xl bg-blue-800 text-white font-semibold shadow-md hover:bg-blue-900">
-            Agende una consultoría
+            {isEN ? 'Schedule a consultation' : 'Agende una consultoría'}
           </a>
         </div>
       </div>
     </section>
   )
 }
+
+
+
 

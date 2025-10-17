@@ -1,4 +1,4 @@
-﻿import CTAButton from './CTAButton'
+import CTAButton from './CTAButton'
 import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
 
@@ -25,4 +25,3 @@ export default function Hero() {
     </section>
   )
 }
-

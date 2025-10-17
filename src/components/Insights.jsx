@@ -66,7 +66,7 @@ export default function Insights() {
                 {item.category}
               </h3>
               <p className="text-sm text-gray-700 font-medium mb-2">{item.title}</p>
-              <p className="text-sm text-gray-500 mb-4">{item.text}</p>
+              <p className="text-sm text-gray-500 mb-4 text-justify">{item.text}</p>
               <a
                 href={item.link || "#"}
                 className="inline-flex items-center text-blue-700 font-semibold text-sm hover:text-blue-900"
