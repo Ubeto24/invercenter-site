@@ -7,3 +7,28 @@
 [build.environment]
   NODE_VERSION = "20"
   NPM_FLAGS = "--no-audit --no-fund"
+
+## Redirect legacy Spanish ASPX paths to home
+[[redirects]]
+  from = "/es/Home.aspx"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/es/home.aspx"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/es/Home"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/es/home"
+  to = "/"
+  status = 301
+  force = true

@@ -6,6 +6,12 @@ import './styles/tailwind.css'
 import './i18n'
 import App from './App'
 
+// Client-side redirect for legacy Spanish ASPX paths
+const legacyEsPaths = ['/es/Home.aspx', '/es/home.aspx', '/es/Home', '/es/home']
+if (typeof window !== 'undefined' && legacyEsPaths.includes(window.location.pathname)) {
+  window.location.replace('/')
+}
+
 const container = document.getElementById('root')
 const root = createRoot(container)
 
