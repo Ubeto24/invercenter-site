@@ -10,6 +10,9 @@ import About from './pages/About'
 import Insights from './pages/Insights'
 import Article from './pages/insights/Article'
 import Contact from './pages/Contact'
+import ContactEN from './pages/ContactEN'
+import ThanksEN from './pages/ThanksEN'
+import Gracias from './pages/Gracias'
 import NotFound from './pages/NotFound'
 
 export default function App() {
@@ -33,6 +36,9 @@ export default function App() {
           <Route path="/insights" element={<Insights />} />
           <Route path="/insights/:slug" element={<Article />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/gracias" element={<Gracias />} />
+          <Route path="/en/contact" element={<ContactEN />} />
+          <Route path="/en/thanks" element={<ThanksEN />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

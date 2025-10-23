@@ -29,7 +29,8 @@ export default function ContactForm() {
       name="contact"
       method="POST"
       data-netlify="true"
-      data-netlify-honeypot="bot-field"
+      netlify-honeypot="bot-field"
+      action="/gracias"
       onSubmit={onSubmit}
       className="card p-6 grid gap-4"
       aria-label="Contact form"
