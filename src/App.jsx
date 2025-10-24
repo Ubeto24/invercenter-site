@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import CryptoBanner from './components/CryptoBanner'
 import Home from './pages/Home'
 import Services from './pages/Services'
 import Solutions from './pages/Solutions'
@@ -28,6 +29,7 @@ export default function App() {
       </a>
       <Header />
       <main id="content" className="flex-1 pt-[134px] md:pt-[157px]">
+        <CryptoBanner />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />

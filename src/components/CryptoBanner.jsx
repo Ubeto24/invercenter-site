@@ -49,7 +49,7 @@ export default function CryptoBanner() {
   const looped = useMemo(() => [...coins, ...coins], [coins]);
 
   return (
-    <section className="bg-gradient-to-r from-blue-50 to-gray-50 border-y border-blue-200/60 py-3 mt-4">
+    <section className="bg-gradient-to-r from-blue-50 to-gray-50 border-y border-blue-200/60 py-3">
       <div className="max-w-7xl mx-auto px-3 md:px-6">
         <div className="flex items-center gap-3 text-[13px] text-gray-600 mb-2">
           <span className="inline-block h-2.5 w-2.5 rounded-full bg-blue-700"></span>

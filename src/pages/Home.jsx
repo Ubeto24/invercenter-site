@@ -6,7 +6,6 @@ import FeatureList from '../components/FeatureList'
 import Stats from '../components/Stats'
 import LogoCloud from '../components/LogoCloud'
 import AlliesSlider from '../components/AlliesSlider'
-import CryptoBanner from '../components/CryptoBanner'
 import Insights from '../components/Insights'
 import CTAButton from '../components/CTAButton'
 import Timeline from '../components/Timeline'
@@ -52,7 +51,6 @@ export default function Home() {
       </Section>
 
       <AlliesSlider />
-      <CryptoBanner />
       <Insights />
 
       <Section id="contact" className="text-center">
