@@ -13,8 +13,8 @@
     "quote": "Cotización"
   },
   "hero": {
-    "title": "Soluciones Financieras y Tecnológicas para un Mundo Digital",
-    "subtitle": "En InverCenter USA impulsamos la transformación digital del sector financiero. Ofrecemos consultorías estratégicas en inversiones, blockchain, big data y tecnología fintech para optimizar la eficiencia y el crecimiento de su empresa.",
+    "title": "Soluciones Financieras, Logísticas y Tecnológicas para un Mundo Digital",
+    "subtitle": "En InverCenter USA impulsamos la transformación digital del sector financiero y logístico global. Ofrecemos consultorías estratégicas en inversiones, blockchain, big data, tecnología fintech y gestión de procura internacional, orientadas a optimizar la eficiencia, la trazabilidad y el crecimiento sostenible de su empresa. Integramos el mundo financiero y tecnológico con la logística y el comercio internacional, permitiendo a nuestros clientes conectar con proveedores verificados, digitalizar procesos de pago transfronterizos y fortalecer el control operativo de su cadena de suministro mediante soluciones innovadoras y seguras.",
     "cta_services": "Descubra nuestras soluciones",
     "cta_contact": "Contáctenos"
   },
@@ -22,6 +22,7 @@
     "title": "Servicios Financieros y Tecnológicos",
     "description": "Ofrecemos soluciones innovadoras en finanzas, blockchain y tecnología aplicada a los negocios globales. Acompañamos a empresas e inversionistas en la transformación digital de sus operaciones financieras.",
     "list": [
+      { "icon": "ClipboardCheck", "title": "Procura Estratégica y Comercio Internacional", "desc": "Asesoramos en la búsqueda, evaluación y selección de proveedores verificados a nivel global. Gestionamos procesos de importación y exportación, negociaciones internacionales, control de calidad y coordinación logística con enfoque en eficiencia, cumplimiento y trazabilidad." },
       { "icon": "Briefcase", "title": "Consultoría Financiera Estratégica", "desc": "Asesoramos empresas en la gestión de capital, estructura financiera, fusiones, adquisiciones y optimización de liquidez." },
       { "icon": "Globe", "title": "Pagos Internacionales y Cross-Border", "desc": "Soluciones para transferencias globales seguras, rápidas y con cumplimiento regulatorio (KYC/AML)." },
       { "icon": "Network", "title": "Tecnología Blockchain Aplicada", "desc": "Implementamos sistemas basados en blockchain para trazabilidad, tokenización y seguridad transaccional." },

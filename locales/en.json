@@ -13,23 +13,24 @@
     "quote": "Get a Quote"
   },
   "hero": {
-    "title": "Financial and Technological Solutions for a Digital World",
-    "subtitle": "At InverCenter USA, we drive the digital transformation of the financial sector. We provide strategic consulting in investments, blockchain, big data, and fintech technology to help companies achieve greater efficiency and growth.",
+    "title": "Financial, Logistics and Technological Solutions for a Digital World",
+    "subtitle": "At InverCenter USA we drive the digital transformation of the global financial and logistics ecosystem. We deliver strategic consulting in investments, blockchain, big data, fintech technology and international procurement management to optimize efficiency, traceability and the sustainable growth of your company. We bridge finance and technology with logistics and international trade, enabling our clients to connect with verified suppliers, digitize cross-border payment processes and strengthen operational control of their supply chain through innovative and secure solutions.",
     "cta_services": "Explore our solutions",
     "cta_contact": "Contact us"
   },
   "services": {
     "title": "Financial and Technological Services",
-    "description": "We offer innovative solutions in finance, blockchain, and technology applied to global business. We guide companies and investors through the digital transformation of their financial operations.",
+    "description": "We offer innovative solutions in finance, blockchain and technology applied to global business. We guide companies and investors through the digital transformation of their financial operations.",
     "list": [
-      {"icon":"Briefcase","title":"Strategic Financial Advisory","desc":"We advise on capital management, financial structure, M&A, and liquidity optimization."},
-      {"icon":"Globe","title":"International & Cross‑Border Payments","desc":"Secure, fast global transfers with regulatory compliance (KYC/AML)."},
-      {"icon":"Network","title":"Applied Blockchain Technology","desc":"Blockchain systems for traceability, tokenization, and transactional security."},
+      {"icon":"ClipboardCheck","title":"Strategic Procurement & International Trade","desc":"We advise on global supplier sourcing, evaluation and selection. We manage import and export processes, international negotiations, quality control and logistics coordination with a focus on efficiency, compliance and traceability."},
+      {"icon":"Briefcase","title":"Strategic Financial Advisory","desc":"We advise on capital management, financial structure, M&A and liquidity optimization."},
+      {"icon":"Globe","title":"International & Cross-border Payments","desc":"Secure, fast global transfers with regulatory compliance (KYC/AML)."},
+      {"icon":"Network","title":"Applied Blockchain Technology","desc":"Blockchain systems for traceability, tokenization and transactional security."},
       {"icon":"BarChart3","title":"Big Data & Predictive Analytics","desc":"Data models to drive smarter decisions in investments and financial operations."},
-      {"icon":"Cpu","title":"Fintech Infrastructure","desc":"Design and integration of scalable financial platforms, banking APIs, and digital payment systems."},
+      {"icon":"Cpu","title":"Fintech Infrastructure","desc":"Design and integration of scalable financial platforms, banking APIs and digital payment systems."},
       {"icon":"Cog","title":"Financial Process Automation (RPA)","desc":"Digitize repetitive tasks with AI and automation for greater efficiency."},
-      {"icon":"ShieldCheck","title":"Regulatory Compliance & Digital Security","desc":"Solutions that ensure security, privacy, and adherence to international standards."},
-      {"icon":"TrendingUp","title":"Investments & Digital Portfolio Management","desc":"Advisory on digital assets, investment strategies, and smart diversification through technology."}
+      {"icon":"ShieldCheck","title":"Regulatory Compliance & Digital Security","desc":"Solutions that ensure security, privacy and adherence to international standards."},
+      {"icon":"TrendingUp","title":"Investments & Digital Portfolio Management","desc":"Advisory on digital assets, investment strategies and smart diversification through technology."}
     ]
   },
   "solutions": {
@@ -46,7 +47,7 @@
     },
     "data": {
       "title": "Big Data & Analytics",
-      "desc": "Logistics and financial forecasting to drive data‑led decisions.",
+      "desc": "Logistics and financial forecasting to drive data-led decisions.",
       "benefits": ["Forecasts", "Optimization", "360° visibility"]
     }
   },
@@ -116,7 +117,7 @@
     "success": "Thanks, your request has been received.",
     "error": "There was an error sending. Try again.",
     "loading": "Sending...",
-    "schedule": "Hours: Mon–Fri 9:00–18:00 ET"
+    "schedule": "Hours: Mon-Fri 9:00-18:00 ET"
   },
   "footer": {
     "quick": "Quick links",
