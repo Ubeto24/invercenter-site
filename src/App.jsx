@@ -14,6 +14,7 @@ import Contact from './pages/Contact'
 import ContactEN from './pages/ContactEN'
 import ThanksEN from './pages/ThanksEN'
 import Gracias from './pages/Gracias'
+import Documentos from './pages/Documentos'
 import NotFound from './pages/NotFound'
 
 export default function App() {
@@ -39,6 +40,7 @@ export default function App() {
           <Route path="/insights/:slug" element={<Article />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/gracias" element={<Gracias />} />
+          <Route path="/documentos" element={<Documentos />} />
           <Route path="/en/contact" element={<ContactEN />} />
           <Route path="/en/thanks" element={<ThanksEN />} />
           <Route path="*" element={<NotFound />} />

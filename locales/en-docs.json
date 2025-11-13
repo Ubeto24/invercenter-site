@@ -1,0 +1,952 @@
+{
+  "docs": {
+    "meta_title": "InverCenter USA | API Documentation",
+    "meta_desc": "Official InverCenter USA technology portal with product overviews and integration guidance.",
+    "hero": {
+      "eyebrow": "InverCenter USA Tech Portal",
+      "title": "Welcome to the InverCenter USA Tech Portal",
+      "subtitle": "This is the official gateway to InverCenter USA technology documentation for partners, developers, and businesses building financial products with our infrastructure."
+    },
+    "hero_support": [
+      "Integrate card programs, wallet experiences, or banking portals with a single stack.",
+      "Move from sandbox to launch faster with guided playbooks and ready-to-use components."
+    ],
+    "toc": {
+      "title": "Sections",
+      "intro": "Introduction",
+      "capabilities": "What you can build",
+      "pillars": "Why InverCenter",
+      "mission": "Our mission",
+      "toggle_open": "Open menu",
+      "toggle_close": "Close menu"
+    },
+    "intro": {
+      "title": "Introduction",
+      "paragraphs": [
+        "InverCenter USA delivers the same enterprise-grade APIs that power our strategic partner network, giving you the flexibility to build, launch, or scale financial services with confidence.",
+        "Whether you are integrating card programs, deploying a wallet app, or creating new financial journeys, we provide the tools, documentation, and expert support you need to move quickly and securely."
+      ]
+    },
+    "capabilities": {
+      "title": "What you can do with InverCenter USA",
+      "description": "Our platform connects to global card networks (Mastercard, Visa, Amex) and exposes modular capabilities you can mix and match:",
+      "items": [
+        "Issue physical and virtual cards (credit, debit, prepaid).",
+        "Process cards with direct connectivity to the network you choose.",
+        "Build digital wallets and turnkey online banking portals.",
+        "Launch bill-payment services, crypto features, and complementary rails.",
+        "Adopt a modular, API-first stack that adapts to your business needs."
+      ],
+      "note": "Pick only the components you require. Everything is delivered through secure APIs or white-label interfaces."
+    },
+    "lotus": {
+      "title": "Lotus Processing Platform",
+      "description": "Lotus is InverCenter USA's in-house issuing and processing platform. It gives partners direct connectivity with major card networks to issue debit, credit, or prepaid products using modular APIs, enterprise security, and rapidly scalable infrastructure.",
+      "paragraphs": [
+        "This section summarizes the core documentation for Lotus so your teams can plan integrations faster. The platform adapts to diverse business models and scales as your program evolves.",
+        "Use the quick links below to access the API reference or review the current network availability, delivery models, and feature modules."
+      ],
+      "cta": {
+        "label": "Access Lotus API",
+        "href": "https://docs.invercenterusa.com/lotus-api"
+      },
+      "networks_title": "Current network integration",
+      "networks": [
+        "Mastercard: Debit Standard, Black, and Black Metal.",
+        "American Express (Colombia only): Credit Icon, Max, and Select.",
+        "Visa: Integration underway with availability expected by March 2025."
+      ],
+      "markets": "Lotus is available across Latin America, the Caribbean, and Europe with multiple delivery models:",
+      "models_title": "Available models",
+      "models": [
+        {
+          "name": "Processing only",
+          "description": "Designed for partners that already hold direct relationships with Mastercard, Visa, or Amex. They connect to those schemes through Lotus to leverage our processing stack."
+        },
+        {
+          "name": "Processing + affiliate sponsorship",
+          "description": "Entities receive their own affiliate license with Mastercard or Visa while issuing under InverCenter USA's principal membership. This allows independent business rules while relying on Lotus for technology, compliance, and scheme connectivity."
+        }
+      ],
+      "modules_title": "Modules",
+      "modules_intro": "These are the feature groups currently integrated into Lotus. Updates are released continually to stay aligned with payment trends and regulatory requirements.",
+      "modules": [
+        {
+          "name": "Card management",
+          "items": [
+            "Card operations plus card and transaction queries.",
+            "PIN management (change, reset, verification).",
+            "State controls for activation, blocking, freezing.",
+            "Card requests: physical or virtual creation, status tracking.",
+            "Virtual cards: state management and information queries."
+          ]
+        },
+        {
+          "name": "Authorization and clearing",
+          "items": [
+            "Real-time authorization webhooks.",
+            "Clearing webhooks with settlement data.",
+            "Financial position snapshots.",
+            "Money-send operations."
+          ]
+        },
+        {
+          "name": "Authenticate",
+          "items": [
+            "Central authentication endpoint for secure access."
+          ]
+        },
+        {
+          "name": "Internal APIs",
+          "items": [
+            "Card management (forced creation).",
+            "Controls and limits CRUD."
+          ]
+        },
+        {
+          "name": "Issuer management",
+          "items": [
+            "BIN CRUD operations.",
+            "Issuer creation, updates, enable/disable.",
+            "Product creation and listing.",
+            "Sub-issuer full CRUD with enable/disable.",
+            "User CRUD plus role management."
+          ]
+        },
+        {
+          "name": "Limits & controls",
+          "items": [
+            "Configuration by BIN, card, issuer, processor, product, and profile."
+          ]
+        }
+      ],
+      "coming_title": "Coming soon",
+      "coming_items": [
+        "Fees",
+        "3DS authentication",
+        "Digital card tokenization"
+      ]
+    },
+    "api": {
+      "title": "API Integration",
+      "subtitle": "Flexible and secure access to every Lotus capability.",
+      "intro": [
+        "This overview lists the APIs exposed through Lotus so partners can design management portals, wallets, or mobile banking experiences powered by InverCenter USA infrastructure.",
+        "The diagram shows how the API Gateway, transaction webhooks, and clearing notifications interact to keep issuers informed end-to-end."
+      ],
+      "diagram": {
+        "core": "Lotus",
+        "top": [
+          {
+            "name": "API Gateway",
+            "protocol": "HTTPS",
+            "items": ["Card", "Issuer", "Sub-issuer"]
+          },
+          {
+            "name": "Webhook Transaction",
+            "protocol": "HTTPS",
+            "items": ["Transaction"]
+          }
+        ],
+        "bottom": [
+          {
+            "name": "Webhook Clearing",
+            "protocol": "HTTPS",
+            "items": ["Transaction"]
+          }
+        ]
+      },
+      "card_flow": {
+        "title": "Card | Authorization | Clearing",
+        "text": "These APIs orchestrate the full card lifecycle accessed by sub-issuers. Once Lotus processes a transaction it is routed to the issuer for final approval; if the platform cancels or denies an operation, Lotus immediately sends notifications so issuers can reconcile decisions.",
+        "notes": [
+          "Card endpoints manage issuance, status changes, and operational queries.",
+          "Authorization callbacks alert issuers about transactions that must be approved or canceled.",
+          "Clearing webhooks deliver the final settlement payload per transaction."
+        ]
+      }
+    },
+    "api_spec": {
+      "title": "Lotus API Reference",
+      "subtitle": "Versioned spec, runtime details, and sample requests for InverCenter USA partners.",
+      "version": "1.1.0",
+      "oas": "OAS 3.1.1",
+      "download": {
+        "label": "Download OpenAPI Document",
+        "href": "https://docs.invercenterusa.com/lotus-openapi.yaml"
+      },
+      "overview": "The Lotus API powers authentication, issuer configuration, authorization, clearing, card issuance, and digital controls. Each endpoint is built for real-time or batch flows with granular logging and webhook notifications.",
+      "server": {
+        "label": "Server",
+        "value": "http://{{lotus}}"
+      },
+      "auth": {
+        "title": "Authentication",
+        "optional": "Optional",
+        "description": "Authenticate with your accessKey/secretKey pair to receive a JWT used on every protected request.",
+        "body": "application/json",
+        "sample": "curl 'http://{{lotus}}/v1/api/v1/user/auth' \\\n  --request POST \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n    \"accessKey\": \"PQNJXNELAMNDSGNEGNE\",\n    \"secretKey\": \"KgnL489m13zfn52Kn+uG4Qga616bwiGmX6dMr3y\"\n  }'"
+      },
+      "client": {
+        "label": "Client libraries",
+        "value": "Shell, Curl (more coming soon)"
+      },
+      "groups": [
+        {
+          "name": "Authorization & MoneySend",
+          "summary": "Endpoints for transaction authorization, clearing webhooks, and master MoneySend flows.",
+          "operations": [
+            { "method": "POST", "path": "/api/v1/transaction/request", "text": "Create authorization/advice/reversal payloads." },
+            { "method": "POST", "path": "/api/v1/clearing", "text": "Ingest clearing files or FinancialPositionDetail batches." },
+            { "method": "POST", "path": "/moneysend", "text": "Send card-to-card payouts with sender/receiver KYC data." }
+          ],
+          "sample": "curl 'http://{{lotus}}/api/v1/transaction/request' \\\n  --request POST \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n    \"request_type\": \"authorization\",\n    \"card_id\": \"...\",\n    \"account_id\": \"...\",\n    \"payload\": {\n      \"transaction_id\": \"...\",\n      \"transaction_type\": \"purchase\",\n      \"merchant\": { \"mcc\": \"5814\", \"name\": \"Sample\" }\n    }\n  }'"
+        },
+        {
+          "name": "Issuer management",
+          "summary": "Provision issuers, BINs, products, and sub-issuers in a single orchestration layer.",
+          "operations": [
+            { "method": "POST", "path": "/issuers", "text": "Create issuers and configure PIN limits." },
+            { "method": "POST", "path": "/bins", "text": "Register BIN ranges with HSM keys and profiles." },
+            { "method": "POST", "path": "/products", "text": "Link BIN + sub-issuer to create card programs." },
+            { "method": "POST", "path": "/subissuers", "text": "Configure sub-issuers with webhooks and keys." }
+          ],
+          "sample": "curl 'http://{{lotus}}/bins' \\\n  --request POST \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n    \"issuerId\": \"abf0017b-906d-414e-bcf1-9aa776956397\",\n    \"bin\": \"12345678\",\n    \"brand\": \"mastercard\",\n    \"currencies\": [\"532\", \"840\"],\n    \"cvvEnable\": true\n  }'"
+        },
+        {
+          "name": "Card requests & lifecycle",
+          "summary": "Create physical or virtual cards, manage status, PIN, freeze/block, and read credentials via JWE.",
+          "operations": [
+            { "method": "POST", "path": "/CardRequests", "text": "Force card creation (dev mode)." },
+            { "method": "POST", "path": "/CardRequests/List", "text": "Bulk create card solicitations." },
+            { "method": "POST", "path": "/CardRequests/Virtual", "text": "Issue virtual cards instantly." },
+            { "method": "PUT", "path": "/cards/{card_id}/activate", "text": "Activate card by GUID." },
+            { "method": "PUT", "path": "/cards/{card_id}/freeze", "text": "Freeze or unfreeze cards with optional PIN validation." }
+          ],
+          "sample": "curl 'http://{{lotus}}/CardRequests/Virtual' \\\n  --request POST \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n    \"productCode\": \"b2b59208-b98f-45bc-8c6f-4ef0d7b7bd8e\",\n    \"personal\": { \"firstName\": \"John\", \"lastName\": \"Doe\", \"dob\": \"1994-06-10\" },\n    \"cardInformation\": {\n      \"fullName\": \"John Doe\",\n      \"cardDesign\": \"IC_DEB_03\",\n      \"currencyCode\": 840\n    }\n  }'"
+        },
+        {
+          "name": "Limits & controls API",
+          "summary": "Create or validate MCC/amount/entry-mode controls for issuer, BIN, product, or card owners.",
+          "operations": [
+            { "method": "POST", "path": "/control", "text": "Create rules for a given owner." },
+            { "method": "POST", "path": "/control/validate", "text": "Validate a transaction payload against existing rules." },
+            { "method": "POST", "path": "/controls/bin/{bin_id}", "text": "Attach rules to a BIN." },
+            { "method": "POST", "path": "/controls/issuer/{issuer_id}", "text": "Attach rules to an issuer." }
+          ],
+          "sample": "curl 'http://{{lotus}}/control' \\\n  --request POST \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n    \"owner\": \"264677ac-5c17-49b4-b8d4-3e6fc47a3832\",\n    \"ownerType\": \"Product\",\n    \"validationType\": \"Mcc\",\n    \"value\": \"5814\",\n    \"amount\": 100,\n    \"currencyCode\": \"USD\",\n    \"rangeType\": \"Daily\"\n  }'"
+        },
+        {
+          "name": "Webhooks & 3DS",
+          "summary": "Receive OTP deliveries, 3DS Out-of-Band flows, and card status updates with signature validation.",
+          "operations": [
+            { "method": "POST", "path": "/{your_domain}/{your_otp_path}", "text": "OTP delivery webhook (SMS/email)." },
+            { "method": "POST", "path": "/{your_domain}/{your_3ds_path}", "text": "3DS OOB issuer challenge." },
+            { "method": "GET", "path": "/{your_domain}/{authenticationId}", "text": "Fetch current authentication status." },
+            { "method": "POST", "path": "/api/v1/card/status", "text": "Card status updates (shipped/confirmed/etc.)." }
+          ],
+          "sample": "curl 'http://{{lotus}}/apcbank.cw/otp-delivery' \\\n  --request POST \\\n  --header 'X-Signature: <HMAC>' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n    \"otp\": {\"value\": \"123456\", \"reason\": \"CARDHOLDER-VERIFICATION\"},\n    \"deliveryChannel\": \"SMS\",\n    \"accountId\": \"...\"\n  }'"
+        }
+      ],
+      "notes": [
+        "Use the JWT from /user/auth in the Authorization header: `Authorization: Bearer <token>`.",
+        "Lotus validates incoming webhooks with HMAC-SHA256 signatures; store the shared secret securely.",
+        "Card credentials are always returned via JWE using your onboarding public key."
+      ]
+    },
+    "flows": {
+      "title": "Operational Flows",
+      "subtitle": "These diagrams explain InverCenter USA's Co-Applicant / BIN Sponsorship flows so integrators can visualize end-to-end issuance and transaction validation.",
+      "sections": [
+        {
+          "name": "Card request",
+          "description": "Shows how a new card is validated, manufactured, and activated under the co-applicant program. InverCenter validates the user submission, generates PAN/CVV data, and coordinates with the card manufacturer for personalization before the user completes activation.",
+          "image": "/docs/flows/card-request.png",
+          "imageAlt": "Card request flow diagram"
+        },
+        {
+          "name": "Make a purchase",
+          "description": "Details the real-time authorization path once the cardholder transacts: the network relays data, InverCenter executes validations plus limits/controls, and webhook callbacks notify the customer when the transaction is approved or declined.",
+          "image": "/docs/flows/make-a-purchase.png",
+          "imageAlt": "Purchase authorization flow"
+        }
+      ],
+      "note": "Swap the image paths with your final assets if different."
+    },
+    "limits": {
+      "title": "Limits & Controls",
+      "subtitle": "Lotus lets you define granular transaction rules at every layer of your program so each swipe honors your business logic.",
+      "description": "Partners can set rules at the processor, co-applicant, affiliate, BIN range, or individual card level. Controls cover merchant type, geography, entry mode, transaction amount, and more. All updates are enforced in real time via REST API.",
+      "rules_title": "List of rules",
+      "rules_intro": "Each rule aligns conditions to one or more parameters:",
+      "rules": [
+        {
+          "name": "Authorized amount",
+          "text": "Daily, weekly, or monthly caps on authorized amounts."
+        },
+        {
+          "name": "MCC filters",
+          "text": "Define limits per Merchant Category Code to block or throttle specific industries."
+        },
+        {
+          "name": "Entry mode",
+          "text": "Apply logic by swipe, chip, contactless, ecom, or manual entry."
+        },
+        {
+          "name": "Business scope",
+          "text": "Separate rules for domestic versus international transactions."
+        }
+      ],
+      "rule_details": [
+        "Rules tied to MCC or entry mode can define a maximum amount per transaction.",
+        "Optional enforcement windows let you specify the exact time frame in which the rule is active."
+      ],
+      "notes": [
+        "Real-time enforcement ensures the next transaction honors the latest update.",
+        "Fine-grained controls provide extra security without sacrificing flexibility."
+      ],
+      "hierarchy_title": "Rules hierarchy",
+      "hierarchy_description": "Priority increases as you move closer to the PAN. The lowest level overrides higher layers when conflicts exist; unmet conditions deny the transaction.",
+      "hierarchy": [
+        { "level": 0, "name": "InverCenter", "description": "Rules generated centrally by InverCenter USA." },
+        { "level": 1, "name": "Issuer", "description": "Policies defined by the issuing institution." },
+        { "level": 2, "name": "BIN", "description": "Controls scoped to a specific BIN." },
+        { "level": 3, "name": "Sub-issuer", "description": "Applied to affiliate or managed programs." },
+        { "level": 4, "name": "BIN range", "description": "Focused on a range of PANs (e.g., premium portfolios)." },
+        { "level": 5, "name": "PAN", "description": "Card-level rule set for individual users." }
+      ]
+    },
+    "fees": {
+      "title": "Fees",
+      "subtitle": "Configure core or custom fees to align with your pricing strategy while keeping revenue flows compliant.",
+      "types": [
+        { "name": "Core", "description": "Standard fees configured by InverCenter USA (Lotus Admin) and imposed automatically." },
+        { "name": "Custom", "description": "Fees you configure per issuer or co-applicant." }
+      ],
+      "automated_title": "Automated fees",
+      "automated_intro": "Work with InverCenter USA to auto-assess fees on eligible events:",
+      "automated_items": [
+        "Fees apply automatically to common events such as replacement cards, expedited shipping, or international ATM withdrawals.",
+        "Revenue settles into a designated partner-bank account based on your funds-flow agreement.",
+        "If balances are insufficient, fees can remain pending until funds arrive.",
+        "Programmatic waivers can skip the first X events per product (e.g., every 365 days).",
+        "Periodic fees are supported (dormancy, weekly, monthly, annual).",
+        "Reference the InverCenter system fee catalog for the complete matrix."
+      ],
+      "custom_fee_title": "Custom fee assessments",
+      "custom_fee_body": [
+        "Issuers can call the Assess Fee endpoint with a fee code unique to their program.",
+        "Coordinate with InverCenter USA to register three-digit codes, fee types, descriptions, and expiration values."
+      ],
+      "compliance_title": "Compliance alignment",
+      "compliance_items": [
+        "Respect fee naming rules per jurisdiction.",
+        "Match cardholder agreements with the exact fee names and trigger events.",
+        "Ensure all customer-facing channels (app, site, statements) mirror the same fee labels."
+      ],
+      "funds_title": "Money movement",
+      "funds_items": [
+        "Determine whether InverCenter USA or the issuing bank moves the funds.",
+        "Include fees in your funds-flow diagrams before launch.",
+        "Once configured, additional fees can reuse the same movement logic."
+      ],
+      "codes_title": "Fee transaction codes (ftypes)",
+      "codes": [
+        { "code": "0011", "description": "One-time BIN fee" },
+        { "code": "0012", "description": "One-time PAN fee" },
+        { "code": "0013", "description": "One-time card fee" },
+        { "code": "0020", "description": "Annual program fee" },
+        { "code": "0021", "description": "Monthly program fee" },
+        { "code": "0030", "description": "Successful authorization fee" },
+        { "code": "0031", "description": "Declined authorization fee" },
+        { "code": "0032", "description": "Balance inquiry fee" },
+        { "code": "0033", "description": "Domestic ATM fee" },
+        { "code": "0034", "description": "International ATM fee" },
+        { "code": "0040", "description": "Express shipping fee" }
+      ],
+      "fees_rules_title": "Fee rules",
+      "fees_rules": [
+        {
+          "rule": "$ per transaction",
+          "description": "Flat fee regardless of transaction size.",
+          "example": "Charge 2.00 USD for every domestic ATM withdrawal."
+        },
+        {
+          "rule": "% per transaction",
+          "description": "Percentage of the settled amount.",
+          "example": "3% fee on international ATM withdrawals, calculated at settlement."
+        },
+        {
+          "rule": "Negative balance (Y/N)",
+          "description": "Allows fees to drive the balance negative when enabled.",
+          "example": "If true, a fee posts even when funds are insufficient."
+        },
+        {
+          "rule": "Floor",
+          "description": "Minimum fee amount when percentage math is lower.",
+          "example": "If 3% of 10 USD equals 0.30 USD but floor is 1 USD, the fee becomes 1 USD."
+        },
+        {
+          "rule": "Ceiling",
+          "description": "Maximum fee amount.",
+          "example": "If 3% of 50 USD equals 1.50 USD but ceiling is 1 USD, only 1 USD is charged."
+        },
+        {
+          "rule": "Pending (Y/N)",
+          "description": "Queue the fee until funds exist.",
+          "example": "Set to pending when the account balance is below the fee amount."
+        }
+      ],
+      "notes_title": "Fee notes",
+      "notes": [
+        "Percent-based fees include other operator charges in the base when configured (e.g., ATM convenience fees).",
+        "Some fees trigger during authorization, so the auth amount reflects the fee.",
+        "Settlement splits the withdrawal and its fee into separate records.",
+        "Use the ORIGINAL AUTH CODE to link a fee back to its originating transaction.",
+        "Fees assessed manually do not automatically link to trigger events."
+      ],
+      "reporting_title": "Reporting",
+      "reporting_items": [
+        "Posted Transactions RDF fields include negative balance fee amount and authorization code.",
+        "Rollforward, Settlement-BIN Summary, Fee Overview, Monthly Summary, Reversal Summary, and Revenue reports cover fee analytics across multiple cadences."
+      ],
+      "pending_title": "Pending fee handling",
+      "pending_text": "If an account lacks funds, fees can sit in pending status until balances recover or expiration hits.",
+      "pending_steps": [
+        "Fees are applied when funds become available in original creation order.",
+        "Use the Reverse Fee endpoint to cancel a pending fee.",
+        "List pending fees via the Get Pending Fees endpoint."
+      ],
+      "expiration_title": "Fee expiration",
+      "expiration_text": "Fees can expire after a defined number of days (commonly 90). Pending fees that never find funds drop after the expiration window.",
+      "reversal_title": "Reversing a fee",
+      "reversal_managed": [
+        "Retrieve the fee ID with Get Fee History.",
+        "Call Reverse Fee and pass the fee ID to roll back the charge."
+      ],
+      "reversal_assess": [
+        "For custom fees posted via Assess Fee, call Reverse Fee using the transactionId of the original request.",
+        "Alternatively, post an adjustment through CST."
+      ],
+      "portal_note": "The Issuer Portal lists every configured fee per product, including code, type, amount, expiry days, and insufficient-funds behavior."
+    },
+    "card_design": {
+      "title": "Card Design Guidelines",
+      "subtitle": "Scheme-compliant layouts for physical cards, with a focus on Mastercard vertical designs.",
+      "overview": "Each scheme publishes strict rules covering brand marks, colors, typography, holograms, and security features. Below is a quick reference for Mastercard deployments so your creative team stays compliant while customizing the experience.",
+      "mastercard": {
+        "title": "Mastercard",
+        "intro": "Mastercard requires consistent brand-mark placement to protect recognition and usability. Use the official templates before handing off assets for personalization.",
+        "rules": [
+          "Keep the Mastercard Brand Mark visible and unobstructed at all times.",
+          "Do not distort, crop, or apply effects that change the appearance of the circles.",
+          "Follow the approved safe zones and dimensions for vertical or horizontal layouts."
+        ],
+        "figures": [
+          {
+            "title": "Figure 1",
+            "caption": "Brand mark placement for vertical cards.",
+            "image": "/docs/design/mastercard-vertical.png"
+          },
+          {
+            "title": "Figure 2",
+            "caption": "Examples of compliant Mastercard designs.",
+            "image": "/docs/design/mastercard-gallery.png"
+          }
+        ],
+        "summary": "Always review the latest Mastercard Card Design Guidelines for precise measurements, chip placement, hologram usage, and accessibility callouts."
+      }
+    },
+    "solutions": {
+      "title": "Explore Our Solutions",
+      "subtitle": "Choose the section that fits your business needs:",
+      "perfect_label": "Perfect for",
+      "items": [
+        {
+          "name": "Lotus",
+          "description": "Lotus is InverCenter USA's next-generation, in-house card issuing and processing platform-built from the ground up to serve modern financial institutions and fintech innovators. Designed for partners that want direct connectivity with global card networks (Mastercard, Visa, Amex), Lotus supports programs under both Principal Member and Affiliate/Associate licenses.",
+          "perfectFor": [
+            "New issuers seeking a streamlined path to certification and launch a card program.",
+            "Institutions migrating away from outdated processors that lack tokenization, wallet, or advanced controls."
+          ],
+          "example": {
+            "title": "Example",
+            "text": "A leading bank in The Bahamas wants to launch a new Mastercard debit card with advanced tokenization. Their current processor lacks certification and the necessary technology. By moving to Lotus, they gain access to a certified, modern, and scalable platform that unlocks the full potential of Mastercard's ecosystem."
+          }
+        },
+        {
+          "name": "Co-Applicant / BIN Sponsorship",
+          "description": "Our Co-Applicant / BIN Sponsorship solution provides a seamless path for partners to launch white-label card programs without holding a direct license from Mastercard. Powered by the Lotus processing platform and InverCenter USA's real-time ledger, partners can issue virtual and physical cards under our Principal Membership while we manage licensing, compliance, and backend technology.",
+          "perfectFor": [
+            "Fintech wallets embedding virtual cards directly into their app experience.",
+            "Program managers expanding into new regions with tailored card offerings."
+          ],
+          "example": {
+            "title": "Example",
+            "text": "A fintech startup in Curacao is launching a digital wallet for gig workers and wants to offer virtual debit cards linked to user balances. Instead of applying for a costly and time-consuming network license, they use InverCenter USA's BIN sponsorship to launch fully branded Mastercard virtual cards within weeks."
+          },
+          "disclaimer": "*This model is subject to regulatory and network approval based on the market or region."
+        },
+        {
+          "name": "Wallet Solutions",
+          "description": "InverCenter USA offers a flexible suite of wallet solutions to help you launch faster, scale smarter, and deliver exceptional digital experiences. From white-label wallet apps and teen banking to referral programs, crypto wallets, and custom web portals, we tailor the stack so you can choose end-to-end delivery, front-end interfaces, or modular components.",
+          "perfectFor": [
+            "Fintech startups launching a wallet without heavy upfront investment or engineering lift.",
+            "Traditional banks refreshing outdated mobile banking experiences."
+          ],
+          "example": {
+            "title": "Example",
+            "text": "A regional correspondent banking partner with an aging mobile wallet wants to offer users a faster, more modern app with built-in card access and loyalty features. Partnering with InverCenter USA allows them to deploy a sleek, secure, fully branded wallet within weeks--without rebuilding from scratch."
+          }
+        },
+        {
+          "name": "Other Solutions",
+          "description": "Beyond cards and wallets, InverCenter USA delivers complementary capabilities to build complete ecosystems:",
+          "bullets": [
+            "Bill payment platforms.",
+            "Acquiring services.",
+            "Value-added services such as KYC validation, tokenization, POS certification, and terminal acquisition.",
+            "Crypto-related services."
+          ],
+          "footer": "Whether you're expanding an existing product or launching something new, our team is ready to guide you."
+        }
+      ],
+      "contact": {
+        "text": "Contact our sales team to tailor these solutions to your roadmap:",
+        "email": "info@invercenterusa.com"
+      }
+    },
+    "pillars": {
+      "title": "Why build with InverCenter USA?",
+      "description": "We offer a modern, enterprise-ready alternative to legacy processors with four core pillars:",
+      "groups": [
+        {
+          "title": "Developer-friendly by design",
+          "bullets": [
+            "API-first architecture with consistent naming and versioning.",
+            "Standard implementations or full white-label deployments.",
+            "Flexible UX/UI foundations you can rebrand quickly.",
+            "Operations console available via API or optional whitelabel portal."
+          ]
+        },
+        {
+          "title": "Scalable & modular",
+          "bullets": [
+            "Scale instantly as volumes grow without renegotiating infrastructure.",
+            "Add or remove modules as your roadmap evolves.",
+            "Seamless interoperability across every InverCenter USA service."
+          ]
+        },
+        {
+          "title": "Enterprise-grade security",
+          "bullets": [
+            "PCI DSS Level 1 certified controls end-to-end.",
+            "Hardened data-protection standards with encryption in transit and at rest.",
+            "Compliance with regional and international regulations.",
+            "Activities supervised under the Central Bank of Curacao and Sint Maarten framework."
+          ]
+        },
+        {
+          "title": "Expert support beyond code",
+          "bullets": [
+            "Full lifecycle project management from discovery to launch.",
+            "AML/compliance guidance aligned with your jurisdiction.",
+            "Card-program design, segmentation, loyalty, and pricing strategy.",
+            "Specialized solution architects available throughout testing."
+          ]
+        }
+      ]
+    },
+    "mission": {
+      "title": "Our mission",
+      "text": "InverCenter USA empowers people and businesses across the Caribbean and Latin America with accessible digital payments by delivering secure, customizable, and easy-to-integrate solutions that drive financial inclusion and sustainable growth."
+    },
+    "wallet": {
+      "title": "Digital Wallet Solutions",
+      "intro": [
+        "InverCenter USA delivers a flexible suite of wallet products so you can launch faster, scale smarter, and craft premium digital experiences.",
+        "From white-label apps and teen banking to referral engines, crypto rails, or UX/UI-only engagements, we tailor the stack—end-to-end platform or modular APIs—to your roadmap."
+      ],
+      "modules_title": "Key modules available today",
+      "modules": [
+        { "name": "Digital onboarding with KYC", "text": "Fully digital account opening with identity document capture, selfies, and database checks to meet compliance requirements." },
+        { "name": "Biometric access", "text": "Fingerprint or facial recognition for authentication and transaction approval without passwords." },
+        { "name": "Card management", "text": "Activate cards, request replacements, manage PINs, view status, suspend/close cards, and mirror actions for virtual cards." },
+        { "name": "Card controls", "text": "Spend limits, geo rules, merchant-type filters, ATM/online toggles, and real-time enabling/disabling." },
+        { "name": "Split payment", "text": "Create shared payment links, request amounts, and track outstanding balances for events or group expenses." },
+        { "name": "Multi-currency accounts", "text": "Hold balances in USD, EUR, or local currencies and convert seamlessly for travel or cross-border payments." },
+        { "name": "Multi-language support", "text": "Interface and notifications localized for diverse audiences." },
+        { "name": "Transaction history", "text": "Searchable ledger with filters, receipts, geolocation, and dispute initiation." },
+        { "name": "Crypto cash in", "text": "Accept deposits in assets such as USDT/USDC and auto-convert to fiat wallet balances." },
+        { "name": "P2P transfers", "text": "Instant transfers via username, phone, or QR for on-platform users." },
+        { "name": "Multiple virtual cards", "text": "Generate dedicated cards for subscriptions, travel, or business expenses to improve control." },
+        { "name": "Teen banking", "text": "Linked parent/teen accounts with savings goals, rewarded tasks, spending limits, and educational prompts." },
+        { "name": "Referral program", "text": "Built-in tracking for friend invites with customizable rewards and sharing links." },
+        { "name": "Marketplace", "text": "In-app catalog for goods, services, gift cards, or subscriptions with promotions and dynamic pricing." },
+        { "name": "QR payments", "text": "Scan-to-pay rails for retail or peer transactions without POS hardware." },
+        { "name": "Push notifications", "text": "Real-time alerts for transactions, incoming funds, card usage, security events, and promos." },
+        { "name": "Product analytics", "text": "Back-office dashboards for behavior insights, retention metrics, funnel tracking, and experiments." },
+        { "name": "Admin portal", "text": "Full back office for ops teams to review activity, manage KYC/AML workflows, monitor transactions, and generate reports." }
+      ],
+      "trust": "Trusted by organizations such as Efecty, FinZi, Pagafasil, and other global programs, the wallet stack is battle-tested for security, scale, and anti-fraud controls.",
+      "cta": "For demos or deeper technical details, contact sales@invercenterusa.com."
+    },
+    "ecosystem": {
+      "title": "Beyond Cards & Wallets",
+      "subtitle": "Build a full-stack financial ecosystem with InverCenter USA's complementary infrastructure.",
+      "intro": [
+        "InverCenter USA provides additional modules so partners can expand beyond issuing and wallets. Use these building blocks to deliver complete financial products tailored to your audience."
+      ],
+      "sections": [
+        {
+          "name": "Bill payment platforms",
+          "description": "Offer utility and service payments inside your app via white-label UI or APIs. Support electricity, water, mobile top-ups, internet, and government services.",
+          "bullets": [
+            "Local and cross-border payments.",
+            "Real-time confirmations and reconciliations.",
+            "Integrations with major providers/aggregators.",
+            "Accept cash, cards, or bank transfers."
+          ]
+        },
+        {
+          "name": "Acquiring services (coming soon)",
+          "description": "Accept cards, wallets, and alternative methods with InverCenter USA acquiring rails for in-person or e-commerce flows.",
+          "bullets": [
+            "Merchant acquiring for Visa/Mastercard.",
+            "POS and payment gateway options.",
+            "Tokenized/contactless acceptance.",
+            "Multi-currency support."
+          ]
+        },
+        {
+          "name": "Value-added services",
+          "description": "Complementary capabilities to reduce time to market and compliance risk.",
+          "bullets": [
+            "KYC validation: automated onboarding with biometrics and document checks.",
+            "Tokenization for issuing and acquiring use cases.",
+            "POS certification support plus terminal sourcing/provisioning.",
+            "Consultancy spanning product strategy, pricing, loyalty, and scheme onboarding."
+          ]
+        },
+        {
+          "name": "Crypto-related services",
+          "description": "Integrate digital assets safely alongside fiat programs.",
+          "bullets": [
+            "On/off-ramps to buy or cash out crypto.",
+            "Custodial or non-custodial wallet integrations.",
+            "Stablecoin acceptance (USDT, USDC, etc.).",
+            "Blockchain compliance via chain analytics."
+          ]
+        }
+      ],
+      "cta": "Ready to assemble a complete financial stack? Contact sales@invercenterusa.com."
+    },
+    "mcc": {
+      "title": "MCC Reference",
+      "subtitle": "Two-column quick reference with common Merchant Category Codes.",
+      "columns": ["MCC code", "Description"],
+      "items": [
+        ["0742", "Veterinary Services"],
+        ["0763", "Agricultural Cooperatives"],
+        ["0780", "Horticultural and Landscaping Services"],
+        ["1520", "General Contractors, residential and commercial"],
+        ["1711", "Air Conditioning, Heating, and Plumbing Contractors"],
+        ["1731", "Electrical Contractors"],
+        ["1740", "Insulation, Masonry, Plastering, Stonework, and Tile Setting Contractors"],
+        ["1750", "Carpentry Contractors"],
+        ["1761", "Roofing and Siding, Sheet Metal Work Contractors"],
+        ["1771", "Concrete Work Contractors"],
+        ["1799", "Special Trade Contractors not elsewhere classified"],
+        ["2741", "Miscellaneous Publishing and Printing"],
+        ["2791", "Typesetting, Plate Making, and Related Services"],
+        ["2842", "Sanitation, Polishing, and Specialty Cleaning Preparations"],
+        ["3000-3350", "Airlines, Air Carriers"],
+        ["3351-3500", "Car Rental Agencies"],
+        ["3501-3999", "Lodging: Hotels, Motels, Resorts"],
+        ["4011", "Railroads; Freight"],
+        ["4111", "Suburban and Local Commuter Passenger Transportation"],
+        ["4112", "Passenger Railways"],
+        ["4119", "Ambulance Services"],
+        ["4121", "Limousines and Taxicabs"],
+        ["4131", "Bus Lines"],
+        ["4214", "Motor Freight Carriers, Trucking, Moving/Storage"],
+        ["4215", "Courier Services, Freight Forwarders"],
+        ["4225", "Public Warehousing, Refrigerated/Farm/Household Goods"],
+        ["4411", "Cruise Lines"],
+        ["4457", "Boat Leases and Rentals"],
+        ["4468", "Marinas, Marine Services/Supplies"],
+        ["4511", "Air Carriers, Not Elsewhere Classified"],
+        ["4582", "Airports, Terminals, Flying Fields"],
+        ["4722", "Travel Agencies and Tour Operators"],
+        ["4784", "Bridge and Road Fees, Tolls"],
+        ["4789", "Transportation Services not elsewhere classified"],
+        ["4812", "Telecommunication Equipment Sales"],
+        ["4813", "Key-entry Telecom Merchants"],
+        ["4814", "Telecommunication Services (prepaid, recurring)"],
+        ["4816", "Computer Network/Information Services"],
+        ["4821", "Telegraph Services"],
+        ["4829", "Money Transfer"],
+        ["4899", "Cable, Satellite, Pay TV/Radio"],
+        ["4900", "Utilities"],
+        ["5013", "Motor Vehicle Supplies and New Parts"],
+        ["5021", "Office and Commercial Furniture"],
+        ["5039", "Construction Materials not elsewhere classified"],
+        ["5044", "Office/Photographic/Photocopy Equipment"],
+        ["5045", "Computers, Peripherals, Software"],
+        ["5046", "Commercial Equipment not elsewhere classified"],
+        ["5047", "Dental/Medical Equipment and Supplies"],
+        ["5051", "Metal Service Centers"],
+        ["5065", "Electrical Parts and Equipment"],
+        ["5072", "Hardware Equipment and Supplies"],
+        ["5074", "Plumbing and Heating Equipment"],
+        ["5085", "Industrial Supplies not elsewhere classified"],
+        ["5094", "Precious Stones, Metals, Watches, Jewelry"],
+        ["5099", "Durable Goods not elsewhere classified"],
+        ["5111", "Stationery, Office Supplies"],
+        ["5122", "Drugs and Druggists Sundries"],
+        ["5131", "Piece Goods, Notions, Dry Goods"],
+        ["5137", "Uniforms and Commercial Clothing"],
+        ["5139", "Commercial Footwear"],
+        ["5169", "Chemicals and Allied Products"],
+        ["5172", "Petroleum and Petroleum Products"],
+        ["5192", "Books, Periodicals, Newspapers"],
+        ["5193", "Florist Supplies, Nursery Stock"],
+        ["5198", "Paints, Varnishes, Supplies"],
+        ["5199", "Nondurable Goods not elsewhere classified"],
+        ["5200", "Home Supply Warehouse Stores"],
+        ["5211", "Building Materials, Lumber"],
+        ["5231", "Glass, Paint, Wallpaper Stores"],
+        ["5251", "Hardware Stores"],
+        ["5261", "Lawn and Garden Supply"],
+        ["5271", "Mobile Home Dealers"],
+        ["5300", "Wholesale Clubs"],
+        ["5309", "Duty Free Stores"],
+        ["5310", "Discount Stores"],
+        ["5311", "Department Stores"],
+        ["5331", "Variety Stores"],
+        ["5399", "Miscellaneous General Merchandise"],
+        ["5411", "Grocery Stores, Supermarkets"],
+        ["5422", "Freezer, Locker Meat Provisioners"],
+        ["5441", "Candy, Nut, Confectionery"],
+        ["5451", "Dairy Products Stores"],
+        ["5462", "Bakeries"],
+        ["5499", "Miscellaneous Food Stores"],
+        ["5511", "Auto and Truck Dealers"],
+        ["5521", "Used Automobile Dealers"],
+        ["5531", "Auto Stores, Home Supply"],
+        ["5532", "Automotive Tire Stores"],
+        ["5533", "Automotive Parts and Accessories"],
+        ["5541", "Service Stations"],
+        ["5542", "Automated Fuel Dispensers"],
+        ["5551", "Boat Dealers"],
+        ["5552", "Electric Vehicle Charging"],
+        ["5561", "Camper, Recreational, Utility Trailers"],
+        ["5571", "Motorcycle Shops and Dealers"],
+        ["5592", "Motor Home Dealers"],
+        ["5598", "Snowmobile Dealers"],
+        ["5599", "Misc Automotive, Aircraft, Farm Equipment Dealers"],
+        ["5611", "Men's and Boys' Clothing Stores"],
+        ["5621", "Women's Ready-to-Wear Stores"],
+        ["5631", "Women's Accessory and Specialty Stores"],
+        ["5641", "Children's and Infants' Wear"],
+        ["5651", "Family Clothing Stores"],
+        ["5655", "Sports/Riding Apparel"],
+        ["5661", "Shoe Stores"],
+        ["5681", "Furriers and Fur Shops"],
+        ["5691", "Men's and Women's Clothing Stores"],
+        ["5697", "Alterations, Tailors"],
+        ["5698", "Wig and Toupee Shops"],
+        ["5699", "Miscellaneous Apparel Stores"],
+        ["5712", "Furniture and Home Furnishings"],
+        ["5713", "Floor Covering Stores"],
+        ["5714", "Drapery, Upholstery, Window Coverings"],
+        ["5718", "Fireplace and Accessories"],
+        ["5719", "House Furnishing Specialty Shops"],
+        ["5722", "Household Appliance Stores"],
+        ["5732", "Electronic Sales"],
+        ["5733", "Music Stores"],
+        ["5734", "Computer Software Stores"],
+        ["5735", "Record Shops"],
+        ["5811", "Caterers"],
+        ["5812", "Restaurants"],
+        ["5813", "Bars and Drinking Places"],
+        ["5814", "Fast Food Restaurants"],
+        ["5815", "Digital Goods: Audiovisual"],
+        ["5816", "Digital Goods: Games"],
+        ["5817", "Digital Goods: Software Applications"],
+        ["5818", "Digital Goods: Multi-Category"],
+        ["5912", "Drug Stores, Pharmacies"],
+        ["5921", "Package Stores: Beer, Wine, Liquor"],
+        ["5931", "Secondhand Stores"],
+        ["5932", "Antique Shops"],
+        ["5933", "Pawn Shops"],
+        ["5935", "Salvage and Wrecking Yards"],
+        ["5937", "Antique Reproductions"],
+        ["5940", "Bicycle Shops"],
+        ["5941", "Sporting Goods Stores"],
+        ["5942", "Book Stores"],
+        ["5943", "Stationery, Office, School Supplies"],
+        ["5944", "Jewelry, Watch, Clock Stores"],
+        ["5945", "Hobby, Toy, Game Shops"],
+        ["5946", "Camera and Photographic Supplies"],
+        ["5947", "Gift, Novelty, Souvenir Shops"],
+        ["5948", "Leather Goods and Luggage"],
+        ["5949", "Fabric, Needlework, Sewing Stores"],
+        ["5950", "Crystal and Glassware Stores"],
+        ["5960", "Direct Marketing - Insurance"],
+        ["5961", "Mail Order Houses"],
+        ["5962", "Direct Marketing - Travel"],
+        ["5963", "Direct Marketing - Inbound Telemarketing"],
+        ["5964", "Direct Marketing - Catalog Merchants"],
+        ["5965", "Direct Marketing - Combination Catalog and Retail"],
+        ["5966", "Direct Marketing - Outbound Telemarketing"],
+        ["5967", "Direct Marketing - Inbound/Outbound Telemarketing"],
+        ["5968", "Direct Marketing - Continuity/Subscription"],
+        ["5969", "Other Direct Marketers"],
+        ["5970", "Artist Supply Stores, Craft Shops"],
+        ["5971", "Art Dealers and Galleries"],
+        ["5972", "Stamp and Coin Stores"],
+        ["5973", "Religious Goods Stores"],
+        ["5975", "Hearing Aid Stores"],
+        ["5976", "Orthopedic Goods, Prosthetics"],
+        ["5977", "Cosmetic Stores"],
+        ["5978", "Typewriter Stores"],
+        ["5992", "Florists"],
+        ["5993", "Cigar Stores"],
+        ["5994", "News Dealers and Newsstands"],
+        ["5995", "Pet Shops, Pet Foods"],
+        ["5996", "Swimming Pools, Sales/Supplies"],
+        ["5997", "Electric Razor Stores"],
+        ["5998", "Tent and Awning Shops"],
+        ["5999", "Miscellaneous Retail"],
+        ["6010", "Manual Cash Disbursements"],
+        ["6011", "Automated Cash Disbursements"],
+        ["6012", "Financial Institutions: Merchandise/Services"],
+        ["6050", "Quasi-Cash Merchant Locations"],
+        ["6051", "Quasi-Cash Remote Stored Value Load"],
+        ["6211", "Security Brokers/Dealers"],
+        ["6300", "Insurance Sales, Underwriting, Premiums"],
+        ["6381", "Insurance Premiums: Non-Automobile"],
+        ["6399", "Insurance not elsewhere classified"],
+        ["6513", "Real Estate Agents and Managers: Rentals"],
+        ["6529", "Remote Stored Value Load: Financial Institution"],
+        ["6530", "Remote Stored Value Load: Merchant"],
+        ["6531", "Payment Service Provider – Merchant Services"],
+        ["6532", "Payment Transaction: Member Financial Institution"],
+        ["6533", "Payment Transaction: Merchant"],
+        ["6534", "Payment Transaction: Payment Service Provider"],
+        ["6536", "MoneySend Intracountry Payment"],
+        ["6537", "MoneySend Intercountry Payment"],
+        ["6538", "MoneySend Funding Transaction"],
+        ["6540", "POI Funding Transactions"],
+        ["6611", "Overpayments"],
+        ["7011", "Lodging: Hotels, Motels, Resorts"],
+        ["7012", "Timeshares"],
+        ["7032", "Sporting and Recreational Camps"],
+        ["7033", "Trailer Parks, Campgrounds"],
+        ["7210", "Laundry, Cleaning, Garment Services"],
+        ["7211", "Laundry Services: Family and Commercial"],
+        ["7216", "Dry Cleaners"],
+        ["7217", "Carpet and Upholstery Cleaning"],
+        ["7221", "Photographic Studios: Portrait"],
+        ["7230", "Beauty and Barber Shops"],
+        ["7251", "Shoe Repair Shops"],
+        ["7261", "Funeral Services and Crematories"],
+        ["7273", "Dating and Escort Services"],
+        ["7276", "Tax Preparation Services"],
+        ["7277", "Counseling Services"],
+        ["7278", "Buying/Shopping Clubs"],
+        ["7296", "Clothing Rentals"],
+        ["7297", "Massage Parlors"],
+        ["7298", "Health and Beauty Spas"],
+        ["7299", "Miscellaneous Personal Services"],
+        ["7311", "Advertising Services"],
+        ["7321", "Consumer Credit Reporting"],
+        ["7332", "Blueprinting and Photocopying"],
+        ["7333", "Commercial Photography, Art, Graphics"],
+        ["7338", "Quick Copy, Reproduction"],
+        ["7339", "Stenographic and Secretarial Services"],
+        ["7342", "Exterminating and Disinfecting Services"],
+        ["7349", "Cleaning, Janitorial Services"],
+        ["7361", "Employment Agencies, Temporary Help"],
+        ["7372", "Computer Programming, Data Processing, Systems Design"],
+        ["7375", "Information Retrieval Services"],
+        ["7379", "Computer Maintenance and Services"],
+        ["7392", "Management, Consulting, Public Relations"],
+        ["7393", "Detective Agencies, Protective Services"],
+        ["7394", "Equipment and Furniture Rental/Leasing"],
+        ["7395", "Photofinishing Laboratories"],
+        ["7399", "Business Services not elsewhere classified"],
+        ["7512", "Automobile Rental Agency"],
+        ["7513", "Truck and Utility Trailer Rentals"],
+        ["7519", "Motor Home and RV Rentals"],
+        ["7523", "Parking Lots and Garages"],
+        ["7524", "Express Payment Service – Parking"],
+        ["7531", "Automotive Body Repair"],
+        ["7534", "Tire Retreading and Repair"],
+        ["7535", "Automotive Paint Shops"],
+        ["7538", "Automotive Service Shops (Non-Dealer)"],
+        ["7542", "Car Washes"],
+        ["7549", "Towing Services"],
+        ["7622", "Electronics Repair Shops"],
+        ["7623", "Air Conditioning and Refrigeration Repair"],
+        ["7629", "Electrical and Small Appliance Repair"],
+        ["7631", "Watch, Clock, Jewelry Repair"],
+        ["7641", "Furniture Reupholstery and Repair"],
+        ["7692", "Welding Shops"],
+        ["7699", "Miscellaneous Repair Services"],
+        ["7800", "Government-Owned Lotteries"],
+        ["7801", "Internet Gambling"],
+        ["7802", "Government-Licensed Horse/Dog Racing"],
+        ["7829", "Motion Picture and Video Production"],
+        ["7832", "Motion Picture Theaters"],
+        ["7841", "Video Tape Rental Stores"],
+        ["7911", "Dance Halls, Schools, Studios"],
+        ["7922", "Theatrical Producers, Ticket Agencies"],
+        ["7929", "Bands, Orchestras, Entertainers"],
+        ["7932", "Billiard and Pool Establishments"],
+        ["7933", "Bowling Alleys"],
+        ["7941", "Commercial/Professional Sports"],
+        ["7991", "Tourist Attractions and Exhibits"],
+        ["7992", "Public Golf Courses"],
+        ["7993", "Video Amusement Game Supplies"],
+        ["7994", "Video Game Arcades"],
+        ["7995", "Betting, Gaming"],
+        ["7996", "Amusement Parks, Carnivals"],
+        ["7997", "Membership Clubs, Country Clubs"],
+        ["7998", "Aquariums, Zoos, Seaquariums"],
+        ["7999", "Recreation Services not elsewhere classified"],
+        ["8011", "Doctors and Physicians"],
+        ["8021", "Dentists, Orthodontists"],
+        ["8031", "Osteopaths"],
+        ["8041", "Chiropractors"],
+        ["8042", "Optometrists, Ophthalmologists"],
+        ["8043", "Opticians, Optical Goods"],
+        ["8044", "Dispensing Opticians"],
+        ["8049", "Podiatrists, Chiropodists"],
+        ["8050", "Nursing and Personal Care Facilities"],
+        ["8062", "Hospitals"],
+        ["8071", "Medical and Dental Laboratories"],
+        ["8099", "Health Practitioners not elsewhere classified"],
+        ["8111", "Legal Services, Attorneys"],
+        ["8211", "Elementary and Secondary Schools"],
+        ["8220", "Colleges, Universities, Professional Schools"],
+        ["8241", "Correspondence Schools"],
+        ["8244", "Business and Secretarial Schools"],
+        ["8249", "Vocational and Trade Schools"],
+        ["8299", "Educational Services not elsewhere classified"],
+        ["8351", "Child Care Services"],
+        ["8398", "Charitable and Social Service Orgs"],
+        ["8641", "Civic, Social, Fraternal Associations"],
+        ["8651", "Political Organizations"],
+        ["8661", "Religious Organizations"],
+        ["8675", "Automobile Associations"],
+        ["8699", "Membership Organizations not elsewhere classified"],
+        ["8734", "Testing Laboratories (Non-Medical)"],
+        ["8911", "Architectural, Engineering, Surveying"],
+        ["8931", "Accounting, Auditing, Bookkeeping"],
+        ["8999", "Professional Services not elsewhere classified"]
+      ]
+    }
+  }
+}
