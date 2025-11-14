@@ -169,12 +169,30 @@
     "api_spec": {
       "title": "Lotus API Reference",
       "subtitle": "Versioned spec, runtime details, and sample requests for InverCenter USA partners.",
-      "version": "1.1.0",
+      "version": "v1.1.0",
       "oas": "OAS 3.1.1",
-      "download": {
-        "label": "Download OpenAPI Document",
-        "href": "https://docs.invercenterusa.com/lotus-openapi.yaml"
-      },
+      "versions_label": "API version",
+      "versions_note": "Select the spec and format you want to download.",
+      "versions": [
+        {
+          "id": "v1.1.0",
+          "label": "v1.1.0",
+          "description": "Latest stable release.",
+          "formats": [
+            { "label": "JSON", "ext": "json", "href": "/downloads/lotus/v1.1.0/openapi.json" },
+            { "label": "YAML", "ext": "yaml", "href": "/downloads/lotus/v1.1.0/openapi.yaml" }
+          ]
+        },
+        {
+          "id": "v1.0.0",
+          "label": "v1.0.0",
+          "description": "Legacy compatibility release.",
+          "formats": [
+            { "label": "JSON", "ext": "json", "href": "/downloads/lotus/v1.0.0/openapi.json" },
+            { "label": "YAML", "ext": "yaml", "href": "/downloads/lotus/v1.0.0/openapi.yaml" }
+          ]
+        }
+      ],
       "overview": "The Lotus API powers authentication, issuer configuration, authorization, clearing, card issuance, and digital controls. Each endpoint is built for real-time or batch flows with granular logging and webhook notifications.",
       "server": {
         "label": "Server",
@@ -252,6 +270,125 @@
         "Use the JWT from /user/auth in the Authorization header: `Authorization: Bearer <token>`.",
         "Lotus validates incoming webhooks with HMAC-SHA256 signatures; store the shared secret securely.",
         "Card credentials are always returned via JWE using your onboarding public key."
+      ]
+    },
+    "b2b_api": {
+      "title": "InverCenter USA B2B API (powered by Girasol)",
+      "subtitle": "RESTful services that cover accounts, transactions, controls, fees, clearing, and crypto wallets.",
+      "version": "v2.2.1",
+      "oas": "OAS 3.1.1",
+      "versions_label": "API version",
+      "versions_note": "Download the OpenAPI document you need for automation or SDK generation.",
+      "versions": [
+        {
+          "id": "v2.2.1",
+          "label": "v2.2.1",
+          "description": "Latest InverCenter USA B2B build.",
+          "formats": [
+            { "label": "JSON", "ext": "json", "href": "/downloads/invercenter-b2b/v2.2.1/openapi.json" },
+            { "label": "YAML", "ext": "yaml", "href": "/downloads/invercenter-b2b/v2.2.1/openapi.yaml" }
+          ]
+        }
+      ],
+      "overview": "The InverCenter USA B2B API exposes account onboarding, cash management, controls, fee orchestration, webhooks, and crypto wallet rails delivered through our partner-powered infrastructure. All endpoints reuse the same security headers so implementations remain consistent.",
+      "server": { "label": "Server", "value": "http://{{host}}" },
+      "client": { "label": "Client libraries", "value": "Shell, Curl (SDKs coming soon)" },
+      "auth": {
+        "title": "Request headers",
+        "optional": "Required",
+        "description": "Send the x-api-key, x-secret-key, and x-company-id headers (Base64 encoded) on every request. All endpoints are encrypted and expect the trio even for read-only calls.",
+        "body": "Headers",
+        "sample": "curl 'http://{{host}}/v1/accounts?page=1&limit=10' \\ \n  --header 'x-api-key: NTI3MTQzODktNmNlNy00NDUyLWJlNjMtMjQyMzM1ZjQyZTcz' \\ \n  --header 'x-secret-key: dGhpc0lzQVVsdHJhU2VjcmV0S2V5V2l0aEFMb25nVGV4dA==' \\ \n  --header 'x-company-id: 550e8400-e29b-41d4-a716-446655440000'"
+      },
+      "notes": [
+        "Account status codes: 1 = ACTIVE, 2 = INACTIVE, 99 = DELETED.",
+        "Pagination defaults to 100 records per page; pass page and limit to tune responses.",
+        "Timestamps are ISO 8601 (UTC) and monetary amounts use the transaction currency."
+      ],
+      "groups": [
+        {
+          "name": "Accounts & Funding",
+          "summary": "Manage accounts, onboard companies, and move balances with InverCenter USA treasury flows.",
+          "operations": [
+            { "method": "GET", "path": "/v1/accounts", "text": "Retrieve paginated accounts with balances and currency." },
+            { "method": "GET", "path": "/v1/accounts/customer-info/{numberAccount}", "text": "Look up customer metadata by account number." },
+            { "method": "GET", "path": "/v1/accounts/customer-info-by-email/{email}", "text": "Resolve accounts through a company email." },
+            { "method": "GET", "path": "/v1/accounts/transactions", "text": "List multi-account transactions across the program." },
+            { "method": "GET", "path": "/v1/accounts/transactions/{accountNumber}", "text": "Filter transactions for a specific account." },
+            { "method": "GET", "path": "/v1/accounts/card-transactions/{cardId}", "text": "Inspect card-driven activity for a given card token." },
+            { "method": "POST", "path": "/v1/accounts/create-account", "text": "Create a business or individual account profile." },
+            { "method": "POST", "path": "/v1/accounts/create-company-user", "text": "Onboard a company user tied to an account." },
+            { "method": "POST", "path": "/v1/accounts/cash-in", "text": "Credit the account with incoming funds." },
+            { "method": "POST", "path": "/v1/accounts/cash-out", "text": "Debit the account to move funds out." },
+            { "method": "POST", "path": "/v1/accounts/p2p-transaction", "text": "Execute peer-to-peer transfers between InverCenter USA users." },
+            { "method": "PATCH", "path": "/v1/accounts/change-account-status", "text": "Activate, inactivate, or delete an account (1/2/99)." },
+            { "method": "DELETE", "path": "/v1/accounts/{accountNumber}/delete", "text": "Remove an account after status 99." }
+          ],
+          "sample": "curl 'http://{{host}}/v1/accounts?page=1&limit=10' \\ \n  --header 'x-api-key: NTI3MTQzODktNmNlNy00NDUyLWJlNjMtMjQyMzM1ZjQyZTcz' \\ \n  --header 'x-secret-key: dGhpc0lzQVVsdHJhU2VjcmV0S2V5V2l0aEFMb25nVGV4dA==' \\ \n  --header 'x-company-id: 550e8400-e29b-41d4-a716-446655440000'"
+        },
+        {
+          "name": "Controls & Authorization Rules",
+          "summary": "Create MCC, entry-mode, and amount controls at the sub-issuer, product, or individual card level.",
+          "operations": [
+            { "method": "POST", "path": "/v1/rules/subissuer/{subIssuerId}", "text": "Create controls scoped to a sub-issuer." },
+            { "method": "POST", "path": "/v1/rules/product/{productId}", "text": "Apply a control to a product/account range." },
+            { "method": "POST", "path": "/v1/rules/card/{cardId}", "text": "Attach a rule to a single card token." },
+            { "method": "PATCH", "path": "/v1/rules/{ruleId}", "text": "Update the validation type, time window, or scope." },
+            { "method": "DELETE", "path": "/v1/rules/{ruleId}", "text": "Delete a rule via its GUID." },
+            { "method": "GET", "path": "/v1/rules/owner/{ownerId}", "text": "List rules configured for a card, product, or sub-issuer." }
+          ],
+          "sample": "curl 'http://{{host}}/v1/rules/subissuer/1234-1234-1234-1234' \\ \n  --request POST \\ \n  --header 'Content-Type: application/json' \\ \n  --data '{\n    \"validationType\": \"Mcc\",\n    \"value\": \"5818\",\n    \"amount\": 0,\n    \"currencyCode\": \"USD\",\n    \"businessScope\": \"International\",\n    \"rangeType\": \"Daily\",\n    \"timeFrame\": {\n      \"begin\": \"00:00:00\",\n      \"end\": \"23:59:59\"\n    }\n  }'"
+        },
+        {
+          "name": "Fees & Fee Values",
+          "summary": "Define product-based fees, attach monetary values, and manage fee schedules.",
+          "operations": [
+            { "method": "POST", "path": "/v1/fees/create", "text": "Create a fee linked to a product and trigger." },
+            { "method": "GET", "path": "/v1/fees/{feeId}", "text": "Retrieve a fee with triggers and values." },
+            { "method": "PATCH", "path": "/v1/fees/update/{feeId}", "text": "Update product, trigger, or dates." },
+            { "method": "DELETE", "path": "/v1/fees/delete/{feeId}", "text": "Delete a fee without values attached." },
+            { "method": "POST", "path": "/v1/fees/createValue", "text": "Create a monetary value for a fee." },
+            { "method": "GET", "path": "/v1/fees/value/{feeValueId}", "text": "Retrieve a fee value." },
+            { "method": "PATCH", "path": "/v1/fees/updateValue/{feeValueId}", "text": "Update amount, valueType, or chargeType." },
+            { "method": "DELETE", "path": "/v1/fees/deleteValue/{feeValueId}", "text": "Delete a fee value." }
+          ],
+          "sample": "curl 'http://{{host}}/v1/fees/create' \\ \n  --request POST \\ \n  --header 'x-api-key: {{api-key}}' \\ \n  --header 'x-secret-key: {{secret-key}}' \\ \n  --header 'x-company-id: {{company-id}}' \\ \n  --header 'Content-Type: application/json' \\ \n  --data '{\n    \"productId\": \"d3f84d7b-3822-4d4a-bd29-3d03e0eb7211\",\n    \"triggerId\": \"4b0db5bb-b199-4cf2-ae51-5c1e712e56cb\",\n    \"beginDate\": \"2025-07-11T00:00:00.000Z\",\n    \"expirationDate\": \"2025-12-31T23:59:59.000Z\"\n  }'"
+        },
+        {
+          "name": "Clearing",
+          "summary": "Query cleared transactions per processing date with the same header trio.",
+          "operations": [
+            { "method": "GET", "path": "/v1/clearing", "text": "Retrieve clearing batches for a specific date (defaults to today)." }
+          ],
+          "sample": "curl 'http://{{host}}/v1/clearing?date=2025-07-29' \\ \n  --header 'x-api-key: NTI3MTQzODktNmNlNy00NDUyLWJlNjMtMjQyMzM1ZjQyZTcz' \\ \n  --header 'x-secret-key: dGhpc0lzQVVsdHJhU2VjcmV0S2V5V2l0aEFMb25nVGV4dA==' \\ \n  --header 'x-company-id: 550e8400-e29b-41d4-a716-446655440000'"
+        },
+        {
+          "name": "Transaction webhook",
+          "summary": "Receive real-time transaction notifications with network, merchant, amount, and card context.",
+          "operations": [
+            { "method": "POST", "path": "/v1/transaction_info", "text": "Webhook payload containing request_type, status, merchant, terminal, and amount details." }
+          ],
+          "sample": "curl 'http://{{host}}/v1/transaction_info' \\ \n  --request POST \\ \n  --header 'Content-Type: application/json' \\ \n  --data '{\n    \"request_type\": \"notification\",\n    \"status\": \"declined\",\n    \"reason\": \"Spending limit exceeded\",\n    \"payload\": {\n      \"transaction_id\": \"010827172157810626\",\n      \"transaction_type\": \"purchase\",\n      \"issuer\": { \"issuer_id\": \"97707929-a8f0-4cdf-8303-fe532fd109f2\" },\n      \"transaction\": {\n        \"brand\": \"mastercard\",\n        \"date\": \"0827\",\n        \"time\": \"172157\",\n        \"currency_code\": \"840\",\n        \"ref_number\": \"523954810626\"\n      },\n      \"merchant\": {\n        \"acquirer_id\": \"003286\",\n        \"merchant_id\": \"388160000762203\",\n        \"mcc\": \"5818\",\n        \"name\": \"Amazon Luna \",\n        \"country\": \"USA\"\n      },\n      \"amount\": {\n        \"transactionAmount\": \"000000000999\",\n        \"cardholder\": {\n          \"amount\": \"000000001788\",\n          \"conversion\": \"61789790\",\n          \"currency\": \"532\"\n        }\n      }\n    },\n    \"statusDescription\": \"Spending limit exceeded\"\n  }'"
+        },
+        {
+          "name": "3DS delivery & status",
+          "summary": "Handle OTP delivery and issuer push challenges, then poll authentication status.",
+          "operations": [
+            { "method": "POST", "path": "/d1/send-otp", "text": "Receive OTP delivery events (SMS or email) for end users." },
+            { "method": "POST", "path": "/d1/send-push", "text": "Trigger an issuer push/OOB challenge." },
+            { "method": "GET", "path": "/d1/send-push/{authenticationId}", "text": "Check the authentication status result." }
+          ],
+          "sample": "curl 'http://{{host}}/d1/send-otp' \\ \n  --request POST \\ \n  --header 'x-api-key: NTI3MTQzODktNmNlNy00NDUyLWJlNjMtMjQyMzM1ZjQyZTcz' \\ \n  --header 'x-secret-key: dGhpc0lzQVVsdHJhU2VjcmV0S2V5V2l0aEFMb25nVGV4dA==' \\ \n  --header 'x-company-id: 550e8400-e29b-41d4-a716-446655440000' \\ \n  --header 'Content-Type: application/json' \\ \n  --data '{\n    \"otp\": {\n      \"value\": \"123456\",\n      \"expirationDate\": \"2025-01-01T00:01:00.000Z\",\n      \"reason\": \"CARDHOLDER-VERIFICATION\"\n    },\n    \"deliveryChannel\": \"SMS\",\n    \"panSuffix\": \"1234\",\n    \"accountId\": \"user128\"\n  }'"
+        },
+        {
+          "name": "Crypto gateway",
+          "summary": "Provision blockchain wallets and fetch wallet info tied to InverCenter USA accounts.",
+          "operations": [
+            { "method": "POST", "path": "/v1/crypto-gateway/addWallet", "text": "Create a crypto wallet for an individual or business user." },
+            { "method": "GET", "path": "/v1/crypto-gateway/wallet/{userId}", "text": "Retrieve wallet addresses by userId." }
+          ],
+          "sample": "curl 'http://{{host}}/v1/crypto-gateway/addWallet' \\ \n  --request POST \\ \n  --header 'x-api-key: NTI3MTQzODktNmNlNy00NDUyLWJlNjMtMjQyMzM1ZjQyZTcz' \\ \n  --header 'x-secret-key: dGhpc0lzQVVsdHJhU2VjcmV0S2V5V2l0aEFMb25nVGV4dA==' \\ \n  --header 'x-company-id: 550e8400-e29b-41d4-a716-446655440000' \\ \n  --header 'Content-Type: application/json' \\ \n  --data '{\n    \"userType\": \"individual\",\n    \"userId\": \"user128\",\n    \"email\": \"teste_fees@yopmail.com\",\n    \"accountId\": \"acc123\",\n    \"label\": \"My Wallet\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"birthDate\": \"1990-01-01\"\n  }'"
+        }
       ]
     },
     "flows": {

@@ -1,0 +1,3545 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "Lotus API",
+    "description": "The Lotus API is a robust financial transaction and card management platform, offering endpoints for authentication, authorization, clearing, card issuance, and issuer configuration. It supports complex payment flows, settlement processes, and full card lifecycle operations in real-time or batch modes.",
+    "version": "1.1.0"
+  },
+  "servers": [
+    {
+      "url": "http://{{lotus}}"
+    },
+    {
+      "url": "http://{{ledger_admin}}"
+    },
+    {
+      "url": "http://{{routine}}"
+    },
+    {
+      "url": "http://{{lc_service}}"
+    },
+    {
+      "url": "http://{{issuer}}"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "noauthAuth": {
+        "type": "http",
+        "scheme": "noauth"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Authenticate"
+    },
+    {
+      "name": "Authorization and Clearing"
+    },
+    {
+      "name": "Card Management"
+    },
+    {
+      "name": "Card Request (CM)"
+    },
+    {
+      "name": "Digital Card (CM)"
+    },
+    {
+      "name": "Controls (CM)"
+    },
+    {
+      "name": "Controls > Bin (CM)"
+    },
+    {
+      "name": "Controls > Card (CM)"
+    },
+    {
+      "name": "Controls > Processor (CM)"
+    },
+    {
+      "name": "Controls > Product (CM)"
+    },
+    {
+      "name": "Controls > Profile (CM)"
+    },
+    {
+      "name": "Controls > Profile > Bin (CM)"
+    },
+    {
+      "name": "Controls > Profile > Issuer (CM)"
+    },
+    {
+      "name": "Controls > Profile > Card (CM)"
+    },
+    {
+      "name": "Controls > Profile > Product (CM)"
+    },
+    {
+      "name": "Controls > Profile > Processor (CM)"
+    },
+    {
+      "name": "Controls > Profile > Sub Issuer (CM)"
+    },
+    {
+      "name": "Controls > Issuer (CM)"
+    },
+    {
+      "name": "Controls > Sub Issuer (CM)"
+    },
+    {
+      "name": "Cards"
+    },
+    {
+      "name": "Issuer Management"
+    },
+    {
+      "name": "Issuer Management > BIN"
+    },
+    {
+      "name": "Issuer Management > Issuer"
+    },
+    {
+      "name": "Issuer Management > Product"
+    },
+    {
+      "name": "Issuer Management > Sub Issuer"
+    },
+    {
+      "name": "Issuer Management > User"
+    },
+    {
+      "name": "Internal APIs"
+    },
+    {
+      "name": "Internal APIs > Card Management"
+    },
+    {
+      "name": "Internal APIs > Limits-Controls"
+    },
+    {
+      "name": "Webhooks > 3DS"
+    }
+  ],
+  "paths": {
+    "/v1/api/v1/user/auth": {
+      "post": {
+        "tags": [
+          "Authenticate"
+        ],
+        "summary": "Auth",
+        "description": "The Authentication API endpoint provides a JWT (JSON Web Token) used for securing access to Lotus API endpoints. To interact with the protected resources, clients must first authenticate themselves using this endpoint to obtain a token.\r\n\r\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  {
+                    "accessKey": "PQNJXNELAMNDSGNEGNE",
+                    "secretKey": "Kgnl489m13zfn52kn+uG4Qga616bwiGmX6dMr3y"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/transaction/request": {
+      "post": {
+        "tags": [
+          "Authorization and Clearing"
+        ],
+        "summary": "Authorization -Webhook-",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Authorization and Clearing request body schema (expanded)",
+                "properties": {
+                  "request_type": {
+                    "type": "string",
+                    "description": "Specifies the type of request.",
+                    "enum": [
+                      "authorization",
+                      "advice",
+                      "reversal",
+                      "notification"
+                    ]
+                  },
+                  "card_id": {
+                    "type": "string",
+                    "description": "Specifies the card id."
+                  },
+                  "account_id": {
+                    "type": "string",
+                    "description": "Specifies the account id."
+                  },
+                  "payload": {
+                    "type": "object",
+                    "properties": {
+                      "transaction_id": {
+                        "type": "string",
+                        "description": "Unique transaction identifier in the Girasol platform."
+                      },
+                      "transaction_type": {
+                        "type": "string",
+                        "description": "Type of transaction being processed.",
+                        "enum": [
+                          "purchase",
+                          "withdrawal",
+                          "cashback",
+                          "cash-disbursement",
+                          "refund",
+                          "payment",
+                          "balance-inquiry",
+                          "account-transfer",
+                          "pin-unblock",
+                          "pin-change"
+                        ]
+                      },
+                      "transaction": {
+                        "type": "object",
+                        "properties": {
+                          "brand": {
+                            "type": "string",
+                            "description": "Brand of the card used in the transaction.",
+                            "enum": [
+                              "mastercard",
+                              "amex",
+                              "visa"
+                            ]
+                          },
+                          "date": {
+                            "type": "string",
+                            "description": "Date when the message is entered into the Girasol platform.",
+                            "format": "MMDD"
+                          },
+                          "time": {
+                            "type": "string",
+                            "description": "Time when the message is entered into the network.",
+                            "format": "hhmmss"
+                          },
+                          "service": {
+                            "type": "string",
+                            "description": "Identifies the specific program or service associated with the transaction.",
+                            "enum": [
+                              "MCC",
+                              "MDS",
+                              "MBK",
+                              "MBW"
+                            ]
+                          },
+                          "settlement": {
+                            "type": "object",
+                            "properties": {
+                              "date": {
+                                "type": "string",
+                                "description": "Date on which funds will be transferred.",
+                                "format": "MMDD"
+                              }
+                            }
+                          },
+                          "account": {
+                            "type": "object",
+                            "properties": {
+                              "origin": {
+                                "type": "string"
+                              },
+                              "destination": {
+                                "type": "string",
+                                "description": "The destination account for the transaction.",
+                                "enum": [
+                                  "default",
+                                  "saving",
+                                  "checking",
+                                  "credit-card",
+                                  "credit-line",
+                                  "corporate",
+                                  "global",
+                                  "investment",
+                                  "store-value",
+                                  "revolving-loan"
+                                ]
+                              }
+                            }
+                          },
+                          "currency_code": {
+                            "type": "string",
+                            "description": "Currency code of the transaction."
+                          },
+                          "ref_number": {
+                            "type": "string",
+                            "description": "Reference number for the transaction."
+                          },
+                          "pan_entry": {
+                            "type": "string",
+                            "description": "Method of PAN entry.",
+                            "enum": [
+                              "unknown",
+                              "manual",
+                              "mag-stripe",
+                              "icc",
+                              "ctls"
+                            ]
+                          },
+                          "local_date": {
+                            "type": "string",
+                            "description": "Local date when the transaction takes place.",
+                            "format": "MMDD"
+                          },
+                          "local_time": {
+                            "type": "string",
+                            "description": "Local time when the transaction takes place.",
+                            "format": "hhmmss"
+                          },
+                          "purpose": {
+                            "type": "string",
+                            "description": "Purpose of the transaction.",
+                            "enum": [
+                              "normal",
+                              "deferred",
+                              "identity-check"
+                            ]
+                          },
+                          "card_present": {
+                            "type": "boolean",
+                            "description": "Indicates if the card was present."
+                          },
+                          "cardholder_status": {
+                            "type": "string",
+                            "description": "Cardholder status.",
+                            "enum": [
+                              "present",
+                              "not-present-unspecified"
+                            ]
+                          },
+                          "reason_code": {
+                            "type": "string",
+                            "description": "Reason code for the transaction (clearing only).",
+                            "enum": [
+                              "1401",
+                              "1402"
+                            ]
+                          }
+                        }
+                      },
+                      "merchant": {
+                        "type": "object",
+                        "properties": {
+                          "acquirer_id": {
+                            "type": "string"
+                          },
+                          "merchant_id": {
+                            "type": "string"
+                          },
+                          "mcc": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "city": {
+                            "type": "string"
+                          },
+                          "country": {
+                            "type": "string"
+                          },
+                          "category_code": {
+                            "type": "string",
+                            "enum": [
+                              "vehicle",
+                              "cash-disbursement",
+                              "restaurant"
+                            ]
+                          },
+                          "final_authorization": {
+                            "type": "boolean",
+                            "description": "Is this a final authorization?"
+                          }
+                        }
+                      },
+                      "terminal": {
+                        "type": "object",
+                        "properties": {
+                          "terminal_id": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/clearing": {
+      "post": {
+        "tags": [
+          "Authorization and Clearing"
+        ],
+        "summary": "Clearing Financial Position Detail -Webhook-",
+        "description": "- Clearing flows\r\n    \r\n    - Full amount authorization\r\n        \r\n        - The issuer authorizes a transaction and later the Acquirer clears that transaction based on the full amount of the purchase.\r\n            \r\n        - In this case, the transaction amount and the clearing amount will match.\r\n            \r\n        - That information can be found in the transaction->reason_code = 1401 in the first presentment call.\r\n            \r\n    - Authorization amount and clearing amount differs:\r\n        \r\n        - The merchant may request a pre-authorization for the issuer, however in some cases of car rental or hotel stays, the final amount to be cleared may be lower in the clearing, however the clearing amount will never be greater than the clearing amount.\r\n            \r\n        - That information can be found in the transaction->reason_code = 1402 in the first presentment call.\r\n            \r\n    - Multi clearing:\r\n        \r\n        - Some merchants may choose to clear an authorization in two or more clearing requests. For example, an online store may clear the transaction as the products are being delivered to the customer.\r\n            \r\n        - In this scenario, the 1st presentment call will contain the amount of the first product as provided by the Acquirer and the field transaction->reason_code = 1403. That process is going to repeat until the final product is delivered or the Acquirer states that it is the final clearing of that authorization. Therefore the field transaction->reason code = 1404 in the 1st presentment.\r\n            \r\n        - Example 1:\r\n            \r\n            - 1\\. Customer purchases four products on an eCommerce. The Acquirer sends an authorization request to the Issuer of 400,00 USD.\r\n                \r\n                - _transaction_id = 111111_\r\n                    \r\n            - 2\\. During the clearing cycle, the Acquirer shipped the first product worth of 100,00 USD, therefore the Issuer is going to receive a partial clearing of 100,00 USD.\r\n                \r\n                - _transaction.reason_code = 1403_\r\n                    \r\n                - _amount.transactionAmount = 10000_\r\n                    \r\n                - _transaction_id = 111111_\r\n                    \r\n                - _clearing_id = abcdef_\r\n                    \r\n            - 3\\. During the next clearing cycle, the Acquirer ships the second and third product worth of 200,00 USD, therefore the Issuer is going to receive another partial clearing of 200,00 USD. Totalizing 300,00 USD at this moment.\r\n                \r\n                - _transaction.reason_code = 1403_\r\n                    \r\n                - _amount.transactionAmount = 20000_\r\n                    \r\n                - _transaction_id = 111111_\r\n                    \r\n                - _clearing_id = fedcba_\r\n                    \r\n            - 4\\. After a few days, the Acquirer ships the last product of 100,00 USD. The Issuer receives a final clearing of 100,00 USD. Finalizing the clearing process of that authorization.\r\n                \r\n                - _transaction.reason_code = 1404_\r\n                    \r\n                - _amount.transactionAmount = 10000_\r\n                    \r\n                - _transaction_id = 111111_\r\n                    \r\n                - _clearing_id = adefcb_\r\n                    \r\n        - Example 2:\r\n            \r\n            - 1\\. Customer purchases three products on an eCommerce. The Acquirer sends an authorization request to the Issuer of 300,00 USD.\r\n                \r\n                - _transaction_id = 222222_\r\n                    \r\n            - 2\\. During the clearing cycle, the Acquirer shipped the first product worth of 100,00 USD, therefore the Issuer is going to receive a partial clearing of 100,00 USD.\r\n                \r\n                - _transaction.reason_code = 1403_\r\n                    \r\n                - _amount.transactionAmount = 10000_\r\n                    \r\n                - _transaction_id = 222222_\r\n                    \r\n                - _clearing_id = abcdef_\r\n                    \r\n            - 3\\. During the next clearing cycle, the Acquirer ships the second product worth of 100,00 USD. However, the third product was not available in stock anymore, therefore the Issuer is going to receive a final clearing of 100,00 USD. Totalizing 200,00 USD instead of 300,00 USD. In this case the bank must reverse the remaining amount of 100,00 USD to the cardholder's account.\r\n                \r\n                - _transaction.reason_code = 1404_\r\n                    \r\n                - _amount.transactionAmount = 10000_\r\n                    \r\n                - _transaction_id = 222222_\r\n                    \r\n                - _clearing_id = fedcba_",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  "{\r\n    \"RequestId\": \"4d51d87d-1864-4772-a78b-a09c0500d142\",\r\n    \"transactions\": [\r\n        {\r\n            \"clearing_function\": \"FinancialPositionDetail\",\r\n            \"fileId\": \"000000020012501280000002642801101\",\r\n            \"issuer\": {\r\n                \"issuer_id\": \"abf0017b-906d-414e-bcf1-9aa776956397\"\r\n            },\r\n            \"Reconciliation\": {\r\n                \"CardProgram\": \"DMC\",\r\n                \"BusinessActivity\": \"intraregional\",\r\n                \"InterchangeDesignator\": \"YF\",\r\n                \"BusinessDate\": \"2025-01-28\",\r\n                \"BusinessCycle\": 1,\r\n                \"TransactionCurrency\": \"052\",\r\n                \"ReconciliationCurrency\": \"840\",\r\n                \"Debits\": {\r\n                    \"TotalTransactionNumber\": 1,\r\n                    \"TotalTransactionAmount\": 800,\r\n                    \"TotalReconciliationAmount\": 402,\r\n                    \"TotalReconciliationFee\": 0\r\n                },\r\n                \"Credits\": {\r\n                    \"TotalTransactionNumber\": 0,\r\n                    \"TotalTransactionAmount\": 0,\r\n                    \"TotalReconciliationAmount\": 0,\r\n                    \"TotalReconciliationFee\": 8\r\n                },\r\n                \"NetSettlement\": {\r\n                    \"TotalTransactionNumber\": 1,\r\n                    \"NetIndicator\": \"D\",\r\n                    \"Total\": 394\r\n                }\r\n            }\r\n        },\r\n        {\r\n            \"clearing_function\": \"FinancialPositionDetail\",\r\n            \"fileId\": \"000000030012501280000002642801101\",\r\n            \"issuer\": {\r\n                \"issuer_id\": \"abf0017b-906d-414e-bcf1-9aa776956397\"\r\n            },\r\n            \"Reconciliation\": {\r\n                \"CardProgram\": \"DMC\",\r\n                \"BusinessActivity\": \"intracountry\",\r\n                \"InterchangeDesignator\": \"73\",\r\n                \"BusinessDate\": \"2025-01-28\",\r\n                \"BusinessCycle\": 1,\r\n                \"TransactionCurrency\": \"532\",\r\n                \"ReconciliationCurrency\": \"840\",\r\n                \"Debits\": {\r\n                    \"TotalTransactionNumber\": 10,\r\n                    \"TotalTransactionAmount\": 77573,\r\n                    \"TotalReconciliationAmount\": 43335,\r\n                    \"TotalReconciliationFee\": 0\r\n                },\r\n                \"Credits\": {\r\n                    \"TotalTransactionNumber\": 0,\r\n                    \"TotalTransactionAmount\": 0,\r\n                    \"TotalReconciliationAmount\": 0,\r\n                    \"TotalReconciliationFee\": 347\r\n                },\r\n                \"NetSettlement\": {\r\n                    \"TotalTransactionNumber\": 10,\r\n                    \"NetIndicator\": \"D\",\r\n                    \"Total\": 42988\r\n                }\r\n            }\r\n        },\r\n        {\r\n            \"clearing_function\": \"FinancialPositionDetail\",\r\n            \"fileId\": \"000000040012501280000002642801101\",\r\n            \"issuer\": {\r\n                \"issuer_id\": \"abf0017b-906d-414e-bcf1-9aa776956397\"\r\n            },\r\n            \"Reconciliation\": {\r\n                \"CardProgram\": \"DMC\",\r\n                \"BusinessActivity\": \"intracountry\",\r\n                \"InterchangeDesignator\": \"75\",\r\n                \"BusinessDate\": \"2025-01-28\",\r\n                \"BusinessCycle\": 1,\r\n                \"TransactionCurrency\": \"532\",\r\n                \"ReconciliationCurrency\": \"840\",\r\n                \"Debits\": {\r\n                    \"TotalTransactionNumber\": 2,\r\n                    \"TotalTransactionAmount\": 7200,\r\n                    \"TotalReconciliationAmount\": 4023,\r\n                    \"TotalReconciliationFee\": 0\r\n                },\r\n                \"Credits\": {\r\n                    \"TotalTransactionNumber\": 0,\r\n                    \"TotalTransactionAmount\": 0,\r\n                    \"TotalReconciliationAmount\": 0,\r\n                    \"TotalReconciliationFee\": 32\r\n                },\r\n                \"NetSettlement\": {\r\n                    \"TotalTransactionNumber\": 2,\r\n                    \"NetIndicator\": \"D\",\r\n                    \"Total\": 3991\r\n                }\r\n            }\r\n        },\r\n        {\r\n            \"clearing_function\": \"FinancialPositionDetail\",\r\n            \"fileId\": \"000000050012501280000002642801101\",\r\n            \"issuer\": {\r\n                \"issuer_id\": \"abf0017b-906d-414e-bcf1-9aa776956397\"\r\n            },\r\n            \"Reconciliation\": {\r\n                \"CardProgram\": \"DMC\",\r\n                \"BusinessActivity\": \"intracountry\",\r\n                \"InterchangeDesignator\": \"EE\",\r\n                \"BusinessDate\": \"2025-01-28\",\r\n                \"BusinessCycle\": 1,\r\n                \"TransactionCurrency\": \"532\",\r\n                \"ReconciliationCurrency\": \"840\",\r\n                \"Debits\": {\r\n                    \"TotalTransactionNumber\": 2,\r\n                    \"TotalTransactionAmount\": 24088,\r\n                    \"TotalReconciliationAmount\": 13457,\r\n                    \"TotalReconciliationFee\": 0\r\n                },\r\n                \"Credits\": {\r\n                    \"TotalTransactionNumber\": 0,\r\n                    \"TotalTransactionAmount\": 0,\r\n                    \"TotalReconciliationAmount\": 0,\r\n                    \"TotalReconciliationFee\": 222\r\n                },\r\n                \"NetSettlement\": {\r\n                    \"TotalTransactionNumber\": 2,\r\n                    \"NetIndicator\": \"D\",\r\n                    \"Total\": 13235\r\n                }\r\n            }\r\n        },\r\n        {\r\n            \"clearing_function\": \"FinancialPositionDetail\",\r\n            \"fileId\": \"000000060012501280000002642801101\",\r\n            \"issuer\": {\r\n                \"issuer_id\": \"abf0017b-906d-414e-bcf1-9aa776956397\"\r\n            },\r\n            \"Reconciliation\": {\r\n                \"CardProgram\": \"DMC\",\r\n                \"BusinessActivity\": \"interregional\",\r\n                \"InterchangeDesignator\": \"YA\",\r\n                \"BusinessDate\": \"2025-01-28\",\r\n                \"BusinessCycle\": 1,\r\n                \"TransactionCurrency\": \"840\",\r\n                \"ReconciliationCurrency\": \"840\",\r\n                \"Debits\": {\r\n                    \"TotalTransactionNumber\": 10,\r\n                    \"TotalTransactionAmount\": 104624,\r\n                    \"TotalReconciliationAmount\": 104624,\r\n                    \"TotalReconciliationFee\": 0\r\n                },\r\n                \"Credits\": {\r\n                    \"TotalTransactionNumber\": 0,\r\n                    \"TotalTransactionAmount\": 0,\r\n                    \"TotalReconciliationAmount\": 0,\r\n                    \"TotalReconciliationFee\": 1675\r\n                },\r\n                \"NetSettlement\": {\r\n                    \"TotalTransactionNumber\": 10,\r\n                    \"NetIndicator\": \"D\",\r\n                    \"Total\": 102949\r\n                }\r\n            }\r\n        },\r\n        {\r\n            \"clearing_function\": \"FinancialPositionDetail\",\r\n            \"fileId\": \"000000070012501280000002642801101\",\r\n            \"issuer\": {\r\n                \"issuer_id\": \"abf0017b-906d-414e-bcf1-9aa776956397\"\r\n            },\r\n            \"Reconciliation\": {\r\n                \"CardProgram\": \"DMC\",\r\n                \"BusinessActivity\": \"interregional\",\r\n                \"InterchangeDesignator\": \"YG\",\r\n                \"BusinessDate\": \"2025-01-28\",\r\n                \"BusinessCycle\": 1,\r\n                \"TransactionCurrency\": \"840\",\r\n                \"ReconciliationCurrency\": \"840\",\r\n                \"Debits\": {\r\n                    \"TotalTransactionNumber\": 2,\r\n                    \"TotalTransactionAmount\": 16443,\r\n                    \"TotalReconciliationAmount\": 16443,\r\n                    \"TotalReconciliationFee\": 0\r\n                },\r\n                \"Credits\": {\r\n                    \"TotalTransactionNumber\": 0,\r\n                    \"TotalTransactionAmount\": 0,\r\n                    \"TotalReconciliationAmount\": 0,\r\n                    \"TotalReconciliationFee\": 263\r\n                },\r\n                \"NetSettlement\": {\r\n                    \"TotalTransactionNumber\": 2,\r\n                    \"NetIndicator\": \"D\",\r\n                    \"Total\": 16180\r\n                }\r\n            }\r\n        },\r\n        {\r\n            \"clearing_function\": \"FinancialPositionDetail\",\r\n            \"fileId\": \"000000080012501280000002642801101\",\r\n            \"issuer\": {\r\n                \"issuer_id\": \"abf0017b-906d-414e-bcf1-9aa776956397\"\r\n            },\r\n            \"Reconciliation\": {\r\n                \"CardProgram\": \"DMC\",\r\n                \"BusinessActivity\": \"intracountry\",\r\n                \"InterchangeDesignator\": \"73\",\r\n                \"BusinessDate\": \"2025-01-28\",\r\n                \"BusinessCycle\": 1,\r\n                \"TransactionCurrency\": \"840\",\r\n                \"ReconciliationCurrency\": \"840\",\r\n                \"Debits\": {\r\n                    \"TotalTransactionNumber\": 2,\r\n                    \"TotalTransactionAmount\": 11886,\r\n                    \"TotalReconciliationAmount\": 11886,\r\n                    \"TotalReconciliationFee\": 0\r\n                },\r\n                \"Credits\": {\r\n                    \"TotalTransactionNumber\": 0,\r\n                    \"TotalTransactionAmount\": 0,\r\n                    \"TotalReconciliationAmount\": 0,\r\n                    \"TotalReconciliationFee\": 96\r\n                },\r\n                \"NetSettlement\": {\r\n                    \"TotalTransactionNumber\": 2,\r\n                    \"NetIndicator\": \"D\",\r\n                    \"Total\": 11790\r\n                }\r\n            }\r\n        }\r\n    ]\r\n}"
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/moneysend": {
+      "post": {
+        "tags": [
+          "Authorization and Clearing"
+        ],
+        "summary": "MoneySend",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  {
+                    "amount": 1,
+                    "sender": {
+                      "cardId": "bac3714e-98b5-476f-8e5e-82fd00ec198c",
+                      "address": {
+                        "street": "Kortijnweg 38",
+                        "countryCode": "CUR"
+                      }
+                    },
+                    "receiver": {
+                      "cardNumber": "5200480884980948",
+                      "address": {
+                        "street": "Rua Sao Venceslau 301",
+                        "countryCode": "BRA"
+                      },
+                      "expirationDate": {
+                        "month": "11",
+                        "year": "2032"
+                      },
+                      "firstName": "LUCAS",
+                      "lastName": "U OLIVEIRA"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/CardRequests/List": {
+      "post": {
+        "tags": [
+          "Card Management > Card Request"
+        ],
+        "summary": "Create Array",
+        "description": "This endpoint has the same goal and the Create endpoint, however it supports an Array, therefore it can be used to send a list of card solicitations in one request.\r\n\r\n# **Request**\r\n\r\n| **Field** | **Description** | **Type** |\r\n| --- | --- | --- |\r\n| productCode | Product ID assigned during the on boarding proc | string (GUID) |\r\n| address1 | Address information for shippment | string |\r\n| address2 | Additional address information | string |\r\n| zipCode | Zip Code for shippment | string |\r\n| country | Country for shippment | string |\r\n| city | City for shipmment | string |\r\n| additional | Additional information for shippment | string |\r\n| newReplacementCard | new  <br>replacement | string |\r\n| expressShipping | 0 = no express shipping  <br>1 = express shipping method | string |\r\n| packagingCode | 1 = welcome kit  <br>2 = simple envelope | string |\r\n| carrier | Carrier used for shipping | string |\r\n| firstName | Cardholder\\`s first name | string |\r\n| lastName | Cardholder\\`s last name | string |\r\n| dob | Date of birth in the format \"yyyy-mm-dd | string |\r\n| phone | Cardholder\\`s phone number | string |\r\n| fullName | Cardholder\\`s full name. This information will be printed in the card | string |\r\n| month | Card expiration month in the format MM. This field must be present only when the expiration date must be different from the Issuer\\`s default configuration. | string |\r\n| year | Card expiration year in the format YYYY. This field must be present only when the expiration date must be different from the Issuer\\`s default configuration. | string |\r\n| cardDesign | Card design code assigned by Girasol and the card personalization supplier | string |\r\n| currencyCode | Indicates the currency code of the transaction according to ISO 4217  <br>Example:  <br>840 = USD  <br>532 = ANG | string |\r\n| activationURL | Actvation URL that the cardholder will use to activate the card | string |\r\n| line1 | Personalization field to be printed in front of the card. This field is optional. | string |\r\n| line2 | Second line of personalization to be printed in front of the card. This field is optional. | string |\r\n| logo | Logo to be printed in front of the card. This field is optional. | string |\r\n| personalizationCode | Alignment of the lines 1, 2 or logo.  <br>0 = No personalization required  <br>1 = Line 1 and 2 or the logo aligned  <br>to the left.  <br>2 = Line 1 and 2 or the logo  <br>centralized.  <br>3 = Line 1 and 2 or the logo aligned  <br>to the right. | string |\r\n| backLine1 | The information in this field will be printed  <br>on the back of the card, in the first line. | string |\r\n| backLine2 | The information in this field will be printed  <br>on the back of the card, in the second line. | string |\r\n| backLine3 | The information in this field will be printed  <br>on the back of the card, in the third line. | string |\r\n| programName | The information in this field will be printed  <br>on the back of the card, near the logo of  <br>Mastercard, indicating the type of the card.  <br>Examples:  <br>• Prepaid;  <br>• Business Card;  <br>• Black;  <br>• Debit. | string |\r\n| cardId | The system will return the card ID (GUID) for each card solicitated. | string (GUID) |",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  [
+                    {
+                      "productCode": "1234-1234-1234-1234",
+                      "dispatch": {
+                        "address1": "Rua Exemplo 1",
+                        "address2": "Apto 32 Bloco A",
+                        "zipCode": 4316090,
+                        "country": "Brazil",
+                        "city": "Sao Paulo",
+                        "additional": ""
+                      },
+                      "shippingMethod": {
+                        "newReplacementCard": "new",
+                        "expressShipping": "0",
+                        "packagingCode": "2",
+                        "carrier": "dhl"
+                      },
+                      "personal": {
+                        "firstName": "Test",
+                        "lastName": "User5",
+                        "dob": "1994-06-10T00:00:00.000Z",
+                        "phone": "5511945825563"
+                      },
+                      "cardInformation": {
+                        "fullName": "Test User5",
+                        "expiry": {
+                          "month": "12",
+                          "year": "2031"
+                        },
+                        "cardDesign": "GIR_DEB_01",
+                        "currencyCode": "986",
+                        "activationURL": "https://www.girasolpayments.com/"
+                      },
+                      "personalization": {
+                        "line1": "",
+                        "line2": "",
+                        "logo": "0",
+                        "personalizationCode": "0",
+                        "backLine1": "If support",
+                        "backLine2": "needed, call",
+                        "backLine3": "+1 1403 493 321",
+                        "programName": "Debit"
+                      }
+                    },
+                    {
+                      "productCode": "1234-1234-1234-1234",
+                      "dispatch": {
+                        "address1": "Rua Exemplo 1",
+                        "address2": "Apto 32 Bloco A",
+                        "zipCode": 4316090,
+                        "country": "Brazil",
+                        "city": "Sao Paulo",
+                        "additional": ""
+                      },
+                      "shippingMethod": {
+                        "newReplacementCard": "new",
+                        "expressShipping": "0",
+                        "packagingCode": "2",
+                        "carrier": "dhl"
+                      },
+                      "personal": {
+                        "firstName": "Test",
+                        "lastName": "User5",
+                        "dob": "1994-06-10T00:00:00.000Z",
+                        "phone": "5511945825563"
+                      },
+                      "cardInformation": {
+                        "fullName": "Test User5",
+                        "expiry": {
+                          "month": "12",
+                          "year": "2031"
+                        },
+                        "cardDesign": "GIR_DEB_01",
+                        "currencyCode": "986",
+                        "activationURL": "https://www.girasolpayments.com/"
+                      },
+                      "personalization": {
+                        "line1": "",
+                        "line2": "",
+                        "logo": "0",
+                        "personalizationCode": "0",
+                        "backLine1": "If support",
+                        "backLine2": "needed, call",
+                        "backLine3": "+1 1403 493 321",
+                        "programName": "Debit"
+                      }
+                    },
+                    {
+                      "productCode": "1234-1234-1234-1234",
+                      "dispatch": {
+                        "address1": "Rua Exemplo 1",
+                        "address2": "Apto 32 Bloco A",
+                        "zipCode": 4316090,
+                        "country": "Brazil",
+                        "city": "Sao Paulo",
+                        "additional": ""
+                      },
+                      "shippingMethod": {
+                        "newReplacementCard": "new",
+                        "expressShipping": "0",
+                        "packagingCode": "2",
+                        "carrier": "dhl"
+                      },
+                      "personal": {
+                        "firstName": "Test",
+                        "lastName": "User5",
+                        "dob": "1994-06-10T00:00:00.000Z",
+                        "phone": "5511945825563"
+                      },
+                      "cardInformation": {
+                        "fullName": "Test User5",
+                        "expiry": {
+                          "month": "12",
+                          "year": "2031"
+                        },
+                        "cardDesign": "GIR_DEB_01",
+                        "currencyCode": "986",
+                        "activationURL": "https://www.girasolpayments.com/"
+                      },
+                      "personalization": {
+                        "line1": "",
+                        "line2": "",
+                        "logo": "0",
+                        "personalizationCode": "0",
+                        "backLine1": "If support",
+                        "backLine2": "needed, call",
+                        "backLine3": "+1 1403 493 321",
+                        "programName": "Debit"
+                      }
+                    },
+                    {
+                      "productCode": "1234-1234-1234-1234",
+                      "dispatch": {
+                        "address1": "Rua Exemplo 1",
+                        "address2": "Apto 32 Bloco A",
+                        "zipCode": 4316090,
+                        "country": "Brazil",
+                        "city": "Sao Paulo",
+                        "additional": ""
+                      },
+                      "shippingMethod": {
+                        "newReplacementCard": "new",
+                        "expressShipping": "0",
+                        "packagingCode": "2",
+                        "carrier": "dhl"
+                      },
+                      "personal": {
+                        "firstName": "Test",
+                        "lastName": "User5",
+                        "dob": "1994-06-10T00:00:00.000Z",
+                        "phone": "5511945825563"
+                      },
+                      "cardInformation": {
+                        "fullName": "Test User5",
+                        "expiry": {
+                          "month": "12",
+                          "year": "2031"
+                        },
+                        "cardDesign": "GIR_DEB_01",
+                        "currencyCode": "986",
+                        "activationURL": "https://www.girasolpayments.com/"
+                      },
+                      "personalization": {
+                        "line1": "",
+                        "line2": "",
+                        "logo": "0",
+                        "personalizationCode": "0",
+                        "backLine1": "If support",
+                        "backLine2": "needed, call",
+                        "backLine3": "+1 1403 493 321",
+                        "programName": "Debit"
+                      }
+                    },
+                    {
+                      "productCode": "1234-1234-1234-1234",
+                      "dispatch": {
+                        "address1": "Rua Exemplo 1",
+                        "address2": "Apto 32 Bloco A",
+                        "zipCode": 4316090,
+                        "country": "Brazil",
+                        "city": "Sao Paulo",
+                        "additional": ""
+                      },
+                      "shippingMethod": {
+                        "newReplacementCard": "new",
+                        "expressShipping": "0",
+                        "packagingCode": "2",
+                        "carrier": "dhl"
+                      },
+                      "personal": {
+                        "firstName": "Test",
+                        "lastName": "User5",
+                        "dob": "1994-06-10T00:00:00.000Z",
+                        "phone": "5511945825563"
+                      },
+                      "cardInformation": {
+                        "fullName": "Test User5",
+                        "expiry": {
+                          "month": "12",
+                          "year": "2031"
+                        },
+                        "cardDesign": "GIR_DEB_01",
+                        "currencyCode": "986",
+                        "activationURL": "https://www.girasolpayments.com/"
+                      },
+                      "personalization": {
+                        "line1": "",
+                        "line2": "",
+                        "logo": "0",
+                        "personalizationCode": "0",
+                        "backLine1": "If support",
+                        "backLine2": "needed, call",
+                        "backLine3": "+1 1403 493 321",
+                        "programName": "Debit"
+                      }
+                    },
+                    {
+                      "productCode": "1234-1234-1234-1234",
+                      "dispatch": {
+                        "address1": "Rua Exemplo 1",
+                        "address2": "Apto 32 Bloco A",
+                        "zipCode": 4316090,
+                        "country": "Brazil",
+                        "city": "Sao Paulo",
+                        "additional": ""
+                      },
+                      "shippingMethod": {
+                        "newReplacementCard": "new",
+                        "expressShipping": "0",
+                        "packagingCode": "2",
+                        "carrier": "dhl"
+                      },
+                      "personal": {
+                        "firstName": "Test",
+                        "lastName": "User5",
+                        "dob": "1994-06-10T00:00:00.000Z",
+                        "phone": "5511945825563"
+                      },
+                      "cardInformation": {
+                        "fullName": "Test User5",
+                        "expiry": {
+                          "month": "12",
+                          "year": "2031"
+                        },
+                        "cardDesign": "GIR_DEB_01",
+                        "currencyCode": "986",
+                        "activationURL": "https://www.girasolpayments.com/"
+                      },
+                      "personalization": {
+                        "line1": "",
+                        "line2": "",
+                        "logo": "0",
+                        "personalizationCode": "0",
+                        "backLine1": "If support",
+                        "backLine2": "needed, call",
+                        "backLine3": "+1 1403 493 321",
+                        "programName": "Debit"
+                      }
+                    }
+                  ]
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "default": {
+                "value": "<token>"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/CardRequests/Virtual": {
+      "post": {
+        "tags": [
+          "Card Management > Card Request"
+        ],
+        "summary": "Create Virtual Card",
+        "description": "| **Field** | **Description** | **Type** | **Presence** |\r\n| --- | --- | --- | --- |\r\n| productCode | Product ID assigned during the on boarding process | string (GUID) | Mandatory |\r\n| firstName | Cardholder\\`s first name | string | Mandatory |\r\n| lastName | Cardholder\\`s last name | string | Mandatory |\r\n| dob | Date of birth in the format \"yyyy-mm-dd | string | Mandatory |\r\n| phone | Cardholder\\`s phone number | string | Mandatory |\r\n| email | Customer's email address may be required for shipping purposes | string | Optional |\r\n| accountId | Cardholder\\`s account | string | Optional |\r\n| fullName | Cardholder\\`s full name. This information will be printed in the card | string | Mandatory |\r\n| month | Card expiration month in the format MM. This field must be present only when the expiration date must be different from the Issuer\\`s default configuration. | string | Optional |\r\n| year | Card expiration year in the format YYYY. This field must be present only when the expiration date must be different from the Issuer\\`s default configuration. | string | Optional |\r\n| cardDesign | Card design code assigned by Girasol and the card personalization supplier | string | Mandatory |\r\n| currencyCode | Indicates the currency code of the transaction according to ISO 4217  <br>Example:  <br>840 = USD  <br>532 = ANG | string | Mandatory |\r\n| card_id (request) | If provided in the request, Lotus will use it instead of returning a new on in the response. | string | Optional |\r\n| cardId (response) | The system will return the card ID (GUID) for each card solicitated. | string | Mandatory |",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  {
+                    "productCode": "b2b59208-b98f-45bc-8c6f-4ef0d7b7bd8e",
+                    "personal": {
+                      "firstName": "John",
+                      "lastName": "Doe",
+                      "dob": "1994-06-10T00:00:00.000Z",
+                      "phone": "+5544875465",
+                      "email": "virtualcard@yopmail.com"
+                    },
+                    "cardInformation": {
+                      "fullName": "John Doe",
+                      "cardDesign": "GIR_DEB_03",
+                      "currencyCode": 840,
+                      "accountId": "1234",
+                      "expiry": {
+                        "month": "12",
+                        "year": "2031"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/CardRequests/": {
+      "post": {
+        "tags": [
+          "Card Management > Card Request"
+        ],
+        "summary": "Create",
+        "description": "This endpoint creates a card solicitation of an individual card.\r\n\r\n# **Request**\r\n\r\n| **Field** | **Description** | **Type** | **Presence** |\r\n| --- | --- | --- | --- |\r\n| productCode | Product ID assigned during the on boarding process | string (GUID) | Mandatory |\r\n| address1 | Address information for shippment | string | Mandatory |\r\n| address2 | Additional address information | string | Optional |\r\n| zipCode | Zip Code for shippment | string | Mandatory |\r\n| country | Country for shippment | string | Mandatory |\r\n| city | City for shipmment | string | Mandatory |\r\n| additional | Additional information for shippment | string | Optional |\r\n| newReplacementCard | new  <br>replacement | string | Mandatory |\r\n| expressShipping | 0 = no express shipping  <br>1 = express shipping method | string | Mandatory |\r\n| packagingCode | 1 = welcome kit  <br>2 = simple envelope | string | Mandatory |\r\n| carrier | Carrier used for shipping | string | Mandatory |\r\n| firstName | Cardholder\\`s first name | string | Mandatory |\r\n| lastName | Cardholder\\`s last name | string | Mandatory |\r\n| dob | Date of birth in the format \"yyyy-mm-dd | string | Mandatory |\r\n| phone | Cardholder\\`s phone number | string | Mandatory |\r\n| email | Customer's email address may be required for shipping purposes | string | Optional |\r\n| accountId | Cardholder\\`s account | string | Optional |\r\n| fullName | Cardholder\\`s full name. This information will be printed in the card | string | Mandatory |\r\n| month | Card expiration month in the format MM. This field must be present only when the expiration date must be different from the Issuer\\`s default configuration. | string | Optional |\r\n| year | Card expiration year in the format YYYY. This field must be present only when the expiration date must be different from the Issuer\\`s default configuration. | string | Optional |\r\n| cardDesign | Card design code assigned by Girasol and the card personalization supplier | string | Mandatory |\r\n| currencyCode | Indicates the currency code of the transaction according to ISO 4217  <br>Example:  <br>840 = USD  <br>532 = ANG | string | Mandatory |\r\n| activationURL | Actvation URL that the cardholder will use to activate the card | string | Mandatory |\r\n| line1 | Personalization field to be printed in front of the card. This field is optional. | string | Optional |\r\n| line2 | Second line of personalization to be printed in front of the card. This field is optional. | string | Optional |\r\n| logo | Logo to be printed in front of the card. This field is optional. | string | Optional |\r\n| personalizationCode | Alignment of the lines 1, 2 or logo.  <br>0 = No personalization required  <br>1 = Line 1 and 2 or the logo aligned  <br>to the left.  <br>2 = Line 1 and 2 or the logo  <br>centralized.  <br>3 = Line 1 and 2 or the logo aligned  <br>to the right. | string | Mandatory |\r\n| backLine1 | The information in this field will be printed  <br>on the back of the card, in the first line. | string | Mandatory |\r\n| backLine2 | The information in this field will be printed  <br>on the back of the card, in the second line. | string | Mandatory |\r\n| backLine3 | The information in this field will be printed  <br>on the back of the card, in the third line. | string | Mandatory |\r\n| programName | The information in this field will be printed  <br>on the back of the card, near the logo of  <br>Mastercard, indicating the type of the card.  <br>Examples:  <br>• Prepaid;  <br>• Business Card;  <br>• Black;  <br>• Debit. | string | Mandatory |\r\n| card_id (request) | If provided in the request, Lotus will use it instead of returning a new on in the response. | string | Optional |\r\n| cardId (response) | The system will return the card ID (GUID) for each card solicitated. | string | Mandatory |\r\n| replacedId | This field must be provided for replacement card requests with the old cardId. | String | Conditional |\r\n| pin | If present, the PIN must be sent encrypted using JWE and will be provided to the embosser for card personalization.  <br>_Obs.: The requestor will receive a public key to be used in this method during the onboarding process._ | String | Optional |",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  {
+                    "productCode": "1234-1234-1234-1234",
+                    "card_id": "1c81c4d5-1a6c-4811-9be0-7948c4943bae",
+                    "dispatch": {
+                      "address1": "Rua Exemplo 1",
+                      "address2": "Apto 32 Bloco A",
+                      "zipCode": 4316090,
+                      "country": "Brazil",
+                      "city": "Sao Paulo",
+                      "additional": ""
+                    },
+                    "shippingMethod": {
+                      "newReplacementCard": "new",
+                      "expressShipping": "0",
+                      "packagingCode": "2",
+                      "carrier": "dhl"
+                    },
+                    "personal": {
+                      "firstName": "Test",
+                      "lastName": "User5",
+                      "dob": "1994-06-10T00:00:00.000Z",
+                      "phone": "5511945825563"
+                    },
+                    "cardInformation": {
+                      "fullName": "Test User5",
+                      "expiry": {
+                        "month": "12",
+                        "year": "2031"
+                      },
+                      "cardDesign": "GIR_DEB_01",
+                      "currencyCode": "986",
+                      "activationURL": "https://www.girasolpayments.com/"
+                    },
+                    "personalization": {
+                      "line1": "",
+                      "line2": "",
+                      "logo": "0",
+                      "personalizationCode": "0",
+                      "backLine1": "If support",
+                      "backLine2": "needed, call",
+                      "backLine3": "+1 1403 493 321",
+                      "programName": "Debit"
+                    },
+                    "pin": "eyJhbGciOiJFQ0RILUVTIiwiZXBrIjp7Imt0eSI6IkVDIiwieCI6IlhiTWV1Qnc3UjNoU0JueElhQlJrYzlRQmdtVUp6MEh5U2hjdndsUmJXUTQiLCJ5IjoiRkN5eEg3UzhrWDh4Q3hTTG1sQzc5ZVpZaXhoVWpVT0F6SllHNnF6dmFmcyIsImNydiI6IlAtMjU2In0sImVuYyI6IkExMjhDQkMtSFMyNTYiLCJraWQiOiJkYzdkMTA2MC0wYWU4LTRlNmMtOTY0My04OTkwYzMwNmNkOWYifQ..kwECkvH3k1vgupOsJTbidg.Z5Gxefs_3hHnglO_WYDvoowzbJbfKvs7bBIJP4vplrZEr3wZgRLRwq7CgIuwXk3WDu6zhQlMJZDAWRkCVU6-5spkYLvPe39EwhbGr-VQDsYBto0u4q1fLhwgNbiyouv11tfwp3uSxGeUk_O4reK6iKloYYlqQ6gnNnsllwSVgg8.oqo578628VsUJmmQnM-VPg"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "default": {
+                "value": "<token>"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/CardRequests/{card_id}": {
+      "get": {
+        "tags": [
+          "Card Management > Card Request"
+        ],
+        "summary": "Status",
+        "description": "This request can be used to get the current status of a new card solicitation manually.\r\n\r\n| **Field** | **Description** | **Type** |\r\n| --- | --- | --- |\r\n| cardId | GUID | string |\r\n| cardStatus | Current status of the card solicitation.  <br>\\- shipped  <br>\\- confirmed  <br>\\- printing  <br>\\- packaging | string |\r\n| trackingCode | Tracking code received from the carrier | string |\r\n| estimatedPosting | Estimated posting date received from the carrier in the format \"yyyy-mm-dd\" | string |\r\n| panLast4 | Last four digits of the card number | string |",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "default": {
+                "value": "<token>"
+              }
+            }
+          },
+          {
+            "name": "card_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/card/status": {
+      "post": {
+        "tags": [
+          "Card Management > Card Request"
+        ],
+        "summary": "Update Status -Webhook-",
+        "description": "This request is a webhook where Lotus will update the Issuer with the change of status for each card solicitation.\r\n\r\n| **Field** | **Description** | **Type** |\r\n| --- | --- | --- |\r\n| cardId | GUID | string |\r\n| cardStatus | Current status of the card solicitation.  <br>\\- shipped  <br>\\- confirmed  <br>\\- printing  <br>\\- packaging | string |\r\n| trackingCode | Tracking code received from the carrier | string |\r\n| estimatedPosting | Estimated posting date received from the carrier in the format \"yyyy-mm-dd\" | string |\r\n| panLast4 | Last four digits of the card number | string |",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  [
+                    {
+                      "cardId": "c268c581-8659-434a-9768-085ff0249bb8",
+                      "cardStatus": "shipped",
+                      "trackingCode": "",
+                      "estimatedPosting": "",
+                      "panLast4": "2818"
+                    }
+                  ]
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/digitalcard/{card_id}/block": {
+      "post": {
+        "tags": [
+          "Card Management > Digital Card"
+        ],
+        "summary": "Block",
+        "requestBody": {
+          "content": {}
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "card_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/digitalcard/{card_id}/freeze": {
+      "post": {
+        "tags": [
+          "Card Management > Digital Card"
+        ],
+        "summary": "Freeze",
+        "requestBody": {
+          "content": {}
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "card_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/digitalcard/{card_id}": {
+      "get": {
+        "tags": [
+          "Card Management > Digital Card"
+        ],
+        "summary": "Get",
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "card_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/digitalcard/{card_id}/unfreeze": {
+      "post": {
+        "tags": [
+          "Card Management > Digital Card"
+        ],
+        "summary": "Unfreeze",
+        "requestBody": {
+          "content": {}
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "card_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/controls/{rule_id}": {
+      "delete": {
+        "tags": [
+          "Card Management > Controls"
+        ],
+        "summary": "Delete",
+        "description": "The GUID of the rule must be provided in the URL.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "rule_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Card Management > Controls"
+        ],
+        "summary": "Update",
+        "description": "The GUID of the rule must be provided in the URL.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  {
+                    "validationType": "Mcc|Amount|EntryMode",
+                    "value": "XXX",
+                    "amount": 0,
+                    "currencyCode": "USD",
+                    "businessScope": "International|Domestic|Both",
+                    "rangeType": "Daily|Weekly|Monthly|Always",
+                    "timeFrame": {
+                      "begin": "00:00:00",
+                      "end": "23:59:59"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "rule_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/controls/owner/{guid}": {
+      "get": {
+        "tags": [
+          "Card Management > Controls"
+        ],
+        "summary": "Getlist per owner",
+        "description": "This endpoint is used to retrieve a set of rules created under a Sub Issuer, Product or single card.\r\n\r\nBy sending the:\r\n\r\n- Card ID, the api will return all the rules created under a specific card.\r\n    \r\n- Product ID, the API will return all the rules created under a account range.\r\n    \r\n- Sub Issuer ID, the API will return all the rules created under the company ID.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "guid",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/controls/bin/{bin_id}": {
+      "post": {
+        "tags": [
+          "Card Management > Controls > Bin"
+        ],
+        "summary": "Create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  {
+                    "validationType": "Mcc|Amount|EntryMode",
+                    "value": "XXX",
+                    "amount": 0,
+                    "currencyCode": "USD",
+                    "businessScope": "International|Domestic|Both",
+                    "rangeType": "Daily|Weekly|Monthly|Always",
+                    "timeFrame": {
+                      "begin": "00:00:00",
+                      "end": "23:59:59"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "bin_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/controls/card/{card_id}": {
+      "post": {
+        "tags": [
+          "Card Management > Controls > Card"
+        ],
+        "summary": "Create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  {
+                    "validationType": "Mcc|Amount|EntryMode",
+                    "value": "XXX",
+                    "amount": 0,
+                    "currencyCode": "USD",
+                    "businessScope": "International|Domestic|Both",
+                    "rangeType": "Daily|Weekly|Monthly|Always",
+                    "timeFrame": {
+                      "begin": "00:00:00",
+                      "end": "23:59:59"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "card_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/controls/issuer/{issuer_id}": {
+      "post": {
+        "tags": [
+          "Card Management > Controls > Issuer"
+        ],
+        "summary": "Create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  {
+                    "validationType": "Mcc|Amount|EntryMode",
+                    "value": "XXX",
+                    "amount": 0,
+                    "currencyCode": "USD",
+                    "businessScope": "International|Domestic|Both",
+                    "rangeType": "Daily|Weekly|Monthly|Always",
+                    "timeFrame": {
+                      "begin": "00:00:00",
+                      "end": "23:59:59"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "issuer_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/controls/product/{product_id}": {
+      "post": {
+        "tags": [
+          "Card Management > Controls > Product"
+        ],
+        "summary": "Create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  {
+                    "validationType": "Mcc|Amount|EntryMode",
+                    "value": "XXX",
+                    "amount": 0,
+                    "currencyCode": "USD",
+                    "businessScope": "International|Domestic|Both",
+                    "rangeType": "Daily|Weekly|Monthly|Always",
+                    "timeFrame": {
+                      "begin": "00:00:00",
+                      "end": "23:59:59"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "product_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/controls/profiles": {
+      "post": {
+        "tags": [
+          "Card Management > Controls > Profile"
+        ],
+        "summary": "Create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  {
+                    "name": "Test",
+                    "subIssuerId": "1234-1234-1234-1234",
+                    "rules": [
+                      {
+                        "validationType": "Country",
+                        "value": "846",
+                        "amount": 0,
+                        "businessScope": "Both"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Card Management > Controls > Profile"
+        ],
+        "summary": "Update",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  {
+                    "name": "Test",
+                    "rules": [
+                      {
+                        "validationType": "Country",
+                        "value": "846",
+                        "amount": 0,
+                        "businessScope": "Both"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/controls/profiles/{id}": {
+      "delete": {
+        "tags": [
+          "Card Management > Controls > Profile"
+        ],
+        "summary": "Delete",
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/controls/profiles/bin": {
+      "post": {
+        "tags": [
+          "Card Management > Controls > Profile > Bin"
+        ],
+        "summary": "Assign",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  {
+                    "profileId": "1234-1234-1234-1234",
+                    "owner": "1234-1234-1234-1234"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/controls/profiles/issuer": {
+      "post": {
+        "tags": [
+          "Card Management > Controls > Profile > Issuer"
+        ],
+        "summary": "Assign",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  {
+                    "profileId": "1234-1234-1234-1234",
+                    "owner": "1234-1234-1234-1234"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/controls/profiles/card": {
+      "post": {
+        "tags": [
+          "Card Management > Controls > Profile > Card"
+        ],
+        "summary": "Assign",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  {
+                    "profileId": "1234-1234-1234-1234",
+                    "owner": "1234-1234-1234-1234"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/controls/profiles/product": {
+      "post": {
+        "tags": [
+          "Card Management > Controls > Profile > Product"
+        ],
+        "summary": "Assign",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  {
+                    "profileId": "1234-1234-1234-1234",
+                    "owner": "1234-1234-1234-1234"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/controls/profiles/processor": {
+      "post": {
+        "tags": [
+          "Card Management > Controls > Profile > Processor"
+        ],
+        "summary": "Assign",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  {
+                    "profileId": "1234-1234-1234-1234",
+                    "owner": "1234-1234-1234-1234"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/controls/profiles/subIssuer": {
+      "post": {
+        "tags": [
+          "Card Management > Controls > Profile > Sub Issuer"
+        ],
+        "summary": "Assign",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  {
+                    "profileId": "1234-1234-1234-1234",
+                    "owner": "1234-1234-1234-1234"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/controls/subissuer/{subissuer_id}": {
+      "post": {
+        "tags": [
+          "Card Management > Controls > Sub Issuer"
+        ],
+        "summary": "Create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  {
+                    "validationType": "Mcc|Amount|EntryMode",
+                    "value": "XXX",
+                    "amount": 0,
+                    "currencyCode": "USD",
+                    "businessScope": "International|Domestic|Both",
+                    "rangeType": "Daily|Weekly|Monthly|Always",
+                    "timeFrame": {
+                      "begin": "00:00:00",
+                      "end": "23:59:59"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "subissuer_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/cards/{card_id}/activate": {
+      "put": {
+        "tags": [
+          "Card Management > Cards"
+        ],
+        "summary": "Activate",
+        "description": "This request is used to activate a new issued card.\r\n\r\n_The card ID (GUID) returned in the Card Request API is used as a parameter in the URL in each request for Lotus to identify the Issuer and the Card that will be managed._\r\n\r\n| **Field** | **Description** |\r\n| --- | --- |\r\n| newPin | New PIN assigned by the cardholder |\r\n| Cvv | Security Code printed on the back of the card |",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  {
+                    "newPin": "1234",
+                    "Cvv": "435"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "default": {
+                "value": "<token>"
+              }
+            }
+          },
+          {
+            "name": "card_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/cards/{card_id}/block": {
+      "put": {
+        "tags": [
+          "Card Management > Cards"
+        ],
+        "summary": "Block",
+        "description": "This request is used to block active cards and it is irreversible.\r\n\r\nThe \"pin\" field in the request body is optinal and if present Lotus will validate the card PIN. If the PIN is invalid, Lotus will decline the request.\r\n\r\n_The card ID (GUID) returned in the Card Request API is used as a parameter in the URL in each request for Lotus to identify the Issuer and the Card that will be managed._",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  {
+                    "reason": "Lost card"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "default": {
+                "value": "<token>"
+              }
+            }
+          },
+          {
+            "name": "card_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/cards/{card_id}/pinchange": {
+      "put": {
+        "tags": [
+          "Card Management > Cards"
+        ],
+        "summary": "Pin Change",
+        "description": "This request is used to change the PIN of the card when requested by the cardholder. It can be either used to change the PIN in case the cardholder lost it, or it can be used when the cardholder wants to change the PIN himself, therefore he needs to provide the old PIN for validation.\r\n\r\n_The card ID (GUID) returned in the Card Request API is used as a parameter in the URL in each request for Lotus to identify the Issuer and the Card that will be managed._\r\n\r\n| **Field** | **Description** | **Presence** |\r\n| --- | --- | --- |\r\n| newPin | New PIN assigned by the cardholder | Mandatory |\r\n| oldPin | Current PIN of the card. It will be validated when present. if the old PIN is invalid the request will be declined. | Optional |",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  {
+                    "newPin": "1234"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "default": {
+                "value": "<token>"
+              }
+            }
+          },
+          {
+            "name": "card_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/cards/{card_id}/freeze": {
+      "put": {
+        "tags": [
+          "Card Management > Cards"
+        ],
+        "summary": "Freeze",
+        "description": "This request is used to freeze active cards.\r\n\r\nThe \"pin\" field in the request body is optinal and if present Lotus will validate the card PIN. If the PIN is invalid, Lotus will decline the request.\r\n\r\n_The card ID (GUID) returned in the Card Request API is used as a parameter in the URL in each request for Lotus to identify the Issuer and the Card that will be managed._",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  {
+                    "pin": "1234",
+                    "reason": "Temporary block"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "default": {
+                "value": "<token>"
+              }
+            }
+          },
+          {
+            "name": "card_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/cards/{card_id}/credentials": {
+      "get": {
+        "tags": [
+          "Card Management > Cards"
+        ],
+        "summary": "Get Card Data",
+        "description": "This method returns the card sensitive data encrypted using JWE.\r\n\r\n- Clear data:\r\n    \r\n\r\n``` json\r\n{\r\n    \"Pan\":\"5424370800007548\",\r\n    \"ExpirationDate\":\r\n    {\r\n        \"month\":\"10\",\r\n        \"year\":\"2034\"\r\n    },\r\n    \"Cvv\":\"253\",\r\n    \"Name\":\"Juan Velasquez\"\r\n}\r\n\r\n ```\r\n\r\n- Encrypted data:\r\n    \r\n\r\n``` json\r\n{\r\n    \"encryptedData\": \"eyJhbGciOiJFQ0RILUVTIiwiZXBrIjp7Imt0eSI6IkVDIiwieCI6Ijg0QW9DNUNiT2xiNmhkdWZaUjJTbHZBN2RxYWNqVy1vRWpfZ2F6c25veEEiLCJ5IjoiLWE4QWFFeGpFQ3lJQ3c0TWpJdXY3ZXh2MXR1OVEzTkhqNnBQUzROQWRaVSIsImNydiI6IlAtMjU2In0sImVuYyI6IkExMjhDQkMtSFMyNTYiLCJraWQiOiI2ZDNkZTY4Ni05MGUyLTQyMzgtYjg2Mi0xNTI3OTM3ZDIzNzEifQ..jrsSFDmfF2MzfGnZSBYMFg.6cNCeVvZaY6xLeuPH3dRDrFIrgtvYMUPNADDwMSlB1diWhHV1LY4y2HGW3OPkNmvdyEvq2NKJbq0QnRfUXobguUn7oxqS3nJhalDEJ7PxEOPwQdFZe89XmXKtj6rPwstjCHyQ4BKw_CL5Y7ro1Y0hw.GlLMY02D2QYZVVSZHrnCcQ\"\r\n}\r\n\r\n ```\r\n\r\n**Important**: During the onboarding process, the customer must generate a key pair and share the public key with Girasol in order for this method to work.\r\n\r\nLotus uses the following configuration for JWE.\r\n\r\n- JWE base64url encoded string\r\n    \r\n- \"alg\" (Algorithm) header parameter: **ECDH-ES**\r\n    \r\n- \"enc\" (Encryption Algorithm) header parameter: **A256GCM**\r\n    \r\n- EC curve: **P-256**\r\n    \r\n\r\nTo generate the keys, you may use the openssl tool to generate a key pair with the following commands:\r\n\r\n- Private key\r\n    \r\n\r\n```\r\nopenssl ecparam -genkey -name prime256v1 -noout -out ec_private.pem\r\n\r\n ```\r\n\r\n- Public key\r\n    \r\n\r\n```\r\nopenssl ec -in ec_private.pem -pubout -out ec_public.pem\r\n\r\n ```",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "card_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/cards": {
+      "get": {
+        "tags": [
+          "Card Management > Cards"
+        ],
+        "summary": "Get Cards",
+        "description": "Param type:\r\n  - authorization\r\n  - advice\r\n  - reversal\r\n  - \"empty\" all types\r\n  \r\nParam subIssuerId = company ID",
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "examples": {
+              "default": {
+                "value": "1"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/transactions": {
+      "get": {
+        "tags": [
+          "Card Management > Cards"
+        ],
+        "summary": "Get Transactions",
+        "description": "Param type:\r\n  - authorization\r\n  - advice\r\n  - reversal\r\n  - \"empty\" all types\r\n  \r\nParam subIssuerId = company ID",
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "examples": {
+              "default": {
+                "value": "1"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/cards/{card_id}/resetpin": {
+      "put": {
+        "tags": [
+          "Card Management > Cards"
+        ],
+        "summary": "Reset PIN",
+        "requestBody": {
+          "content": {}
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "card_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/cards/{card_id}": {
+      "get": {
+        "tags": [
+          "Card Management > Cards"
+        ],
+        "summary": "Status",
+        "description": "This request can be used to get the current status of a card manually.\r\n\r\n_The card ID (GUID) returned in the Card Request API is used as a parameter in the URL in each request for Lotus to identify the Issuer and the Card that will be managed._\r\n\r\n| **Field** | **Description** | **Type** |\r\n| --- | --- | --- |\r\n| status | \\- active  <br>\\- freeze  <br>\\- blocked  <br>\\- inactive | string |\r\n| cardSolicitationId | Echo of the card ID | string |\r\n| subIssuerId | Issuer or SubIssuer ID | string |\r\n| expirationDate | Card expiration date in the format YYMMDD | string |\r\n| effectiveDate | Card effective date in the format YYMMDD | string |\r\n| currencyCode | Indicates the currency code of the transaction according to ISO 4217  <br>Example:  <br>840 = USD  <br>532 = ANG | string |\r\n| product | Product code generated by Girasol during the on boarding process. | string |",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "default": {
+                "value": "<token>"
+              }
+            }
+          },
+          {
+            "name": "card_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/cards/{card_id}/unfreeze": {
+      "put": {
+        "tags": [
+          "Card Management > Cards"
+        ],
+        "summary": "Unfreeze",
+        "description": "This request is used to unfreeze cards and return to the status of active.\r\n\r\nThe \"pin\" field in the request body is optinal and if present Lotus will validate the card PIN. If the PIN is invalid, Lotus will decline the request.\r\n\r\n_The card ID (GUID) returned in the Card Request API is used as a parameter in the URL in each request for Lotus to identify the Issuer and the Card that will be managed._",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  {
+                    "reason": "False fraud alarm"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "default": {
+                "value": "<token>"
+              }
+            }
+          },
+          {
+            "name": "card_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/cards/{card_id}/pin": {
+      "post": {
+        "tags": [
+          "Card Management > Cards"
+        ],
+        "summary": "Verify PIN",
+        "description": "This endpoint verifies a user's PIN by checking if it matches the expected value for authentication or transaction purposes. It takes the PIN as input and returns a validation response indicating whether the PIN is correct or incorrect.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  {
+                    "pin": "1111"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "card_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/bins": {
+      "post": {
+        "tags": [
+          "Issuer Management > BIN"
+        ],
+        "summary": "Create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  {
+                    "id": "guid",
+                    "issuerId": "abf0017b-906d-414e-bcf1-9aa776956397",
+                    "bin": "12345678",
+                    "brand": "mastercard",
+                    "type": "debit",
+                    "ica": "1234567890",
+                    "expMonth": 12,
+                    "expYear": 2050,
+                    "duration": 120,
+                    "currencies": [
+                      "532",
+                      "840"
+                    ],
+                    "profile": "PFL_20230418_185450983",
+                    "iccAuthenticationEnable": true,
+                    "pinTranslateEnable": true,
+                    "cvvEnable": true,
+                    "serviceCode": "101",
+                    "hsm": {
+                      "mkCvc": "3CDNN000,CE57B9A0D6ED80EF325D96791C388DC3B2A6D4D9A3B6FAF1,8C4916B69129AF92",
+                      "leftPin": "3PUNE000,67A34D8361F7BAFCC0DFB6FADD29B955CE239E589F659640,E6C59A453BDC19B9",
+                      "rightPin": "3PUNE000,FA6776D9D3396A3602F7A6614D35BB918400C09EFFDE6F19,AB279B30A4D84812",
+                      "mkAc": "3mENE000,45751496F279A886530FE7E6BB83633FA86813B997065425,423BFB1446E29923",
+                      "mkSmc": "3mENE00E,65318534ABD727955250D4F4E4F466A7E0B943563DA09E8D,7C1C5CCFAE9980B5",
+                      "mkSmi": "3mENE00M,7A6A8206844C91895436759FC8806713C70C986EFEBC62CB,84EBE91B5813E0B6",
+                      "embosserKeys": {
+                        "thales": "3PUNE000,21AF803A29A239FAC27D87761FC8036C46B2407D65EE8390,497E96C40AC24376",
+                        "thalesMx": null
+                      },
+                      "rsaPin": {
+                        "module": "A5061BE69C7C7A2AB9409012B3F58DB8C79CF4B30A2270E7052CB86FBD7C6A5B381D4B754C480B0F0DF7424A48DBA5C1B2EF75958C730C3CAF637AD8031DAF72ABA0A967261E714FB506ED19C11EFFA54C0D15EDDDDCBB30C5838D91241C9D6F1F118E43AB9FB97A62FE38803A41D5ACCDA716BA552B28FFD7FE0680AE0B8365",
+                        "public": "010001",
+                        "private": "3PRDE000,00030100010080A5061BE69C7C7A2AB9409012B3F58DB8C79CF4B30A2270E7052CB86FBD7C6A5B381D4B754C480B0F0DF7424A48DBA5C1B2EF75958C730C3CAF637AD8031DAF72ABA0A967261E714FB506ED19C11EFFA54C0D15EDDDDCBB30C5838D91241C9D6F1F118E43AB9FB97A62FE38803A41D5ACCDA716BA552B28FFD7FE0680AE0B836569F07FAEA891A036A4DD133E9119C2650AE0757A7B4BDA8209F0F882022378CD821C2BCE850C10A5EFF245AC764CA77AF7786FF2A9C25CAF1558D05795548C64F5F1E16AD9C888A244596EECDC50C9F18485BE173FDA0EA6F81610C82458C4607147726184EE0EFCEBEE15EFDEA008A06A16ECFA681113E978EAFB9F4F87B728B8B540206164C6C9CAB1EACACCF445289992DF303EAD0798227C21A6D1D80415841A0B199743B9001FB27B76BCB83BF30D550261E0F943DF056112E370A6F7C4E18EA354473365EF56C0A5EDFD45D2DB327E0A43A406DD789428E73949F88A4DE8484CE2ACB53E845256EBA39B6689894326E340112900CADD6C05313E8D4BF5B45197478EA4FEA113A13B13DA4850EFF9A11190855D7DB59427473D2F6DAF092086C407D2C072791C5ACAC7EA8B69092A24EE371AFA3AC081411AB19BEDE3FEEF458C5EFC25AC5486CDAAB539AF33DDF8A25D5FFE96DB481794B20346CDA6D40551E0EB869D36CB7FF14F2390C0F1C0A7E04AF80572BE36A8EFB859777C720ECE64C458D81043111C4DAB8DDADF0BE0D555EF6992699E201F618118D911CC3E72520638ABF6E91A3329F326AF29B1EB360C5BCC7FE362612590A06D7CDF7AA490659F8CE48565BE283365E2B7,1120A8EC9B165C007798EDF37377731D"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Issuer Management > BIN"
+        ],
+        "summary": "List",
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/bins/{bin_id}": {
+      "put": {
+        "tags": [
+          "Issuer Management > BIN"
+        ],
+        "summary": "Update",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  "{\r\n    //\"issuerId\": \"abf0017b-906d-414e-bcf1-9aa776956397\",\r\n    \"type\": \"debit\",\r\n    \"ica\": \"1234567890\",\r\n    \"expMonth\": 12,\r\n    \"expYear\": 2050,\r\n    \"duration\": 120,\r\n    \"currencies\": [\r\n        \"532\",\r\n        \"0840\"\r\n    ],\r\n    \"profile\": \"PFL_20230418_185450983\",\r\n    \"iccAuthenticationEnable\":true,\r\n    \"pinTranslateEnable\":true,\r\n    \"cvvEnable\":true,\r\n    \"serviceCode\":\"101\",\r\n    \"hsm\":{\r\n        \"mkCvc\": \"6663CDNN000,CE57B9A0D6ED80EF325D96791C388DC3B2A6D4D9A3B6FAF1,8C4916B69129AF92\",\r\n        \"leftPin\": \"3PUNE000,67A34D8361F7BAFCC0DFB6FADD29B955CE239E589F659640,E6C59A453BDC19B9\",\r\n        \"rightPin\": \"3PUNE000,FA6776D9D3396A3602F7A6614D35BB918400C09EFFDE6F19,AB279B30A4D84812\",\r\n        \"mkAc\": \"3mENE000,45751496F279A886530FE7E6BB83633FA86813B997065425,423BFB1446E29923\",\r\n        \"mkSmc\": \"3mENE00E,65318534ABD727955250D4F4E4F466A7E0B943563DA09E8D,7C1C5CCFAE9980B5\",\r\n        \"mkSmi\": \"3mENE00M,7A6A8206844C91895436759FC8806713C70C986EFEBC62CB,84EBE91B5813E0B6\",\r\n        \"embosserKeys\": {\r\n            \"thales\": \"3PUNE000,21AF803A29A239FAC27D87761FC8036C46B2407D65EE8390,497E96C40AC24376\",\r\n            \"thalesMx\": null\r\n        },\r\n        \"rsaPin\": {\r\n            \"module\": \"A5061BE69C7C7A2AB9409012B3F58DB8C79CF4B30A2270E7052CB86FBD7C6A5B381D4B754C480B0F0DF7424A48DBA5C1B2EF75958C730C3CAF637AD8031DAF72ABA0A967261E714FB506ED19C11EFFA54C0D15EDDDDCBB30C5838D91241C9D6F1F118E43AB9FB97A62FE38803A41D5ACCDA716BA552B28FFD7FE0680AE0B8365\",\r\n            \"public\": \"010001\",\r\n            \"private\": \"3PRDE000,00030100010080A5061BE69C7C7A2AB9409012B3F58DB8C79CF4B30A2270E7052CB86FBD7C6A5B381D4B754C480B0F0DF7424A48DBA5C1B2EF75958C730C3CAF637AD8031DAF72ABA0A967261E714FB506ED19C11EFFA54C0D15EDDDDCBB30C5838D91241C9D6F1F118E43AB9FB97A62FE38803A41D5ACCDA716BA552B28FFD7FE0680AE0B836569F07FAEA891A036A4DD133E9119C2650AE0757A7B4BDA8209F0F882022378CD821C2BCE850C10A5EFF245AC764CA77AF7786FF2A9C25CAF1558D05795548C64F5F1E16AD9C888A244596EECDC50C9F18485BE173FDA0EA6F81610C82458C4607147726184EE0EFCEBEE15EFDEA008A06A16ECFA681113E978EAFB9F4F87B728B8B540206164C6C9CAB1EACACCF445289992DF303EAD0798227C21A6D1D80415841A0B199743B9001FB27B76BCB83BF30D550261E0F943DF056112E370A6F7C4E18EA354473365EF56C0A5EDFD45D2DB327E0A43A406DD789428E73949F88A4DE8484CE2ACB53E845256EBA39B6689894326E340112900CADD6C05313E8D4BF5B45197478EA4FEA113A13B13DA4850EFF9A11190855D7DB59427473D2F6DAF092086C407D2C072791C5ACAC7EA8B69092A24EE371AFA3AC081411AB19BEDE3FEEF458C5EFC25AC5486CDAAB539AF33DDF8A25D5FFE96DB481794B20346CDA6D40551E0EB869D36CB7FF14F2390C0F1C0A7E04AF80572BE36A8EFB859777C720ECE64C458D81043111C4DAB8DDADF0BE0D555EF6992699E201F618118D911CC3E72520638ABF6E91A3329F326AF29B1EB360C5BCC7FE362612590A06D7CDF7AA490659F8CE48565BE283365E2B7,1120A8EC9B165C007798EDF37377731D\"\r\n        }\r\n    }\r\n}"
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "bin_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/issuers": {
+      "post": {
+        "tags": [
+          "Issuer Management > Issuer"
+        ],
+        "summary": "Create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  {
+                    "id": "abf0017b-906d-414e-bcf1-9aa776956397",
+                    "name": "Girasol",
+                    "onlinePinTryLimit": 3
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Issuer Management > Issuer"
+        ],
+        "summary": "Get",
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/issuers/{issuer_id}/status/true": {
+      "put": {
+        "tags": [
+          "Issuer Management > Issuer"
+        ],
+        "summary": "Enable-Disable",
+        "requestBody": {
+          "content": {}
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "issuer_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/issuers/{issuer_id}": {
+      "put": {
+        "tags": [
+          "Issuer Management > Issuer"
+        ],
+        "summary": "Update",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  {
+                    "name": "Test",
+                    "onlinePinTryLimit": 3
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "issuer_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/products": {
+      "post": {
+        "tags": [
+          "Issuer Management > Product"
+        ],
+        "summary": "Create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  {
+                    "binId": "933c2981-13ad-434d-b3e7-e9bdaafa3b82",
+                    "subIssuerId": "b22eef73-2035-4e94-aec3-750bf848a167",
+                    "productCode": "aaaaaaaaaaaaaaaaa",
+                    "limit": 100,
+                    "full": false,
+                    "d1Id": "GIRAS_CW_1",
+                    "panLength": 15,
+                    "embosser": "ThalesMx",
+                    "embosserKeys": [
+                      {
+                        "type": "pgp",
+                        "key": {
+                          "data": "LS0tLS1CRUdJTiBQR1AgUFVCTElDIEtFWSBCTE9DSy0tLS0tClZlcnNpb246IEdudVBHIHYyCgptUUVOQkdaN0drc0JDQUN3cS9TWmZsRTNZVExIZDg5dGp1cXVGNDQrT2ZLUUpzV0R0Y1pJZFovS0lmZnZBMHhrCnRvN0Fnd2tkcVozRnA5MkduNEFRWlJsTFNMR3htREtJRFRFOUNLTVlCeUVqMHNsbHYrZjFxcTJjVDNJdEdDWUoKOG5WcFdsdGZJd29ScFIyT2NPMStqUkgwRGIyRHovd1BxcDlZY0NTRERpaHlQcmdwb0dRSHl1RkZXajJaVXZBOQozZUUwN0NuajVLbW50S3NZcDFqRHNWN29MTURoSnFHVmlIZWdCUmRSUUxQeHlhWWF4a1RUL3NXYlJhNThoYlFICkZYTFR2aVc3OWVuUWdDNkZNOVFLMnZiS1E1c3lib0tueUhoWjQwL0pUcmFXNFptUjEyM1FGekJGdWtLNzdUMGgKOVByRFV0cTdIZVVlMDhMYnBWN1lKbVRnZjVnTjNKZTBQNjh6QUJFQkFBRzBSRXRoY0dsMFlXeERiMnh2YldKcApZVjlVYjNCd1lXNUliMmRwWlhKZk1qQXlOQ0E4Y0dWeWMyOXVZV3hwZW1GamFXOXVRSFJ2Y0hCaGJtaHZaMmxsCmNpNWpiMjAraVFFL0JCTUJDQUFwQWhzREJ3c0pDQWNEQWdFR0ZRZ0NDUW9MQkJZQ0F3RUNIZ0VDRjRBRkFtWjcKR3BnRkNRSGhFTVVBQ2drUWQvcTZRUHYwYitSTDBBZi9URkQ5RndpTHF0K056cHVkdk9xSU5KR0F4eDJ4N1lIWQpRTnAvZCtoQVJpWjZBenY2MGdLc3hqNlZHSFBRRHp6dVVVaEg5UXRHa0hGejlLUC80Mm13Y2dJUHJpMnY0cC9MCko4L3VHTWFuSHltbGtoRkRVTmhkRVFZbXJhWXhpUXo1bEhrOEtpK0dVN3dadWJhajF2U05tS2dvdnN1U3lqeDQKdVFybkFQWHpMMlhBVDFLd1MwaDBEQ3d5RjRvMzlBUkN6NHRqcCt1ZnpDSFhnd0pxY1JRY05YbU5pV014QkNHcwpHLzV6eFRHNFd5ZTNubmFBTHVIMGFraEdrdXpGMlBhNlVuY1VBOFVWUjFnaXcrNTRTRncrdjNWRjQraVJWQ2pYCjJHaENoWG0xWkc5MmdZSUh2Zm85UXJjeG5sTHRoNXg5OThydE94cUdEeGxra0pzNEJJSTAyYmtCRFFSbWV4cEwKQVFnQXVXclpIdGVFVDNFNmFVdXhFdVZaemxmVkFVRi9uWTRSajB6MDlIOEFycVUwZitZdUg2VmNoUWpWeHZuQgpGWEVBQTY2aENLUHoxelhqV3lKaUZqVTEwMlk1OFVGK25vWnV2dHZOcDJvUE5CeGVZbjNrdENQWllhWUZRUU12CjZDdXJQM2JxZWNhWENrMTJjQWkwK01FUVdTQk9KdWxWTXhhSkRpRGxHQmRPenVmZ0dqYUFNZWE3ZUdIckUxbGkKYVVXK0RGWVdvcHRaTHY5ZTFOMXhaaW5YM0F5YlFBNVlUamZLOU11emFwaWxGS1dKZnBjeEI4UkNQeFNxUUlzRQpkZHl0em9xdCsyaFF1eEMvU3Z3TVdha1BmSElXOFVTNDN4VmZwWERSMWR2WEJrcFRQMnVDRGdoUVFOakhQWnVZCm5rMDN5T21jbk85S3BFV1ZxRDR5Y3VDOEh3QVJBUUFCaVFFZkJCZ0JDQUFKQlFKbWV4cExBaHNNQUFvSkVIZjYKdWtENzlHL2tSbmNIL2pxTitzL1FVNTZyRXB3KytuWDlKU2RHb08ydzdnM3NtZXNNRkpwbmlSZHY3ZGl5dUU1WQpUeUEzbjdvNkNtZEllS2pKcXVUYlZRVmhST3NDdFpNRVZVdUJQcnhSOW5QRFU5aU5oRjIrNVYwQjc1YnM1K1BNCmdWeVo0eWdIK0JMWEJZMVdnY1pYdlhBWU5kclFaZkZaZVhLbENEbnZQMDYzcWtlY0FqRDRqNWRHRGxaTGo3M3AKN3VRKzYxNVBXNGpMN2hoTk9RaTg3UmhiMVVuY25IaDBYL2FHR3lBbmFIMWdUN25rVkR5NDJ2RXpJdTgrVTRhMQpYRE4xbFVBejZ4N0VDN2ZzK29xWmtOVkNBU1lTVlNTSjloekNwRm1ERzk1YVJmTXdMZjI1SThTM3FmTTZiNUExCkt6RHE2YUxNQThyb09sN2dmSDdrZ2JBVjh0NitsSVA3ZElZPQo9VkRSMAotLS0tLUVORCBQR1AgUFVCTElDIEtFWSBCTE9DSy0tLS0t",
+                          "module": null,
+                          "exponent": null,
+                          "passphrase": "Girasol"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Issuer Management > Product"
+        ],
+        "summary": "List",
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/subissuers": {
+      "post": {
+        "tags": [
+          "Issuer Management > Sub Issuer"
+        ],
+        "summary": "Create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  {
+                    "id": "97707929-a8f0-4cdf-8303-fe532fd109f2",
+                    "issuerId": "abf0017b-906d-414e-bcf1-9aa776956397",
+                    "name": "Suave",
+                    "dataFormat": "card_id",
+                    "countryCode": "533",
+                    "webhooks": {
+                      "authorization": "https://ledger-card-api.gwap.app/api/v1/transaction/request",
+                      "clearing": "https://ledger-card-api.gwap.app/api/v1/clearing",
+                      "cardStatus": "https://ledger-card-api.gwap.app/api/v1/card/status"
+                    },
+                    "keys": {
+                      "jweKeys": {
+                        "publicKey": "LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUZrd0V3WUhLb1pJemowQ0FRWUlLb1pJemowREFRY0RRZ0FFMmEwQitpUmQwTmdoSmhxb2licVZQZjdJTnBOagpzOVhsNGhjU2lZUDJEWEI4Z29DZ0JXdFpDekQvd0RZbGZ3L2dTWlFWYlZNME5ybk0zT21YMHdCWW53PT0KLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t",
+                        "privateKey": "LS0tLS1CRUdJTiBFQyBQUklWQVRFIEtFWS0tLS0tCk1IY0NBUUVFSUtMQlNlVEIxRjlsV1duSmI5OGJTTTZGNEhaaXhKRndneTkyTEF3UmZCOHlvQW9HQ0NxR1NNNDkKQXdFSG9VUURRZ0FFMmEwQitpUmQwTmdoSmhxb2licVZQZjdJTnBOanM5WGw0aGNTaVlQMkRYQjhnb0NnQld0WgpDekQvd0RZbGZ3L2dTWlFWYlZNME5ybk0zT21YMHdCWW53PT0KLS0tLS1FTkQgRUMgUFJJVkFURSBLRVktLS0tLQ==",
+                        "keyId": "427224a1-80f1-4c31-9bb1-76d666530b12"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Issuer Management > Sub Issuer"
+        ],
+        "summary": "List",
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/subissuers/{subissuer_id}/status/true": {
+      "put": {
+        "tags": [
+          "Issuer Management > Sub Issuer"
+        ],
+        "summary": "Enable-Disable",
+        "requestBody": {
+          "content": {}
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "subissuer_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/subissuers/{subissuer_id}": {
+      "put": {
+        "tags": [
+          "Issuer Management > Sub Issuer"
+        ],
+        "summary": "Update",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  {
+                    "issuerId": "abf0017b-906d-414e-bcf1-9aa776956397",
+                    "name": "Latin Securities",
+                    "dataFormat": "card_id",
+                    "countryCode": "986",
+                    "webhooks": {
+                      "authorization": "http://...",
+                      "clearing": "https://webhook.site/b5c0ebe2-fe2d-4d44-92a6-d4eb31e309f4",
+                      "cardStatus": "http://webhook.site/b5c0ebe2-fe2d-4d44-92a6-d4eb31e309f4"
+                    },
+                    "keys": {
+                      "jweKeys": {
+                        "publicKey": "LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUZrd0V3WUhLb1pJemowQ0FRWUlLb1pJemowREFRY0RRZ0FFc1o4VVRSZkcyajV6MmxPZUpxYkhZQU9PTzFSeQpZYy83NEpVRkRXMkFHN1huS2FzUWR4WUx4bXpqdHpLUDJZMG1Td2JZbFdYWEFFRFYxaTUxNTBVbzhRPT0KLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t",
+                        "privateKey": "LS0tLS1CRUdJTiBFQyBQUklWQVRFIEtFWS0tLS0tCk1IY0NBUUVFSU1odzQwSEVPNEJ0REMzQUF4K3BtTmFVTnFoZlg0WUdQWDJCQXA4S2VJSUVvQW9HQ0NxR1NNNDkKQXdFSG9VUURRZ0FFc1o4VVRSZkcyajV6MmxPZUpxYkhZQU9PTzFSeVljLzc0SlVGRFcyQUc3WG5LYXNRZHhZTAp4bXpqdHpLUDJZMG1Td2JZbFdYWEFFRFYxaTUxNTBVbzhRPT0KLS0tLS1FTkQgRUMgUFJJVkFURSBLRVktLS0tLQ==",
+                        "keyId": "6d3de686-90e2-4238-b862-1527937d2371"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "subissuer_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/user": {
+      "post": {
+        "tags": [
+          "Issuer Management > User"
+        ],
+        "summary": "Create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  {
+                    "name": "User name",
+                    "email": "test@girasol.cw",
+                    "password": "1234",
+                    "contact": "+5511967189936",
+                    "issuer": "abf0017b-906d-414e-bcf1-9aa776956397",
+                    "subIssuer": "efcff845-64ed-4aa8-a995-jfjj5nfknl",
+                    "roles": [
+                      "bins.list",
+                      "user.roles.list",
+                      "user.list",
+                      "user.update",
+                      "user.create",
+                      "bins.create",
+                      "bins.update",
+                      "card_requests.get",
+                      "card_requests.create",
+                      "card_requests.list.create",
+                      "card_requests.bulk.create",
+                      "card.get",
+                      "card.freeze",
+                      "card.unfreeze",
+                      "card.block",
+                      "card.pinchange",
+                      "card.activate",
+                      "issuer.get",
+                      "issuer.create",
+                      "issuer.update",
+                      "issuer.deactivate",
+                      "subissuer.get",
+                      "subissuer.create",
+                      "subissuer.update",
+                      "subissuer.deactivate",
+                      "product.get",
+                      "product.create"
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Issuer Management > User"
+        ],
+        "summary": "List",
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/user/roles": {
+      "get": {
+        "tags": [
+          "Issuer Management > User"
+        ],
+        "summary": "Roles",
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/user/{user_id}": {
+      "put": {
+        "tags": [
+          "Issuer Management > User"
+        ],
+        "summary": "Update",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  {
+                    "name": "User Test Updated",
+                    "email": "teste2@girasol.cw",
+                    "roles": [
+                      "bins.list",
+                      "bins.create",
+                      "bins.update",
+                      "card_requests.get",
+                      "card_requests.create",
+                      "card_requests.list",
+                      "card_requests.bulk.create",
+                      "user.roles.list",
+                      "user.list",
+                      "user.update",
+                      "user.create"
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/CardRequests": {
+      "post": {
+        "tags": [
+          "Internal APIs > Card Management"
+        ],
+        "summary": "Force Card Creation",
+        "description": "**This API request is used in development mode only.**\r\n\r\nIt initiates the routine that creates the cards and asign the PAN numbers.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  ""
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "default": {
+                "value": "<token>"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/control": {
+      "post": {
+        "tags": [
+          "Internal APIs > Limits-Controls"
+        ],
+        "summary": "Create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  {
+                    "owner": "264677ac-5c17-49b4-b8d4-3e6fc47a3832",
+                    "ownerType": "Product",
+                    "validationType": "Mcc",
+                    "value": "5",
+                    "amount": 100,
+                    "currencyCode": "USD",
+                    "rangeType": "Daily",
+                    "businessScope": "Domestic",
+                    "timeFrame": {
+                      "begin": "00:00:00",
+                      "end": "23:59:59"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/control/{rule_id}": {
+      "delete": {
+        "tags": [
+          "Internal APIs > Limits-Controls"
+        ],
+        "summary": "Delete",
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "rule_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Internal APIs > Limits-Controls"
+        ],
+        "summary": "Update",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  {
+                    "validationType": "Mcc|Amount|EntryMode",
+                    "value": "1234",
+                    "amount": 1,
+                    "currencyCode": "USD",
+                    "businessScope": "International|Domestic|Both",
+                    "rangeType": "Daily|Weekly|Monthly",
+                    "timeFrame": {
+                      "begin": "00:00:00",
+                      "end": "23:59:59"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "rule_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/control/validate": {
+      "post": {
+        "tags": [
+          "Internal APIs > Limits-Controls"
+        ],
+        "summary": "Validate",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "examples": [
+                  {
+                    "issuerId": "efcff845-64ed-4aa8-a995-1c5170badb10",
+                    "subIssuerId": "efcff845-64ed-4aa8-a995-1c5170badb10",
+                    "binId": "abb0f872-32f5-4e10-b9e3-0dad5fcfdfaa",
+                    "productCode": "3297fa80-b463-4a13-a0ea-e67474c89511",
+                    "cardId": "264677ac-5c17-49b4-b8d4-3e6fc47a3832",
+                    "amount": "000000000006",
+                    "currencyCode": "840",
+                    "mcc": "5814",
+                    "entryMode": "icc",
+                    "dateTime": "2024-06-28T16:06:47.000Z",
+                    "businessScope": "international"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/{your_domain}/{your_otp_path}": {
+      "post": {
+        "tags": [
+          "Webhooks > 3DS"
+        ],
+        "summary": "OTP Delivery",
+        "description": "Notify your system to deliver a One-Time Password (OTP) to the end user. The webhook is invoked by our platform and sent to your HTTPS endpoint that you provide during onboarding. so 60s",
+        "parameters": [
+          {
+            "name": "your_domain",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The fully qualified domain name of your webhook endpoint",
+            "required": true,
+            "examples": {
+              "default": {
+                "value": "apcbank.cw"
+              }
+            }
+          },
+          {
+            "name": "your_otp_path",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The specific path of your webhook endpoint that receives OTP delivery requests.",
+            "required": true,
+            "examples": {
+              "default": {
+                "value": "otp-delivery"
+              }
+            }
+          },
+          {
+            "name": "X-Signature",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "description": "HMAC-SHA256 of the raw body using a shared secret.",
+            "required": true,
+            "examples": {
+              "default": {
+                "value": "4f2c6b7e5f0a8c7d2b3d26d97b1450e0d3af5a78b2f3c18cce2e7f71f4b8e5f0"
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "### Delivery Chanels\n  - SMS\n  - EMAIl\n  \n### Reasons\n  - CARD-DIGITIZATION\n  - DEVICE-BINDING\n  - CARDHOLDER-VERIFICATION \n  - 3DS-AUTHENTICATION\n  \n### Device Information\n  - HCE\n  - SPAY_PHONE\n  - SPAY_TABLET\n  - SPAY_WATCH\n  - SPAY_TV\n  - IPHONE\n  - IWATCH\n  - IPAD\n  - MAC_BOOK\n  - ANDROID_PHONE\n  - ANDROID_TABLET\n  - ANDROID_WATCH\n  - MOBILE_PHONE\n  - TABLET\n  - WATCH\n  - MOBILE_PHONE_OR_TABLET\n  - BRACELET\n  - PC\n  - HOUSEHOLD\n  - WEARABLE\n  - AUTOMOBILE\n  - UNKNOWN",
+          "content": {
+            "application/json": {
+              "examples": {
+                "default": {
+                  "value": {
+                    "otp": {
+                      "value": "string",
+                      "expirationDate": "string",
+                      "reason": "CARD-DIGITIZATION"
+                    },
+                    "deliveryChannel": "SMS",
+                    "panSuffix": "string",
+                    "threeDSDetails": {
+                      "acsTransactionId": "string",
+                      "purchase": {
+                        "merchantName": "string",
+                        "amount": "string",
+                        "currencyCode": "string"
+                      }
+                    },
+                    "accountId": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "NO CONTENT"
+          }
+        }
+      }
+    },
+    "/{your_domain}/{your_3ds_path}": {
+      "post": {
+        "tags": [
+          "Webhooks > 3DS"
+        ],
+        "summary": "3DS Out‑of‑Band Issuer Challenge",
+        "description": "This event asks your mobile app/backend to surface and handle a 3‑D Secure (3DS) **Out‑of‑Band (OOB)** challenge initiated by the issuer.",
+        "parameters": [
+          {
+            "name": "your_domain",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The fully qualified domain name of your webhook endpoint",
+            "required": true,
+            "examples": {
+              "default": {
+                "value": "apcbank.cw"
+              }
+            }
+          },
+          {
+            "name": "your_3ds_path",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The specific path of your webhook endpoint that receives OTP delivery requests.",
+            "required": true,
+            "examples": {
+              "default": {
+                "value": "3ds-path"
+              }
+            }
+          },
+          {
+            "name": "X-Signature",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "description": "HMAC-SHA256 of the raw body using a shared secret.",
+            "required": true,
+            "examples": {
+              "default": {
+                "value": "4f2c6b7e5f0a8c7d2b3d26d97b1450e0d3af5a78b2f3c18cce2e7f71f4b8e5f0"
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "default": {
+                  "value": {
+                    "authenticationId": "string",
+                    "operation": "3DS_CHALLENGE_OOB_ISSUER",
+                    "accountId": "string",
+                    "details": {
+                      "CardId": "string",
+                      "PanSuffix": "string",
+                      "AcsTransactionId": "string",
+                      "Purchase": {
+                        "MerchantName": "string",
+                        "Amount": "sting",
+                        "CurrencyCode": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "NO CONTENT"
+          }
+        }
+      }
+    },
+    "/{your_domain}/{authenticationId}": {
+      "get": {
+        "tags": [
+          "Webhooks > 3DS"
+        ],
+        "summary": "Get Authentication Status",
+        "description": "This endpoint allows the client to query the current authentication status for a given authenticationId",
+        "parameters": [
+          {
+            "name": "your_domain",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The fully qualified domain name of your webhook endpoint",
+            "required": true,
+            "examples": {
+              "default": {
+                "value": "apcbank.cw"
+              }
+            }
+          },
+          {
+            "name": "authenticationId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Unique identifier for the authentication process (as provided in prior webhook calls).",
+            "required": true,
+            "examples": {
+              "default": {
+                "value": "1234567890"
+              }
+            }
+          },
+          {
+            "name": "X-Signature",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "description": "HMAC-SHA256 of the raw body using a shared secret.",
+            "required": true,
+            "examples": {
+              "default": {
+                "value": "4f2c6b7e5f0a8c7d2b3d26d97b1450e0d3af5a78b2f3c18cce2e7f71f4b8e5f0"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK  \n- **authenticationStatus (Required):** Current status of the authentication.    \n**One of:**  \n  - AUTHENTICATE\n  - PENDING  \n  - AUTHENTICATION_FAILE\n  - TECHNICAL_ERROR  \n\n- **reason (Conditional):** Only present when `authenticationStatus` = `TECHNICAL_ERROR`. Length between 1 and 64 characters. Explains the technical error encountered.",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "default": {
+                    "value": {
+                      "authenticationStatus": "AUTHENTICATED",
+                      "reason": "<optional, only if status is TECHNICAL_ERROR>"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 
@@ -44,9 +44,9 @@ function PillarCard({ title, bullets }) {
   )
 }
 
-function DiagramNode({ title, protocol, items }) {
+function DiagramNode({ title, protocol, items, className = '' }) {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm w-full max-w-sm">
+    <div className={`rounded-2xl border border-slate-200 bg-white p-5 shadow-sm w-full ${className}`}>
       <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wide text-slate-500">
         <span>{title}</span>
         {protocol ? <span className="rounded-full bg-slate-100 px-2 py-0.5 text-slate-600">{protocol}</span> : null}
@@ -79,6 +79,150 @@ function CodeBlock({ children }) {
   )
 }
 
+function ApiReferenceSection({ id, spec, selectId }) {
+  const [selectedVersion, setSelectedVersion] = useState(() => spec?.versions?.[0] ?? null)
+
+  useEffect(() => {
+    setSelectedVersion(spec?.versions?.[0] ?? null)
+  }, [spec?.versions])
+
+  if (!spec) return null
+
+  const versionSelectId = selectId || `${id}-version-select`
+
+  return (
+    <article id={id} className="rounded-3xl bg-white p-6 md:p-10 shadow-sm border border-slate-100 scroll-mt-32">
+      <div className="flex flex-col gap-3">
+        <div className="flex flex-wrap items-center gap-2">
+          {spec.version ? <span className="inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">{spec.version}</span> : null}
+          {spec.oas ? <span className="inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">{spec.oas}</span> : null}
+        </div>
+        <h2 className="text-2xl font-bold text-gray-900">{spec.title}</h2>
+        {spec.subtitle ? <p className="text-base text-slate-600">{spec.subtitle}</p> : null}
+      </div>
+      {spec.overview ? <p className="mt-4 text-sm text-slate-600">{spec.overview}</p> : null}
+      {spec.versions?.length ? (
+        <div className="mt-6 grid gap-4 md:grid-cols-[2fr_3fr]">
+          <div className="space-y-2">
+            <label className="text-xs font-semibold uppercase tracking-wide text-slate-500" htmlFor={versionSelectId}>
+              {spec.versions_label || spec.versionsLabel}
+            </label>
+            <select
+              id={versionSelectId}
+              value={selectedVersion?.id || ''}
+              onChange={(event) => {
+                const found = spec.versions.find((v) => v.id === event.target.value)
+                setSelectedVersion(found ?? null)
+              }}
+              className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-primary"
+            >
+              {spec.versions.map((version) => (
+                <option key={version.id} value={version.id}>
+                  {version.label}
+                </option>
+              ))}
+            </select>
+            {spec.versions_note ? <p className="text-xs text-slate-500">{spec.versions_note}</p> : null}
+          </div>
+          {selectedVersion ? (
+            <div className="rounded-2xl border border-slate-200 p-5 shadow-sm">
+              <p className="text-sm font-semibold text-gray-900">{selectedVersion.label}</p>
+              {selectedVersion.description ? <p className="text-xs text-slate-500">{selectedVersion.description}</p> : null}
+              <div className="mt-4 flex flex-wrap gap-3">
+                {selectedVersion.formats?.map((format, idx) => (
+                  <a
+                    key={idx}
+                    href={format.href}
+                    className="flex items-center justify-between gap-3 rounded-2xl border border-slate-200 px-4 py-2 text-sm font-semibold text-gray-900 hover:border-brand-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
+                  >
+                    <span>Download OpenAPI ({format.label})</span>
+                    <span className="rounded-full bg-slate-900 px-3 py-1 text-xs font-semibold text-white">{format.ext ?? format.label}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : null}
+        </div>
+      ) : null}
+      <div className="mt-6 grid gap-4 md:grid-cols-3">
+        <div className="rounded-2xl border border-slate-200 p-4 shadow-sm">
+          <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Spec</p>
+          <p className="mt-1 text-lg font-semibold text-gray-900">{spec.oas}</p>
+        </div>
+        {spec.client ? (
+          <div className="rounded-2xl border border-slate-200 p-4 shadow-sm">
+            <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">{spec.client.label}</p>
+            <p className="mt-1 text-sm text-slate-600">{spec.client.value}</p>
+          </div>
+        ) : null}
+        {spec.server ? (
+          <div className="rounded-2xl border border-slate-200 p-4 shadow-sm">
+            <p className="text-xs font-semibold uppercase tracking-wide text-brand-primary">{spec.server.label}</p>
+            <p className="mt-1 font-mono text-sm text-slate-800">{spec.server.value}</p>
+          </div>
+        ) : null}
+      </div>
+      <div className="mt-6 grid gap-4 md:grid-cols-2">
+        {spec.auth ? (
+          <div className="rounded-2xl border border-slate-200 p-5 shadow-sm space-y-3">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wide text-brand-primary">{spec.auth.title}</p>
+                <p className="text-sm text-slate-500">{spec.auth.optional}</p>
+              </div>
+              {spec.auth.body ? (
+                <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">{spec.auth.body}</span>
+              ) : null}
+            </div>
+            <p className="text-sm text-slate-600">{spec.auth.description}</p>
+            {spec.auth.sample ? <CodeBlock>{spec.auth.sample}</CodeBlock> : null}
+          </div>
+        ) : null}
+        {spec.notes?.length ? (
+          <div className="rounded-2xl border border-slate-200 p-5 shadow-sm">
+            <p className="text-xs font-semibold uppercase tracking-wide text-brand-primary">Notes</p>
+            <ul className="mt-3 space-y-2 text-sm text-slate-600 list-disc list-inside">
+              {spec.notes.map((note, idx) => (
+                <li key={idx}>{note}</li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+      </div>
+      {spec.groups?.length ? (
+        <div className="mt-8 space-y-6">
+          {spec.groups.map((group, idx) => (
+            <div key={idx} className="rounded-2xl border border-slate-200 p-5 shadow-sm">
+              <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wide text-brand-primary">{group.name}</p>
+                  {group.summary ? <p className="text-sm text-slate-600">{group.summary}</p> : null}
+                </div>
+              </div>
+              <div className="mt-4 grid gap-4 md:grid-cols-2">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Operations</p>
+                  <ul className="mt-2 space-y-2 text-sm text-slate-700">
+                    {group.operations?.map((op, opIdx) => (
+                      <li key={opIdx} className="flex flex-col">
+                        <span className="font-mono text-xs text-brand-primary">
+                          {op.method} {op.path}
+                        </span>
+                        <span>{op.text}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                {group.sample ? <CodeBlock>{group.sample}</CodeBlock> : null}
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : null}
+    </article>
+  )
+}
+
 export default function Documentos() {
   const { i18n } = useTranslation()
   const [navOpen, setNavOpen] = useState(false)
@@ -101,6 +245,7 @@ export default function Documentos() {
       ecosystem: translate('docs.ecosystem', { returnObjects: true }),
       mcc: translate('docs.mcc', { returnObjects: true }),
       apiSpec: translate('docs.api_spec', { returnObjects: true }),
+      b2bApi: translate('docs.b2b_api', { returnObjects: true }),
       lotus: translate('docs.lotus', { returnObjects: true }),
       api: translate('docs.api', { returnObjects: true }),
       flows: translate('docs.flows', { returnObjects: true }),
@@ -118,6 +263,7 @@ export default function Documentos() {
     { id: 'lotus', label: content.lotus.title },
     { id: 'api', label: content.api.title },
     { id: 'apiSpec', label: content.apiSpec.title },
+    { id: 'b2bApi', label: content.b2bApi.title },
     { id: 'flows', label: content.flows.title },
     { id: 'limits', label: content.limits.title },
     { id: 'fees', label: content.fees.title },
@@ -379,38 +525,38 @@ export default function Documentos() {
                   <p key={idx}>{paragraph}</p>
                 ))}
               </div>
-              <div className="mt-8 space-y-4">
+              <div className="mt-8 space-y-6">
                 <p className="text-sm font-semibold uppercase tracking-wide text-brand-primary">Topology</p>
-                <div className="grid gap-4 md:grid-cols-[1fr_auto_1fr] items-center">
+                <div className="flex flex-col items-center gap-6 md:flex-row md:items-stretch md:justify-between">
                   {content.api.diagram.top[0] ? (
                     <DiagramNode
+                      className="max-w-none md:flex-1"
                       title={content.api.diagram.top[0].name}
                       protocol={content.api.diagram.top[0].protocol}
                       items={content.api.diagram.top[0].items}
                     />
-                  ) : (
-                    <span aria-hidden="true"></span>
-                  )}
+                  ) : null}
                   <div className="flex justify-center">
-                    <div className="rounded-full bg-brand-primary px-6 py-3 text-lg font-semibold text-white shadow-lg">
+                    <div className="rounded-full bg-brand-primary px-8 py-3 text-lg font-semibold text-white shadow-lg">
                       {content.api.diagram.core}
                     </div>
                   </div>
                   {content.api.diagram.top[1] ? (
                     <DiagramNode
+                      className="max-w-none md:flex-1"
                       title={content.api.diagram.top[1].name}
                       protocol={content.api.diagram.top[1].protocol}
                       items={content.api.diagram.top[1].items}
                     />
-                  ) : (
-                    <span aria-hidden="true"></span>
-                  )}
+                  ) : null}
                 </div>
-                <div className="flex justify-center">
-                  {content.api.diagram.bottom.map((node) => (
-                    <DiagramNode key={node.name} title={node.name} protocol={node.protocol} items={node.items} />
-                  ))}
-                </div>
+                {content.api.diagram.bottom.length ? (
+                  <div className="flex flex-col items-center gap-4 md:flex-row md:justify-center">
+                    {content.api.diagram.bottom.map((node) => (
+                      <DiagramNode key={node.name} className="max-w-xl" title={node.name} protocol={node.protocol} items={node.items} />
+                    ))}
+                  </div>
+                ) : null}
               </div>
               <div className="mt-8 rounded-2xl border border-slate-200 bg-slate-50 p-6">
                 <h3 className="text-lg font-semibold text-gray-900">{content.api.card_flow.title}</h3>
@@ -423,88 +569,9 @@ export default function Documentos() {
               </div>
             </article>
 
-            <article id="apiSpec" className="rounded-3xl bg-white p-6 md:p-10 shadow-sm border border-slate-100 scroll-mt-32">
-              <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                <div>
-                  <h2 className="text-2xl font-bold text-gray-900">{content.apiSpec.title}</h2>
-                  <p className="mt-2 text-base text-slate-600">{content.apiSpec.subtitle}</p>
-                </div>
-                <a
-                  href={content.apiSpec.download.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center justify-center rounded-full bg-brand-primary px-5 py-2 text-sm font-semibold text-white hover:bg-brand-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
-                >
-                  {content.apiSpec.download.label}
-                </a>
-              </div>
-              <p className="mt-4 text-sm text-slate-600">{content.apiSpec.overview}</p>
-              <div className="mt-6 grid gap-4 md:grid-cols-3">
-                <div className="rounded-2xl border border-slate-200 p-4 shadow-sm">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Version</p>
-                  <p className="mt-1 text-lg font-semibold text-gray-900">{content.apiSpec.version}</p>
-                </div>
-                <div className="rounded-2xl border border-slate-200 p-4 shadow-sm">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Spec</p>
-                  <p className="mt-1 text-lg font-semibold text-gray-900">{content.apiSpec.oas}</p>
-                </div>
-                <div className="rounded-2xl border border-slate-200 p-4 shadow-sm">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">{content.apiSpec.client.label}</p>
-                  <p className="mt-1 text-sm text-slate-600">{content.apiSpec.client.value}</p>
-                </div>
-              </div>
-              <div className="mt-6 rounded-2xl border border-slate-200 p-5 shadow-sm">
-                <p className="text-xs font-semibold uppercase tracking-wide text-brand-primary">{content.apiSpec.server.label}</p>
-                <p className="mt-1 font-mono text-sm text-slate-800">{content.apiSpec.server.value}</p>
-              </div>
-              <div className="mt-6 grid gap-6 md:grid-cols-[1.5fr_1fr]">
-                <div className="rounded-2xl border border-slate-200 p-5 shadow-sm">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-wide text-brand-primary">{content.apiSpec.auth.title}</p>
-                      <p className="text-sm text-slate-500">{content.apiSpec.auth.optional}</p>
-                    </div>
-                    <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">{content.apiSpec.auth.body}</span>
-                  </div>
-                  <p className="mt-3 text-sm text-slate-600">{content.apiSpec.auth.description}</p>
-                  <CodeBlock>{content.apiSpec.auth.sample}</CodeBlock>
-                </div>
-                <div className="rounded-2xl border border-slate-200 p-5 shadow-sm">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-brand-primary">Notes</p>
-                  <ul className="mt-3 space-y-2 text-sm text-slate-600 list-disc list-inside">
-                    {content.apiSpec.notes.map((note, idx) => (
-                      <li key={idx}>{note}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-              <div className="mt-8 space-y-6">
-                {content.apiSpec.groups.map((group, idx) => (
-                  <div key={idx} className="rounded-2xl border border-slate-200 p-5 shadow-sm">
-                    <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-                      <div>
-                        <p className="text-xs font-semibold uppercase tracking-wide text-brand-primary">{group.name}</p>
-                        <p className="text-sm text-slate-600">{group.summary}</p>
-                      </div>
-                    </div>
-                    <div className="mt-4 grid gap-4 md:grid-cols-2">
-                      <div>
-                        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Operations</p>
-                        <ul className="mt-2 space-y-2 text-sm text-slate-700">
-                          {group.operations.map((op, opIdx) => (
-                            <li key={opIdx} className="flex flex-col">
-                              <span className="font-mono text-xs text-brand-primary">{op.method} {op.path}</span>
-                              <span>{op.text}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      <CodeBlock>{group.sample}</CodeBlock>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </article>
+            <ApiReferenceSection id="apiSpec" spec={content.apiSpec} selectId="lotus-version-select" />
+
+            <ApiReferenceSection id="b2bApi" spec={content.b2bApi} selectId="b2b-version-select" />
 
             <article id="flows" className="rounded-3xl bg-white p-6 md:p-10 shadow-sm border border-slate-100 scroll-mt-32">
               <h2 className="text-2xl font-bold text-gray-900">{content.flows.title}</h2>
