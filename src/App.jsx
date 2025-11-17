@@ -16,6 +16,7 @@ import ThanksEN from './pages/ThanksEN'
 import Gracias from './pages/Gracias'
 import Documentos from './pages/Documentos'
 import NotFound from './pages/NotFound'
+import EfectiboWholesale from './pages/EfectiboWholesale'
 
 export default function App() {
   const { t } = useTranslation()
@@ -41,6 +42,7 @@ export default function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/gracias" element={<Gracias />} />
           <Route path="/documentos" element={<Documentos />} />
+          <Route path="/EfectiboWholesale" element={<EfectiboWholesale />} />
           <Route path="/en/contact" element={<ContactEN />} />
           <Route path="/en/thanks" element={<ThanksEN />} />
           <Route path="*" element={<NotFound />} />
