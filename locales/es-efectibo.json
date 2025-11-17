@@ -1,0 +1,87 @@
+{
+  "efectiboWholesale": {
+    "seo": {
+      "title": "Efectibo Wholesale | Invercenter USA",
+      "description": "Marketplace B2B exclusivo para socios mayoristas de Invercenter USA y Efectibo LLC."
+    },
+    "hero": {
+      "label": "INVERCENTER USA INC X EFECTIBO LLC",
+      "title": "Marketplace wholesale privado impulsado por la logistica de Invercenter USA.",
+      "description": "Efectibo LLC escala su red de distribucion B2B aprovechando la infraestructura, procesos estandarizados y el alcance internacional de Invercenter. Acceso bajo invitacion, servicio inmediato.",
+      "logoAlt": "Logo oficial de Efectibo LLC",
+      "cardPrimary": {
+        "title": "Una sola operacion, dos especialistas",
+        "description": "iNC integra compras y logistica internacional; Efectibo ejecuta fulfillment local y servicio mayorista.",
+        "bullets": [
+          "Circuitos de importacion certificados por iNC.",
+          "Distribucion inmediata en mercados hispanos de Estados Unidos.",
+          "Accesos API para inventario en tiempo real."
+        ]
+      },
+      "cardSecondary": {
+        "label": "Objetivo",
+        "title": "Ser el marketplace B2B mas agil para retailers y distribuidores latinos.",
+        "cta": "Conectar con un advisor"
+      }
+    },
+    "inventory": {
+      "label": "Inventario curado",
+      "title": "Catalogo activo Efectibo Wholesale",
+      "description": "Tres lineas de producto mantienen el flujo constante: entretenimiento, tecnologia aplicada y equipamiento operativo. Las tarjetas muestran ejemplos de disponibilidad y empaques listos para retail o ultima milla.",
+      "sidecard": "Gracias a la red de contactos de Invercenter, cada SKU se abastece con contratos preferenciales y controles de calidad unificados. Eso permite mejorar margenes y asegurar entregas en menos de 72 horas dentro de los principales hubs."
+    },
+    "products": {
+      "electronics": {
+        "name": "Electronica premium",
+        "description": "Consolas, displays profesionales y accesorios certificados para retail y gaming lounges."
+      },
+      "technology": {
+        "name": "Tecnologia aplicada",
+        "description": "Soluciones IoT, audio inteligente y dispositivos para operaciones comerciales 24/7."
+      },
+      "agile": {
+        "name": "Equipamiento agil",
+        "description": "Kits de despacho, empaque y movilidad que aceleran cualquier operacion wholesale."
+      }
+    },
+    "brands": {
+      "label": "Carrusel de marcas",
+      "title": "Marcas ancla del marketplace",
+      "description": "Rotamos inventario propietario y consignado con acuerdos oficiales de Toshiba, Xbox, Shark y MSI. El carrusel refleja la rotacion mensual de la oferta.",
+      "badge": "Foco de marca",
+      "chip": "Inventario curado",
+      "managed": "Managed por Invercenter - Fulfillment Efectibo LLC",
+      "controls": {
+        "showBrand": "Mostrar marca {{number}}"
+      },
+      "slides": {
+        "toshiba": {
+          "name": "Toshiba",
+          "tagline": "Pantallas, TV 4K y soluciones digitales para retail exigente.",
+          "logoAlt": "Logo Toshiba"
+        },
+        "xbox": {
+          "name": "Xbox",
+          "tagline": "Hardware, accesorios y ecosistemas gaming listos para sell-in.",
+          "logoAlt": "Logo Xbox"
+        },
+        "shark": {
+          "name": "Shark",
+          "tagline": "Aspiracion y lifestyle premium con reposicion constante.",
+          "logoAlt": "Logo Shark"
+        },
+        "msi": {
+          "name": "MSI",
+          "tagline": "Equipos de alto performance y componentes certificados.",
+          "logoAlt": "Logo MSI"
+        }
+      }
+    },
+    "cta": {
+      "label": "Grupo corporativo iNC",
+      "title": "Misma vision, dos unidades especializadas",
+      "description": "Invercenter y Efectibo comparten gobierno corporativo, compliance financiero y una meta comun: conectar marcas globales con el mercado latino a la velocidad que exige el comercio digital B2B. Manten este enlace privado para acceder al catalogo preferencial.",
+      "button": "Solicitar acceso autorizado"
+    }
+  }
+}

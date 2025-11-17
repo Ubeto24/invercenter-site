@@ -1,51 +1,53 @@
 import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import toshibaLogo from '../../icons/icons/toshiba-svg.svg'
+import xboxLogo from '../../icons/icons/svg-xbox.svg'
+import sharkLogo from '../../icons/icons/svg-shark.svg'
+import msiLogo from '../../icons/icons/svg-msi.svg'
 
 const productHighlights = [
   {
-    name: 'Electronica premium',
-    description:
-      'Consolas, displays profesionales y accesorios certificados para retail y gaming lounges.',
-    image:
-      'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80',
+    key: 'electronics',
+    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80',
   },
   {
-    name: 'Tecnologia aplicada',
-    description:
-      'Soluciones IoT, audio inteligente y dispositivos para operaciones comerciales 24/7.',
-    image:
-      'https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?auto=format&fit=crop&w=900&q=80',
+    key: 'technology',
+    image: 'https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?auto=format&fit=crop&w=900&q=80',
   },
   {
-    name: 'Equipamiento agil',
-    description:
-      'Kits de despacho, empaque y movilidad que aceleran cualquier operacion wholesale.',
-    image:
-      'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80',
+    key: 'agile',
+    image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80',
   },
 ]
 
 const brandSlides = [
   {
-    name: 'Xbox',
-    tagline: 'Hardware y ecosistemas para entretenimiento masivo.',
+    key: 'toshiba',
+    gradient: 'from-[#ED1C24] to-[#A3071B]',
+    logo: toshibaLogo,
+  },
+  {
+    key: 'xbox',
     gradient: 'from-[#44D62C] to-[#0F8D44]',
+    logo: xboxLogo,
   },
   {
-    name: 'Ninja',
-    tagline: 'Electrodomesticos inteligentes listos para retail latino.',
-    gradient: 'from-[#4C8BF5] to-[#0A3D91]',
-  },
-  {
-    name: 'Shark',
-    tagline: 'Limpieza y lifestyle premium con inventario constante.',
+    key: 'shark',
     gradient: 'from-[#00B0FF] to-[#004E92]',
+    logo: sharkLogo,
+  },
+  {
+    key: 'msi',
+    gradient: 'from-[#FF512F] to-[#DD2476]',
+    logo: msiLogo,
   },
 ]
 
 export default function EfectiboWholesale() {
   const [activeBrand, setActiveBrand] = useState(0)
+  const { t } = useTranslation()
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -57,47 +59,51 @@ export default function EfectiboWholesale() {
   return (
     <div className="bg-slate-900 text-white">
       <Helmet>
-        <title>Efectibo Wholesale | Invercenter USA</title>
-        <meta
-          name="description"
-          content="Marketplace B2B exclusivo para socios mayoristas de Invercenter USA y Efectibo LLC."
-        />
+        <title>{t('efectiboWholesale.seo.title')}</title>
+        <meta name="description" content={t('efectiboWholesale.seo.description')} />
       </Helmet>
 
       <section className="bg-gradient-to-br from-[#0FB368] via-[#0A3D91] to-[#021B79]">
         <div className="max-w-6xl mx-auto px-4 py-16 md:py-24">
-          <p className="text-sm uppercase tracking-[0.3em] text-white/80">iNC x Efectibo LLC</p>
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:gap-6">
+            <p className="text-sm uppercase tracking-[0.3em] text-white/80">
+              {t('efectiboWholesale.hero.label')}
+            </p>
+            <img
+              src="/logos/logo-efectibo.png"
+              alt={t('efectiboWholesale.hero.logoAlt')}
+              className="h-10 w-auto object-contain drop-shadow-[0_10px_25px_rgba(0,0,0,0.15)]"
+              loading="lazy"
+            />
+          </div>
           <h1 className="mt-6 text-3xl md:text-5xl font-bold leading-tight">
-            Marketplace wholesale privado impulsado por la logistica de Invercenter USA.
+            {t('efectiboWholesale.hero.title')}
           </h1>
           <p className="mt-6 text-lg md:text-xl text-white/80 max-w-3xl">
-            Efectibo LLC escala su red de distribucion B2B aprovechando la infraestructura, procesos
-            estandarizados y el alcance internacional de Invercenter. Acceso bajo invitacion,
-            servicio inmediato.
+            {t('efectiboWholesale.hero.description')}
           </p>
           <div className="mt-10 flex flex-col gap-4 md:flex-row">
             <div className="flex-1 rounded-2xl border border-white/20 bg-white/5 p-6 backdrop-blur">
-              <h2 className="text-xl font-semibold">Una sola operacion, dos especialistas</h2>
-              <p className="mt-3 text-white/80">
-                iNC integra compras y logistica internacional; Efectibo ejecuta fulfillment local y
-                servicio mayorista.
-              </p>
+              <h2 className="text-xl font-semibold">{t('efectiboWholesale.hero.cardPrimary.title')}</h2>
+              <p className="mt-3 text-white/80">{t('efectiboWholesale.hero.cardPrimary.description')}</p>
               <ul className="mt-5 space-y-2 text-sm text-white/70">
-                <li>- Circuitos de importacion certificados por iNC.</li>
-                <li>- Distribucion inmediata en mercados hispanos de EE. UU.</li>
-                <li>- Accesos API para inventario en tiempo real.</li>
+                {t('efectiboWholesale.hero.cardPrimary.bullets', { returnObjects: true }).map((item) => (
+                  <li key={item}>- {item}</li>
+                ))}
               </ul>
             </div>
             <div className="flex-1 rounded-2xl border border-white/30 bg-white/10 p-6 backdrop-blur">
-              <p className="text-sm uppercase tracking-widest text-white/70">Objetivo</p>
+              <p className="text-sm uppercase tracking-widest text-white/70">
+                {t('efectiboWholesale.hero.cardSecondary.label')}
+              </p>
               <h3 className="mt-3 text-2xl font-semibold text-white">
-                Ser el marketplace B2B mas agil para retailers y distribuidores latinos.
+                {t('efectiboWholesale.hero.cardSecondary.title')}
               </h3>
               <Link
                 to="/contact"
                 className="mt-8 inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-brand-primary font-semibold shadow-soft shadow-black/30"
               >
-                Conectar con un advisor
+                {t('efectiboWholesale.hero.cardSecondary.cta')}
               </Link>
             </div>
           </div>
@@ -108,41 +114,37 @@ export default function EfectiboWholesale() {
         <div className="flex flex-col gap-6 md:flex-row md:items-center">
           <div className="md:w-1/2">
             <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#0FB368]">
-              Inventario curado
+              {t('efectiboWholesale.inventory.label')}
             </p>
-            <h2 className="mt-3 text-3xl font-bold text-white">Catalogo activo Efectibo Wholesale</h2>
-            <p className="mt-4 text-white/70">
-              Tres lineas de producto mantienen el flujo constante: entretenimiento, tecnologia
-              aplicada y equipamiento operativo. Las tarjetas muestran ejemplos de disponibilidad y
-              empaques listos para retail o ultima milla.
-            </p>
+            <h2 className="mt-3 text-3xl font-bold text-white">{t('efectiboWholesale.inventory.title')}</h2>
+            <p className="mt-4 text-white/70">{t('efectiboWholesale.inventory.description')}</p>
           </div>
           <div className="md:w-1/2 rounded-2xl border border-white/10 bg-gradient-to-r from-white/5 to-white/0 p-6 shadow-soft">
-            <p className="text-white/70">
-              Gracias a la red de contactos de Invercenter, cada SKU se abastece con contratos
-              preferenciales y controles de calidad unificados. Eso permite mejorar margenes y
-              asegurar entregas en menos de 72 horas dentro de los principales hubs.
-            </p>
+            <p className="text-white/70">{t('efectiboWholesale.inventory.sidecard')}</p>
           </div>
         </div>
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {productHighlights.map((product) => (
             <article
-              key={product.name}
+              key={product.key}
               className="overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur shadow-soft"
             >
               <div className="relative h-52 w-full overflow-hidden">
                 <img
                   src={product.image}
-                  alt={product.name}
+                  alt={t(`efectiboWholesale.products.${product.key}.name`)}
                   className="h-full w-full object-cover transition duration-700 hover:scale-110"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold">{product.name}</h3>
-                <p className="mt-3 text-sm text-white/70">{product.description}</p>
+                <h3 className="text-xl font-semibold">
+                  {t(`efectiboWholesale.products.${product.key}.name`)}
+                </h3>
+                <p className="mt-3 text-sm text-white/70">
+                  {t(`efectiboWholesale.products.${product.key}.description`)}
+                </p>
               </div>
             </article>
           ))}
@@ -153,18 +155,17 @@ export default function EfectiboWholesale() {
         <div className="max-w-5xl mx-auto px-4">
           <div className="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
             <div>
-              <p className="text-sm uppercase tracking-[0.3em] text-[#0FB368]">Carrusel de marcas</p>
-              <h2 className="mt-3 text-3xl font-bold text-white">Marcas ancla del marketplace</h2>
-              <p className="mt-2 text-white/70">
-                Rotamos inventario propietario y consignado con acuerdos oficiales de Xbox, Ninja y
-                Shark. El carrusel refleja la rotacion mensual de la oferta.
+              <p className="text-sm uppercase tracking-[0.3em] text-[#0FB368]">
+                {t('efectiboWholesale.brands.label')}
               </p>
+              <h2 className="mt-3 text-3xl font-bold text-white">{t('efectiboWholesale.brands.title')}</h2>
+              <p className="mt-2 text-white/70">{t('efectiboWholesale.brands.description')}</p>
             </div>
             <div className="flex gap-2">
               {brandSlides.map((_, index) => (
                 <button
                   key={index}
-                  aria-label={`Mostrar marca ${index + 1}`}
+                  aria-label={t('efectiboWholesale.brands.controls.showBrand', { number: index + 1 })}
                   onClick={() => setActiveBrand(index)}
                   className={`h-2 w-10 rounded-full transition ${
                     activeBrand === index ? 'bg-[#0FB368]' : 'bg-white/20'
@@ -177,19 +178,39 @@ export default function EfectiboWholesale() {
           <div className="mt-10 overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-soft">
             {brandSlides.map((brand, index) => (
               <div
-                key={brand.name}
+                key={brand.key}
                 className={`${
                   activeBrand === index ? 'opacity-100 translate-x-0' : 'pointer-events-none opacity-0 -translate-x-5'
                 } transition duration-700`}
               >
                 {activeBrand === index && (
                   <div className={`p-10 bg-gradient-to-r ${brand.gradient}`}>
-                    <p className="text-sm uppercase tracking-[0.4em] text-white/80">Brand focus</p>
-                    <h3 className="mt-4 text-4xl font-black">{brand.name}</h3>
-                    <p className="mt-4 text-lg text-white/80">{brand.tagline}</p>
-                    <p className="mt-6 text-sm text-white/70">
-                      Managed por Invercenter - Fulfillment Efectibo LLC
+                    <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+                      <div className="flex items-center gap-5">
+                        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/90 p-3 shadow-lg shadow-black/20">
+                          <img
+                            src={brand.logo}
+                            alt={t(`efectiboWholesale.brands.slides.${brand.key}.logoAlt`)}
+                            className="h-full w-full object-contain"
+                          />
+                        </div>
+                        <div>
+                          <p className="text-sm uppercase tracking-[0.4em] text-white/80">
+                            {t('efectiboWholesale.brands.badge')}
+                          </p>
+                          <h3 className="mt-2 text-4xl font-black">
+                            {t(`efectiboWholesale.brands.slides.${brand.key}.name`)}
+                          </h3>
+                        </div>
+                      </div>
+                      <span className="rounded-full border border-white/30 px-4 py-2 text-xs uppercase tracking-[0.4em] text-white/80">
+                        {t('efectiboWholesale.brands.chip')}
+                      </span>
+                    </div>
+                    <p className="mt-6 text-lg text-white/80">
+                      {t(`efectiboWholesale.brands.slides.${brand.key}.tagline`)}
                     </p>
+                    <p className="mt-6 text-sm text-white/70">{t('efectiboWholesale.brands.managed')}</p>
                   </div>
                 )}
               </div>
@@ -199,18 +220,16 @@ export default function EfectiboWholesale() {
       </section>
 
       <section className="max-w-4xl mx-auto px-4 py-16 text-center">
-        <p className="text-sm uppercase tracking-[0.4em] text-[#0FB368]">Grupo corporativo iNC</p>
-        <h2 className="mt-4 text-3xl font-bold text-white">Misma vision, dos unidades especializadas</h2>
-        <p className="mt-4 text-white/70">
-          Invercenter y Efectibo comparten gobierno corporativo, compliance financiero y una meta
-          comun: conectar marcas globales con el mercado latino a la velocidad que exige el
-          comercio digital B2B. Manten este enlace privado para acceder al catalogo preferencial.
+        <p className="text-sm uppercase tracking-[0.4em] text-[#0FB368]">
+          {t('efectiboWholesale.cta.label')}
         </p>
+        <h2 className="mt-4 text-3xl font-bold text-white">{t('efectiboWholesale.cta.title')}</h2>
+        <p className="mt-4 text-white/70">{t('efectiboWholesale.cta.description')}</p>
         <Link
           to="/contact"
           className="mt-8 inline-flex items-center justify-center rounded-full bg-[#0FB368] px-8 py-3 text-base font-semibold text-slate-900 shadow-soft transition hover:bg-[#0ca45c]"
         >
-          Solicitar acceso autorizado
+          {t('efectiboWholesale.cta.button')}
         </Link>
       </section>
     </div>

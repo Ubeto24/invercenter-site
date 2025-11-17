@@ -1,0 +1,87 @@
+{
+  "efectiboWholesale": {
+    "seo": {
+      "title": "Efectibo Wholesale | Invercenter USA",
+      "description": "Invite-only B2B marketplace for Invercenter USA and Efectibo LLC wholesale partners."
+    },
+    "hero": {
+      "label": "INVERCENTER USA INC X EFECTIBO LLC",
+      "title": "Private wholesale marketplace powered by Invercenter USA logistics.",
+      "description": "Efectibo LLC scales its B2B distribution network by leveraging Invercenter infrastructure, standardized processes and international reach. Invite-only access with immediate service.",
+      "logoAlt": "Official Efectibo LLC logo",
+      "cardPrimary": {
+        "title": "One operation, two specialists",
+        "description": "iNC manages sourcing and international logistics; Efectibo handles local fulfillment and wholesale service.",
+        "bullets": [
+          "Import routes certified by iNC.",
+          "Immediate distribution across U.S. Hispanic markets.",
+          "API access for real-time inventory."
+        ]
+      },
+      "cardSecondary": {
+        "label": "Objective",
+        "title": "Be the fastest B2B marketplace for Latin retailers and distributors.",
+        "cta": "Connect with an advisor"
+      }
+    },
+    "inventory": {
+      "label": "Curated inventory",
+      "title": "Active Efectibo Wholesale catalog",
+      "description": "Three product lines keep the flow constant: entertainment, applied technology and operational equipment. The cards highlight availability examples with packaging ready for retail or last-mile handoff.",
+      "sidecard": "Thanks to Invercenter's network, every SKU is supplied through preferred contracts and unified quality controls. That boosts margins and secures deliveries inside the main hubs in under 72 hours."
+    },
+    "products": {
+      "electronics": {
+        "name": "Premium electronics",
+        "description": "Consoles, pro displays and certified accessories for retail and gaming lounges."
+      },
+      "technology": {
+        "name": "Applied technology",
+        "description": "IoT solutions, smart audio and devices for 24/7 commercial operations."
+      },
+      "agile": {
+        "name": "Agile equipment",
+        "description": "Dispatch, packing and mobility kits that accelerate every wholesale operation."
+      }
+    },
+    "brands": {
+      "label": "Brand carousel",
+      "title": "Anchor brands in the marketplace",
+      "description": "We rotate owned and consigned inventory under official agreements with Toshiba, Xbox, Shark and MSI. The carousel mirrors the month-to-month mix.",
+      "badge": "Brand focus",
+      "chip": "Curated inventory",
+      "managed": "Managed by Invercenter - Fulfillment by Efectibo LLC",
+      "controls": {
+        "showBrand": "Show brand {{number}}"
+      },
+      "slides": {
+        "toshiba": {
+          "name": "Toshiba",
+          "tagline": "Displays, 4K TVs and digital signage for demanding retail.",
+          "logoAlt": "Toshiba logo"
+        },
+        "xbox": {
+          "name": "Xbox",
+          "tagline": "Hardware, accessories and gaming ecosystems ready for sell-in.",
+          "logoAlt": "Xbox logo"
+        },
+        "shark": {
+          "name": "Shark",
+          "tagline": "Premium cleaning and lifestyle lines with constant replenishment.",
+          "logoAlt": "Shark logo"
+        },
+        "msi": {
+          "name": "MSI",
+          "tagline": "High-performance rigs and certified components.",
+          "logoAlt": "MSI logo"
+        }
+      }
+    },
+    "cta": {
+      "label": "iNC corporate group",
+      "title": "One vision, two specialized units",
+      "description": "Invercenter and Efectibo share corporate governance, financial compliance and one goal: connect global brands with the Latin market at the speed digital B2B commerce demands. Keep this private link to reach the preferred catalog.",
+      "button": "Request authorized access"
+    }
+  }
+}
