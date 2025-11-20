@@ -22,15 +22,51 @@
     "title": "Financial and Technological Services",
     "description": "We offer innovative solutions in finance, blockchain and technology applied to global business. We guide companies and investors through the digital transformation of their financial operations.",
     "list": [
-      {"icon":"ClipboardCheck","title":"Strategic Procurement & International Trade","desc":"We advise on global supplier sourcing, evaluation and selection. We manage import and export processes, international negotiations, quality control and logistics coordination with a focus on efficiency, compliance and traceability."},
-      {"icon":"Briefcase","title":"Strategic Financial Advisory","desc":"We advise on capital management, financial structure, M&A and liquidity optimization."},
-      {"icon":"Globe","title":"International & Cross-border Payments","desc":"Secure, fast global transfers with regulatory compliance (KYC/AML)."},
-      {"icon":"Network","title":"Applied Blockchain Technology","desc":"Blockchain systems for traceability, tokenization and transactional security."},
-      {"icon":"BarChart3","title":"Big Data & Predictive Analytics","desc":"Data models to drive smarter decisions in investments and financial operations."},
-      {"icon":"Cpu","title":"Fintech Infrastructure","desc":"Design and integration of scalable financial platforms, banking APIs and digital payment systems."},
-      {"icon":"Cog","title":"Financial Process Automation (RPA)","desc":"Digitize repetitive tasks with AI and automation for greater efficiency."},
-      {"icon":"ShieldCheck","title":"Regulatory Compliance & Digital Security","desc":"Solutions that ensure security, privacy and adherence to international standards."},
-      {"icon":"TrendingUp","title":"Investments & Digital Portfolio Management","desc":"Advisory on digital assets, investment strategies and smart diversification through technology."}
+      {
+        "icon": "ClipboardCheck",
+        "title": "Strategic Procurement & International Trade",
+        "desc": "We advise on global supplier sourcing, evaluation and selection. We manage import and export processes, international negotiations, quality control and logistics coordination with a focus on efficiency, compliance and traceability."
+      },
+      {
+        "icon": "Briefcase",
+        "title": "Strategic Financial Advisory",
+        "desc": "We advise on capital management, financial structure, M&A and liquidity optimization."
+      },
+      {
+        "icon": "Globe",
+        "title": "International & Cross-border Payments",
+        "desc": "Secure, fast global transfers with regulatory compliance (KYC/AML)."
+      },
+      {
+        "icon": "Network",
+        "title": "Applied Blockchain Technology",
+        "desc": "Blockchain systems for traceability, tokenization and transactional security."
+      },
+      {
+        "icon": "BarChart3",
+        "title": "Big Data & Predictive Analytics",
+        "desc": "Data models to drive smarter decisions in investments and financial operations."
+      },
+      {
+        "icon": "Cpu",
+        "title": "Fintech Infrastructure",
+        "desc": "Design and integration of scalable financial platforms, banking APIs and digital payment systems."
+      },
+      {
+        "icon": "Cog",
+        "title": "Financial Process Automation (RPA)",
+        "desc": "Digitize repetitive tasks with AI and automation for greater efficiency."
+      },
+      {
+        "icon": "ShieldCheck",
+        "title": "Regulatory Compliance & Digital Security",
+        "desc": "Solutions that ensure security, privacy and adherence to international standards."
+      },
+      {
+        "icon": "TrendingUp",
+        "title": "Investments & Digital Portfolio Management",
+        "desc": "Advisory on digital assets, investment strategies and smart diversification through technology."
+      }
     ]
   },
   "solutions": {
@@ -38,17 +74,29 @@
     "payments": {
       "title": "Cross-border payments and transfers",
       "desc": "Compliance, KYC/KYB and banking partners to move capital securely and efficiently.",
-      "benefits": ["Global compliance", "Reliable liquidity", "Fast onboarding"]
+      "benefits": [
+        "Global compliance",
+        "Reliable liquidity",
+        "Fast onboarding"
+      ]
     },
     "blockchain": {
       "title": "Blockchain for traceability and payments",
       "desc": "Architecture, wallets and security for auditable flows and fraud reduction.",
-      "benefits": ["Traceability", "Security", "Automation"]
+      "benefits": [
+        "Traceability",
+        "Security",
+        "Automation"
+      ]
     },
     "data": {
       "title": "Big Data & Analytics",
       "desc": "Logistics and financial forecasting to drive data-led decisions.",
-      "benefits": ["Forecasts", "Optimization", "360° visibility"]
+      "benefits": [
+        "Forecasts",
+        "Optimization",
+        "360° visibility"
+      ]
     }
   },
   "why": {
@@ -64,18 +112,42 @@
   "stats": {
     "title": "Measurable impact",
     "items": [
-      { "label": "Years of experience", "value": "20+" },
-      { "label": "Cost reduction", "value": "15-30%" },
-      { "label": "Faster deliveries", "value": "25%" },
-      { "label": "NPS", "value": "70+" }
+      {
+        "label": "Years of experience",
+        "value": "20+"
+      },
+      {
+        "label": "Cost reduction",
+        "value": "15-30%"
+      },
+      {
+        "label": "Faster deliveries",
+        "value": "25%"
+      },
+      {
+        "label": "NPS",
+        "value": "70+"
+      }
     ]
   },
   "testimonials": {
     "title": "Testimonials",
     "items": [
-      { "name": "Carolina M.", "role": "Operations, Retail", "quote": "With InverCenter we optimized inventory and reduced delivery times." },
-      { "name": "Luis R.", "role": "CFO, Manufacturing", "quote": "Their cross-border payments approach brought visibility and control." },
-      { "name": "Andrea P.", "role": "Tech Lead, Fintech", "quote": "Blockchain + compliance integrated seamlessly." }
+      {
+        "name": "Carolina M.",
+        "role": "Operations, Retail",
+        "quote": "With InverCenter we optimized inventory and reduced delivery times."
+      },
+      {
+        "name": "Luis R.",
+        "role": "CFO, Manufacturing",
+        "quote": "Their cross-border payments approach brought visibility and control."
+      },
+      {
+        "name": "Andrea P.",
+        "role": "Tech Lead, Fintech",
+        "quote": "Blockchain + compliance integrated seamlessly."
+      }
     ]
   },
   "cta": {
@@ -100,7 +172,12 @@
   },
   "insights": {
     "title": "Insights",
-    "tags": ["logistics", "payments", "blockchain", "data"],
+    "tags": [
+      "logistics",
+      "payments",
+      "blockchain",
+      "data"
+    ],
     "more": "View more"
   },
   "contact": {
@@ -181,35 +258,95 @@
     "process": {
       "title": "How we work",
       "steps": [
-        { "t": "Discovery", "d": "Objectives, regulations and business constraints." },
-        { "t": "Architecture", "d": "Payments, data and blockchain blueprint; security models." },
-        { "t": "Integration", "d": "Banking APIs, data sources, payment rails and contracts." },
-        { "t": "Pilot & Compliance", "d": "Testing, KYC/KYB, AML, monitoring and evidence." },
-        { "t": "Deployment", "d": "Runbook, SLOs, observability and continuous improvement." }
+        {
+          "t": "Discovery",
+          "d": "Objectives, regulations and business constraints."
+        },
+        {
+          "t": "Architecture",
+          "d": "Payments, data and blockchain blueprint; security models."
+        },
+        {
+          "t": "Integration",
+          "d": "Banking APIs, data sources, payment rails and contracts."
+        },
+        {
+          "t": "Pilot & Compliance",
+          "d": "Testing, KYC/KYB, AML, monitoring and evidence."
+        },
+        {
+          "t": "Deployment",
+          "d": "Runbook, SLOs, observability and continuous improvement."
+        }
       ]
     },
     "kpis": {
       "items": [
-        { "v": "15–30%", "l": "↓ Operating costs" },
-        { "v": "25%", "l": "↓ Cycle times" },
-        { "v": "99.95%", "l": "Target availability" },
-        { "v": "100%", "l": "Event traceability" }
+        {
+          "v": "15–30%",
+          "l": "↓ Operating costs"
+        },
+        {
+          "v": "25%",
+          "l": "↓ Cycle times"
+        },
+        {
+          "v": "99.95%",
+          "l": "Target availability"
+        },
+        {
+          "v": "100%",
+          "l": "Event traceability"
+        }
       ]
     },
     "usecases": {
       "title": "Use cases",
       "items": [
-        { "title": "Mass cross‑border payments", "desc": "Orchestration of international payments with FX, AML monitoring and auto‑reconciliation.", "tags": ["FX","Compliance","APIs"] },
-        { "title": "Supply chain traceability", "desc": "Immutable record of logistics and financial milestones for audit and claims.", "tags": ["Blockchain","Events","Audit"] },
-        { "title": "Demand and liquidity forecasting", "desc": "ML models to plan inventory, treasury and cash needs.", "tags": ["ML","Data Lake","BI"] }
+        {
+          "title": "Mass cross‑border payments",
+          "desc": "Orchestration of international payments with FX, AML monitoring and auto‑reconciliation.",
+          "tags": [
+            "FX",
+            "Compliance",
+            "APIs"
+          ]
+        },
+        {
+          "title": "Supply chain traceability",
+          "desc": "Immutable record of logistics and financial milestones for audit and claims.",
+          "tags": [
+            "Blockchain",
+            "Events",
+            "Audit"
+          ]
+        },
+        {
+          "title": "Demand and liquidity forecasting",
+          "desc": "ML models to plan inventory, treasury and cash needs.",
+          "tags": [
+            "ML",
+            "Data Lake",
+            "BI"
+          ]
+        }
       ]
     },
     "faqs": {
       "title": "Frequently asked questions",
       "items": [
-        { "q": "Do I need partner banks for global payments?", "a": "We can integrate your current banks or propose rails and partners based on geography, risk and costs." },
-        { "q": "How do you handle compliance (KYC/KYB, AML)?", "a": "We define policies, flows and evidence; integrate screening providers and generate auditable reports." },
-        { "q": "Which cloud or stack do you use?", "a": "We work multi‑cloud (AWS, Azure, GCP) and on‑prem as needed." }
+        {
+          "q": "Do I need partner banks for global payments?",
+          "a": "We can integrate your current banks or propose rails and partners based on geography, risk and costs."
+        },
+        {
+          "q": "How do you handle compliance (KYC/KYB, AML)?",
+          "a": "We define policies, flows and evidence; integrate screening providers and generate auditable reports."
+        },
+        {
+          "q": "Which cloud or stack do you use?",
+          "a": "We work multi‑cloud (AWS, Azure, GCP) and on‑prem as needed."
+        }
       ]
     }
   },
@@ -241,11 +378,26 @@
     "values": {
       "title": "Values",
       "items": {
-        "excellence": { "title": "Excellence", "text": "Commitment to operational perfection in every project." },
-        "compliance": { "title": "Compliance", "text": "Accountability and transparency across all processes." },
-        "innovation": { "title": "Innovation", "text": "Emerging technologies to create competitive advantages." },
-        "confidentiality": { "title": "Confidentiality", "text": "Safeguarding our clients' information and interests." },
-        "customer_service": { "title": "Customer service", "text": "We measure success by satisfaction and loyalty." }
+        "excellence": {
+          "title": "Excellence",
+          "text": "Commitment to operational perfection in every project."
+        },
+        "compliance": {
+          "title": "Compliance",
+          "text": "Accountability and transparency across all processes."
+        },
+        "innovation": {
+          "title": "Innovation",
+          "text": "Emerging technologies to create competitive advantages."
+        },
+        "confidentiality": {
+          "title": "Confidentiality",
+          "text": "Safeguarding our clients' information and interests."
+        },
+        "customer_service": {
+          "title": "Customer service",
+          "text": "We measure success by satisfaction and loyalty."
+        }
       }
     },
     "kpis": {
@@ -299,6 +451,8 @@
         "linkText": "Read more"
       }
     ]
+  },
+  "stocks": {
+    "ticker_disclaimer": "Informational data based on public sources. Not financial advice or official market prices."
   }
 }
-

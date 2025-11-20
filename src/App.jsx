@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import CryptoBanner from './components/CryptoBanner'
+import StockTickerBanner from './components/StockTickerBanner'
 import Home from './pages/Home'
 import Services from './pages/Services'
 import Solutions from './pages/Solutions'
@@ -32,6 +33,7 @@ export default function App() {
       <Header />
       <main id="content" className="flex-1 pt-[134px] md:pt-[157px]">
         <CryptoBanner />
+        <StockTickerBanner />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />

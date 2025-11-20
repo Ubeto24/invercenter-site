@@ -67,35 +67,95 @@
     "process": {
       "title": "Cómo trabajamos",
       "steps": [
-        { "t": "Descubrimiento", "d": "Objetivos, regulaciones y restricciones del negocio." },
-        { "t": "Arquitectura", "d": "Blueprint de pagos, data y blockchain; modelos de seguridad." },
-        { "t": "Integración", "d": "APIs bancarias, orígenes de datos, rieles de pago y contratos." },
-        { "t": "Piloto & Compliance", "d": "Pruebas, KYC/KYB, AML, monitoreo y evidencias." },
-        { "t": "Despliegue", "d": "Runbook, SLOs, observabilidad y mejora continua." }
+        {
+          "t": "Descubrimiento",
+          "d": "Objetivos, regulaciones y restricciones del negocio."
+        },
+        {
+          "t": "Arquitectura",
+          "d": "Blueprint de pagos, data y blockchain; modelos de seguridad."
+        },
+        {
+          "t": "Integración",
+          "d": "APIs bancarias, orígenes de datos, rieles de pago y contratos."
+        },
+        {
+          "t": "Piloto & Compliance",
+          "d": "Pruebas, KYC/KYB, AML, monitoreo y evidencias."
+        },
+        {
+          "t": "Despliegue",
+          "d": "Runbook, SLOs, observabilidad y mejora continua."
+        }
       ]
     },
     "kpis": {
       "items": [
-        { "v": "15–30%", "l": "↓ Costos de operación" },
-        { "v": "25%", "l": "↓ Tiempos de ciclo" },
-        { "v": "99.95%", "l": "Disponibilidad objetivo" },
-        { "v": "100%", "l": "Trazabilidad de eventos" }
+        {
+          "v": "15–30%",
+          "l": "↓ Costos de operación"
+        },
+        {
+          "v": "25%",
+          "l": "↓ Tiempos de ciclo"
+        },
+        {
+          "v": "99.95%",
+          "l": "Disponibilidad objetivo"
+        },
+        {
+          "v": "100%",
+          "l": "Trazabilidad de eventos"
+        }
       ]
     },
     "usecases": {
       "title": "Casos de uso",
       "items": [
-        { "title": "Pagos masivos cross-border", "desc": "Orquestación de pagos internacionales con FX, monitoreo AML y conciliación automática.", "tags": ["FX","Compliance","APIs"] },
-        { "title": "Trazabilidad de cadena de suministro", "desc": "Registro inmutable de hitos logísticos y financieros para auditoría y reclamos.", "tags": ["Blockchain","Eventos","Auditoría"] },
-        { "title": "Forecasting de demanda y liquidez", "desc": "Modelos ML para planificar inventario, tesorería y necesidades de cash.", "tags": ["ML","Data Lake","BI"] }
+        {
+          "title": "Pagos masivos cross-border",
+          "desc": "Orquestación de pagos internacionales con FX, monitoreo AML y conciliación automática.",
+          "tags": [
+            "FX",
+            "Compliance",
+            "APIs"
+          ]
+        },
+        {
+          "title": "Trazabilidad de cadena de suministro",
+          "desc": "Registro inmutable de hitos logísticos y financieros para auditoría y reclamos.",
+          "tags": [
+            "Blockchain",
+            "Eventos",
+            "Auditoría"
+          ]
+        },
+        {
+          "title": "Forecasting de demanda y liquidez",
+          "desc": "Modelos ML para planificar inventario, tesorería y necesidades de cash.",
+          "tags": [
+            "ML",
+            "Data Lake",
+            "BI"
+          ]
+        }
       ]
     },
     "faqs": {
       "title": "Preguntas frecuentes",
       "items": [
-        { "q": "¿Necesito bancos partner para pagos globales?", "a": "Podemos integrar tus bancos actuales o proponer rieles y partners según tu geografía, riesgo y costos." },
-        { "q": "¿Cómo manejan cumplimiento (KYC/KYB, AML)?", "a": "Definimos políticas, flujos y evidencias; integramos proveedores de screening y generamos reportes auditables." },
-        { "q": "¿Qué nube o stack utilizan?", "a": "Trabajamos multi‑nube (AWS, Azure, GCP) y on‑prem, según tus restricciones y equipo." }
+        {
+          "q": "¿Necesito bancos partner para pagos globales?",
+          "a": "Podemos integrar tus bancos actuales o proponer rieles y partners según tu geografía, riesgo y costos."
+        },
+        {
+          "q": "¿Cómo manejan cumplimiento (KYC/KYB, AML)?",
+          "a": "Definimos políticas, flujos y evidencias; integramos proveedores de screening y generamos reportes auditables."
+        },
+        {
+          "q": "¿Qué nube o stack utilizan?",
+          "a": "Trabajamos multi‑nube (AWS, Azure, GCP) y on‑prem, según tus restricciones y equipo."
+        }
       ]
     }
   },
@@ -108,5 +168,8 @@
     "down": "a la baja",
     "error": "No se pudo cargar datos de mercado.",
     "disclaimer": "Datos informativos por CoinGecko. No constituyen asesoría financiera."
+  },
+  "stocks": {
+    "ticker_disclaimer": "Datos informativos basados en fuentes públicas. No constituyen asesoría financiera ni precios oficiales de mercado."
   }
 }

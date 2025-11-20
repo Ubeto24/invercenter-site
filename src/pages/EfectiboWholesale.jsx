@@ -72,7 +72,7 @@ export default function EfectiboWholesale() {
             <img
               src="/logos/logo-efectibo.png"
               alt={t('efectiboWholesale.hero.logoAlt')}
-              className="h-10 w-auto object-contain drop-shadow-[0_10px_25px_rgba(0,0,0,0.15)]"
+              className="h-[30rem] w-auto object-contain drop-shadow-[0_10px_25px_rgba(0,0,0,0.15)]"
               loading="lazy"
             />
           </div>

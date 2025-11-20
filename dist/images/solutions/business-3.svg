@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" role="img" aria-label="Business illustration 3">
+  <rect width="800" height="400" fill="#F4F6FB"/>
+  <g fill="#243E90" opacity="0.08">
+    <circle cx="650" cy="70" r="140"/>
+    <circle cx="80" cy="350" r="120"/>
+  </g>
+  <g>
+    <rect x="180" y="120" width="440" height="180" rx="16" fill="#ffffff" stroke="#D1D5DB"/>
+    <g fill="#243E90">
+      <rect x="220" y="160" width="160" height="10" rx="5" opacity="0.25"/>
+      <rect x="220" y="178" width="120" height="10" rx="5" opacity="0.2"/>
+      <rect x="220" y="196" width="300" height="10" rx="5" opacity="0.2"/>
+      <rect x="220" y="214" width="260" height="10" rx="5" opacity="0.2"/>
+      <rect x="220" y="232" width="200" height="10" rx="5" opacity="0.2"/>
+    </g>
+  </g>
+</svg>
+
