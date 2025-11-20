@@ -26,7 +26,7 @@ export default {
         },
       },
       animation: {
-        ticker: "ticker 40s linear infinite",
+        ticker: "ticker 45s linear infinite",
       },
     },
   },
