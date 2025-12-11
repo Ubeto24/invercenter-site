@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import linkedinIcon from '../../icons/icons/linkedin-svgrepo-com.svg'
 
 export default function Footer() {
   const { t } = useTranslation()
   const year = new Date().getFullYear()
+
   return (
     <footer className="mt-16 bg-white" role="contentinfo">
       <div className="h-2 w-full bg-brand-primary" aria-hidden="true"></div>
@@ -32,8 +34,23 @@ export default function Footer() {
           </ul>
         </div>
       </div>
-      <div className="border-t border-gray-100 py-4 text-center text-sm text-gray-600">
-        © {year} {t('brand.name')} — {t('footer.rights')} • {t('footer.designed_by')}
+      <div className="border-t border-gray-100">
+        <div className="container flex flex-col items-center gap-3 py-4 text-sm text-gray-600 sm:flex-row sm:justify-between">
+          <span className="text-center sm:text-left">
+            &copy; {year} {t('brand.name')} | {t('footer.rights')} &bull; {t('footer.designed_by')}
+          </span>
+          <div className="flex items-center gap-2">
+            <a
+              href="https://www.linkedin.com/company/invercenterusa/?viewAsMember=true"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 transition hover:-translate-y-0.5 hover:border-brand-primary hover:shadow-sm"
+              aria-label="LinkedIn"
+            >
+              <img src={linkedinIcon} alt="" className="h-5 w-5" />
+            </a>
+          </div>
+        </div>
       </div>
     </footer>
   )
