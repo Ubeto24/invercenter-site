@@ -13,8 +13,8 @@
     "quote": "Get a Quote"
   },
   "hero": {
-    "title": "Financial, Logistics and Technological Solutions for a Digital World",
-    "subtitle": "At InverCenter USA we drive the digital transformation of the global financial and logistics ecosystem. We deliver strategic consulting in investments, blockchain, big data, fintech technology and international procurement management to optimize efficiency, traceability and the sustainable growth of your company. We bridge finance and technology with logistics and international trade, enabling our clients to connect with verified suppliers, digitize cross-border payment processes and strengthen operational control of their supply chain through innovative and secure solutions.",
+    "title": "Financial, Logistics, Technology and Medical Supply Solutions for a Digital World",
+    "subtitle": "At InverCenter USA we drive the digital transformation of the global financial and logistics ecosystem. We deliver strategic consulting in investments, blockchain, big data, fintech technology and international procurement management to optimize efficiency, traceability and the sustainable growth of your company. We bridge finance and technology with logistics and international trade, enabling our clients to connect with verified suppliers, digitize cross-border payment processes and strengthen operational control of their supply chain through innovative and secure solutions. We also distribute disposable medical and surgical supplies to hospitals, clinics and government health programs.",
     "cta_services": "Explore our solutions",
     "cta_contact": "Contact us"
   },
@@ -454,5 +454,17 @@
   },
   "stocks": {
     "ticker_disclaimer": "Informational data based on public sources. Not financial advice or official market prices."
+  },
+  "medical": {
+    "eyebrow": "New business line",
+    "title": "Medical Supplies Distribution",
+    "description": "InverCenter USA is a wholesale distributor of disposable medical and surgical supplies, serving institutional clients — hospitals, clinics, and government health programs — across the USA and Latin America. We manage international procurement, quality control, and logistics with full traceability and regulatory compliance.",
+    "items": [
+      "Disposable medical & surgical supplies",
+      "Hospitals, clinics, and government health programs",
+      "International procurement and logistics",
+      "Quality control and regulatory compliance"
+    ],
+    "cta": "Request a quote"
   }
 }

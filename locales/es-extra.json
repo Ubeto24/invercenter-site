@@ -171,5 +171,17 @@
   },
   "stocks": {
     "ticker_disclaimer": "Datos informativos basados en fuentes públicas. No constituyen asesoría financiera ni precios oficiales de mercado."
+  },
+  "medical": {
+    "eyebrow": "Nueva línea de negocio",
+    "title": "Distribución de Suministros Médicos",
+    "description": "InverCenter USA es un distribuidor mayorista de suministros médicos y quirúrgicos desechables, que atiende a clientes institucionales — hospitales, clínicas y programas de salud — en Estados Unidos y Latinoamérica. Gestionamos la procura internacional, el control de calidad y la logística con total trazabilidad y cumplimiento regulatorio.",
+    "items": [
+      "Suministros médicos y quirúrgicos desechables",
+      "Hospitales, clínicas y programas de salud",
+      "Procura internacional y logística",
+      "Control de calidad y cumplimiento regulatorio"
+    ],
+    "cta": "Solicitar cotización"
   }
 }

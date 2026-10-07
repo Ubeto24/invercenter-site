@@ -8,6 +8,7 @@ import LogoCloud from '../components/LogoCloud'
 import AlliesSlider from '../components/AlliesSlider'
 import Insights from '../components/Insights'
 import CTAButton from '../components/CTAButton'
+import MedicalSupplies from '../components/MedicalSupplies'
 import Timeline from '../components/Timeline'
 import { testimonials } from '../content/testimonials'
 
@@ -21,6 +22,8 @@ export default function Home() {
   return (
     <>
       <Hero />
+
+      <MedicalSupplies />
 
       <Section id="services" title={t('services.title')} center>
         <p className="text-center text-gray-600 max-w-2xl mx-auto mb-8">{t('services.description')}</p>
