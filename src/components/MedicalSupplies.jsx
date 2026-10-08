@@ -12,8 +12,7 @@ export default function MedicalSupplies() {
     <section id="medical" className="bg-blue-50/60 border-y border-blue-100">
       <div className="container py-12 md:py-16 grid gap-8 lg:grid-cols-2 items-center">
         <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
-          <p className="text-sm uppercase tracking-wide text-brand-secondary">{t('medical.eyebrow')}</p>
-          <h2 className="mt-2 text-2xl md:text-3xl font-semibold text-gray-900">{t('medical.title')}</h2>
+          <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">{t('medical.title')}</h2>
           <p className="mt-4 text-gray-700 leading-relaxed">{t('medical.description')}</p>
           <CTAButton className="mt-6">{t('medical.cta')}</CTAButton>
         </motion.div>
