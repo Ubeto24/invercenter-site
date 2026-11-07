@@ -4,7 +4,6 @@ import Section from '../components/Section'
 import ServiceCard from '../components/ServiceCard'
 import FeatureList from '../components/FeatureList'
 import Stats from '../components/Stats'
-import LogoCloud from '../components/LogoCloud'
 import AlliesSlider from '../components/AlliesSlider'
 import Insights from '../components/Insights'
 import CTAButton from '../components/CTAButton'
@@ -44,10 +43,6 @@ export default function Home() {
           <FeatureList items={why} />
           <Stats items={stats} />
         </div>
-      </Section>
-
-      <Section>
-        <LogoCloud />
       </Section>
 
       <AlliesSlider />
